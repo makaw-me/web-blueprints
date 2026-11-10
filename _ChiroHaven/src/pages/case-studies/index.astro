@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Clinical Case Studies & Outcomes | ChiroHaven Boston';
+const description = 'Read documented patient case studies on non-surgical lumbar disc decompression, cervical spine rehabilitation, and sports recovery protocols in Boston.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Case Studies', url: `${base}/case-studies/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="cases-header">
+        <p class="section-eyebrow">Documented Medicine</p>
+        <h1>Clinical Rehabilitation Case Studies</h1>
+        <p class="section-lead">
+          We track verifiable orthopedic benchmarks to measure true recovery. Explore our detailed clinical case reports detailing patient presentation, diagnosis, treatment timeline, and measured functional outcomes.
+        </p>
+      </div>
+
+      <div class="cases-grid">
+        <!-- Case 1 (Full detail page) -->
+        <article class="case-card">
+          <div class="case-card-media">
+            <img
+              src={`${base}/images/case-study-decompression.webp`}
+              alt="Lumbar spine anatomical model demonstrating L4-L5 disc protrusion relief"
+              width="400"
+              height="260"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="case-card-body">
+            <span class="case-badge">Full Case Report Available</span>
+            <h2>Lumbar L4-L5 Disc Herniation with Radiculopathy</h2>
+            <p>
+              A 42-year-old desk professional presented with debilitating sciatic nerve radiation down the left calf (VAS 8/10). Treated with 8 weeks of Cox flexion-distraction decompression and reformer pilates.
+            </p>
+            <div class="case-meta-row">
+              <span><strong>Outcome:</strong> Complete resolution of leg pain (VAS 0/10)</span>
+              <span><strong>Follow-up:</strong> Unrestricted desk & running activity at 6 months</span>
+            </div>
+            <a href={`${base}/case-studies/spinal-decompression-lumbar-herniation/`} class="btn btn-primary">
+              Read Complete 8-Week Case Analysis &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- Case 2 (Sample summary) -->
+        <article class="case-card">
+          <div class="case-card-media">
+            <img
+              src={`${base}/images/case-study-cervical.webp`}
+              alt="Cervical spine posture assessment showing forward head angle measurement"
+              width="400"
+              height="260"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="case-card-body">
+            <span class="case-badge-muted">Clinical Summary</span>
+            <h2>Cervicogenic Tension Headaches in Remote Worker</h2>
+            <p>
+              A 29-year-old software engineer experiencing daily bilateral suboccipital throbbing headaches and restricted cervical rotation. Intervention combined C1-C2 joint mobilization with deep neck flexor retraining.
+            </p>
+            <div class="case-meta-row">
+              <span><strong>Outcome:</strong> Headache frequency dropped from daily to 0 per month</span>
+              <span><strong>Timeline:</strong> 4 weeks (6 clinical sessions)</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 3 (Sample summary) -->
+        <article class="case-card">
+          <div class="case-card-media">
+            <img
+              src={`${base}/images/case-study-sciatica.webp`}
+              alt="Physical therapist measuring hip abduction strength using handheld dynamometer"
+              width="400"
+              height="260"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="case-card-body">
+            <span class="case-badge-muted">Clinical Summary</span>
+            <h2>Patellofemoral Pain Syndrome in Marathon Runner</h2>
+            <p>
+              A 34-year-old distance runner unable to exceed 4 miles due to anterior knee pain. 3D running gait analysis identified severe contralateral pelvic drop and gluteus medius inhibition.
+            </p>
+            <div class="case-meta-row">
+              <span><strong>Outcome:</strong> Completed Boston Marathon with zero knee symptoms</span>
+              <span><strong>Timeline:</strong> 10 weeks of progressive eccentric loading</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cases-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .cases-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .case-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 800px) {
+    .case-card {
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .case-card-media {
+    background: #eef3f0;
+    height: 100%;
+    min-height: 220px;
+  }
+
+  .case-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .case-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .case-badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-badge-muted {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-card-body h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .case-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    background: var(--color-surface-subtle);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin: 1rem 0 1.25rem;
+  }
+</style>
+

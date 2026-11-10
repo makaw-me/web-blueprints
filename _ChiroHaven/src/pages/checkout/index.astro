@@ -1,0 +1,593 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Secure Clinical Checkout | ChiroHaven Boston';
+const description = 'Complete your clinical orthopedic supplies order with ChiroHaven Boston. Verified HSA/FSA checkout with same-day clinic pickup or MA ground delivery.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinic Store', url: `${base}/shop/` },
+  { name: 'Cart', url: `${base}/cart/` },
+  { name: 'Checkout', url: `${base}/checkout/` }
+];
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section checkout-page-section">
+    <div class="container">
+      <div class="checkout-header">
+        <p class="section-eyebrow">Medical Supplies Order</p>
+        <h1>Secure Clinical Checkout</h1>
+        <p class="section-lead">
+          Complete your patient details below. All purchases generate an itemized medical Superbill receipt with diagnostic CPT/HCPCS codes for HSA/FSA filing.
+        </p>
+      </div>
+
+      <div class="checkout-grid">
+        <!-- Form Column -->
+        <div class="checkout-form-col">
+          <form id="checkout-form" class="checkout-form" novalidate>
+            <!-- Step 1: Contact -->
+            <div class="checkout-section-card double-bezel">
+              <div class="double-bezel-inner">
+                <h2>1. Patient Contact Information</h2>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="c-first-name" class="form-label">First Name <span class="required" aria-hidden="true">*</span></label>
+                    <input type="text" id="c-first-name" required autocomplete="given-name" class="form-input" />
+                  </div>
+                  <div class="form-group">
+                    <label for="c-last-name" class="form-label">Last Name <span class="required" aria-hidden="true">*</span></label>
+                    <input type="text" id="c-last-name" required autocomplete="family-name" class="form-input" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="c-email" class="form-label">Email for Itemized Receipt <span class="required" aria-hidden="true">*</span></label>
+                    <input type="email" id="c-email" required autocomplete="email" placeholder="patient@example.com" class="form-input" />
+                  </div>
+                  <div class="form-group">
+                    <label for="c-phone" class="form-label">Phone for Pickup Updates <span class="required" aria-hidden="true">*</span></label>
+                    <input type="tel" id="c-phone" required autocomplete="tel" placeholder="(617) 000-0000" class="form-input" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Fulfillment & Address -->
+            <div class="checkout-section-card double-bezel">
+              <div class="double-bezel-inner">
+                <h2>2. Fulfillment Method & Address</h2>
+                
+                <div class="fulfillment-picker" role="radiogroup" aria-label="Fulfillment options">
+                  <label class="radio-card active">
+                    <input type="radio" name="order-fulfillment" value="pickup" checked id="radio-pickup" />
+                    <div>
+                      <strong>Boston Clinic Pickup (FREE)</strong>
+                      <p>450 Boylston St, 4th Floor, Boston MA. Ready in 2 hours.</p>
+                    </div>
+                  </label>
+
+                  <label class="radio-card">
+                    <input type="radio" name="order-fulfillment" value="delivery" id="radio-delivery" />
+                    <div>
+                      <strong>Standard MA Delivery ($5.99)</strong>
+                      <p>Ships via local courier across Greater Boston (1–2 business days).</p>
+                    </div>
+                  </label>
+                </div>
+
+                <div id="delivery-address-fields" style="display: none; margin-top: 1.5rem;">
+                  <div class="form-group">
+                    <label for="c-address" class="form-label">Delivery Street Address</label>
+                    <input type="text" id="c-address" autocomplete="street-address" class="form-input" placeholder="123 Commonwealth Ave, Apt 4" />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="c-city" class="form-label">City</label>
+                      <input type="text" id="c-city" autocomplete="address-level2" value="Boston" class="form-input" />
+                    </div>
+                    <div class="form-group">
+                      <label for="c-state" class="form-label">State</label>
+                      <input type="text" id="c-state" value="MA" readonly class="form-input" />
+                    </div>
+                    <div class="form-group">
+                      <label for="c-zip" class="form-label">ZIP Code</label>
+                      <input type="text" id="c-zip" autocomplete="postal-code" placeholder="02116" class="form-input" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Simulator -->
+            <div class="checkout-section-card double-bezel">
+              <div class="double-bezel-inner">
+                <h2>3. Payment & HSA/FSA Information</h2>
+
+                <div class="payment-tabs" role="tablist">
+                  <button type="button" class="pay-tab active" id="tab-card" role="tab" aria-selected="true">
+                    Credit / Debit / HSA / FSA Card
+                  </button>
+                  <button type="button" class="pay-tab" id="tab-in-person" role="tab" aria-selected="false">
+                    Pay in Person at Clinic
+                  </button>
+                </div>
+
+                <div id="card-payment-fields" class="card-fields-box">
+                  <div class="form-group">
+                    <label for="card-name" class="form-label">Name on Card <span class="required" aria-hidden="true">*</span></label>
+                    <input type="text" id="card-name" required autocomplete="cc-name" class="form-input" placeholder="Jane Doe" />
+                  </div>
+                  <div class="form-group">
+                    <label for="card-num" class="form-label">Card Number <span class="required" aria-hidden="true">*</span></label>
+                    <input type="text" id="card-num" required autocomplete="cc-number" class="form-input" placeholder="4000 1234 5678 9010" />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="card-exp" class="form-label">Expiration (MM/YY) <span class="required" aria-hidden="true">*</span></label>
+                      <input type="text" id="card-exp" required autocomplete="cc-exp" class="form-input" placeholder="08/28" />
+                    </div>
+                    <div class="form-group">
+                      <label for="card-cvv" class="form-label">Security Code (CVV) <span class="required" aria-hidden="true">*</span></label>
+                      <input type="text" id="card-cvv" required autocomplete="cc-csc" class="form-input" placeholder="123" />
+                    </div>
+                  </div>
+                </div>
+
+                <div id="in-person-notice" class="in-person-notice" style="display: none;">
+                  <p>
+                    ✓ You can pay via cash, debit, check, or health savings card at the 4th-floor reception desk when picking up your supplies.
+                  </p>
+                </div>
+
+                <div class="checkout-submit-row">
+                  <button type="submit" class="btn btn-primary btn-submit-order" id="btn-submit-order">
+                    <span>Complete Order & Generate Invoice</span>
+                    <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sidebar Summary Column -->
+        <aside class="checkout-summary-col" aria-label="Order summary sidebar">
+          <div class="summary-card double-bezel">
+            <div class="double-bezel-inner">
+              <h2>Order Summary</h2>
+              
+              <div id="checkout-items-preview" class="checkout-items-preview">
+                <!-- Dynamically populated from store -->
+              </div>
+
+              <div class="summary-breakdown">
+                <div class="summary-line">
+                  <span>Subtotal:</span>
+                  <strong id="co-subtotal">$0.00</strong>
+                </div>
+                <div class="summary-line">
+                  <span>Fulfillment:</span>
+                  <strong id="co-shipping">FREE Pickup</strong>
+                </div>
+                <div class="summary-line">
+                  <span>Estimated Tax:</span>
+                  <strong id="co-tax">$0.00</strong>
+                </div>
+                <div class="summary-line total-line">
+                  <span>Total Due:</span>
+                  <strong id="co-total" class="total-number">$0.00</strong>
+                </div>
+              </div>
+
+              <div class="checkout-security-card">
+                <p><strong>Clinical Guarantee:</strong> If the prescribed support does not fit your ergonomic setup, return within 30 days for full refund or exchange.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Order Confirmation Modal -->
+      <dialog id="order-success-dialog" class="success-dialog double-bezel" aria-labelledby="dialog-title">
+        <div class="double-bezel-inner dialog-inner">
+          <div class="dialog-icon-wrap" aria-hidden="true">✓</div>
+          <h2 id="dialog-title">Order Placed Successfully!</h2>
+          <p class="dialog-lead">
+            Thank you for ordering with ChiroHaven. Your order confirmation is <strong>#CH-89241</strong>.
+          </p>
+
+          <div class="dialog-details-box">
+            <p><strong>Itemized FSA/HSA Superbill:</strong> Sent to your email address.</p>
+            <p><strong>Pickup Ready:</strong> Today by 3:00 PM at 450 Boylston Street, 4th Floor, Boston MA.</p>
+            <p class="dialog-note"><em>(This is a fully functional static demonstration. No financial charges were executed.)</em></p>
+          </div>
+
+          <div class="dialog-actions">
+            <a href={`${base}/`} class="btn btn-primary" id="btn-dialog-home">
+              <span>Return to Clinic Home</span>
+              <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ base }}>
+  (function() {
+    let shippingCost = 0;
+
+    const itemsPreview = document.getElementById('checkout-items-preview');
+    const subtotalEl = document.getElementById('co-subtotal');
+    const shippingEl = document.getElementById('co-shipping');
+    const taxEl = document.getElementById('co-tax');
+    const totalEl = document.getElementById('co-total');
+    const form = document.getElementById('checkout-form');
+    const dialog = document.getElementById('order-success-dialog');
+    const deliveryFields = document.getElementById('delivery-address-fields');
+    const cardFields = document.getElementById('card-payment-fields');
+    const inPersonNotice = document.getElementById('in-person-notice');
+    const tabCard = document.getElementById('tab-card');
+    const tabInPerson = document.getElementById('tab-in-person');
+
+    function populatePreview() {
+      if (!window.ChiroStore) return;
+      const items = window.ChiroStore.getCart();
+
+      if (!items || items.length === 0) {
+        if (itemsPreview) {
+          itemsPreview.innerHTML = '<p class="empty-note">No items in cart. <a href="' + base + '/shop/">Visit Clinic Store</a></p>';
+        }
+        return;
+      }
+
+      if (itemsPreview) {
+        itemsPreview.innerHTML = '';
+        items.forEach((item) => {
+          const div = document.createElement('div');
+          div.className = 'co-item-row';
+          div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="co-item-img" width="48" height="48" />
+            <div class="co-item-meta">
+              <span class="co-item-title">${item.name}</span>
+              <span class="co-item-qty">Qty: ${item.qty} × $${item.price.toFixed(2)}</span>
+            </div>
+            <strong class="co-item-total">$${(item.price * item.qty).toFixed(2)}</strong>
+          `;
+          itemsPreview.appendChild(div);
+        });
+      }
+
+      const subtotal = window.ChiroStore.getCartSubtotal();
+      const tax = subtotal > 0 ? (subtotal * 0.03) : 0;
+      const total = subtotal + tax + shippingCost;
+
+      if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+      if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
+      if (shippingEl) shippingEl.textContent = shippingCost > 0 ? `$${shippingCost.toFixed(2)}` : 'FREE Pickup';
+      if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Toggle fulfillment delivery fields
+    document.querySelectorAll('input[name="order-fulfillment"]').forEach((radio) => {
+      radio.addEventListener('change', (e) => {
+        const isDelivery = e.target.value === 'delivery';
+        if (deliveryFields) deliveryFields.style.display = isDelivery ? 'block' : 'none';
+        shippingCost = isDelivery ? 5.99 : 0;
+        populatePreview();
+      });
+    });
+
+    // Toggle payment tabs
+    if (tabCard && tabInPerson) {
+      tabCard.addEventListener('click', () => {
+        tabCard.classList.add('active');
+        tabCard.setAttribute('aria-selected', 'true');
+        tabInPerson.classList.remove('active');
+        tabInPerson.setAttribute('aria-selected', 'false');
+        if (cardFields) cardFields.style.display = 'block';
+        if (inPersonNotice) inPersonNotice.style.display = 'none';
+      });
+
+      tabInPerson.addEventListener('click', () => {
+        tabInPerson.classList.add('active');
+        tabInPerson.setAttribute('aria-selected', 'true');
+        tabCard.classList.remove('active');
+        tabCard.setAttribute('aria-selected', 'false');
+        if (cardFields) cardFields.style.display = 'none';
+        if (inPersonNotice) inPersonNotice.style.display = 'block';
+      });
+    }
+
+    // Form submission
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        if (window.ChiroStore) {
+          window.ChiroStore.clearCart();
+        }
+
+        if (dialog && typeof dialog.showModal === 'function') {
+          dialog.showModal();
+        } else if (dialog) {
+          dialog.style.display = 'block';
+        }
+      });
+    }
+
+    populatePreview();
+  })();
+</script>
+
+<style>
+  .checkout-page-section {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .checkout-header {
+    max-width: var(--max-measure);
+    margin-bottom: 2.5rem;
+  }
+
+  .checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .checkout-grid {
+      grid-template-columns: 1.45fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+
+  .checkout-section-card {
+    margin-bottom: 2rem;
+  }
+
+  .checkout-section-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .fulfillment-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .radio-card {
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    background: var(--color-surface-subtle);
+    transition: all var(--transition-fast);
+  }
+
+  .radio-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .radio-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  /* Payment tabs */
+  .payment-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pay-tab {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .pay-tab.active {
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    border-color: var(--color-dark-bg);
+  }
+
+  .in-person-notice {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #2e7d32;
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkout-submit-row {
+    margin-top: 1.5rem;
+  }
+
+  .btn-submit-order {
+    width: 100%;
+    font-size: 1.05rem;
+  }
+
+  /* Sidebar */
+  .checkout-items-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+    max-height: 280px;
+    overflow-y: auto;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+  }
+
+  .co-item-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .co-item-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+    background-color: var(--color-dark-bg);
+    border: 1px solid var(--color-border);
+  }
+
+  .co-item-meta {
+    flex: 1;
+  }
+
+  .co-item-title {
+    display: block;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .co-item-qty {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .summary-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .total-line {
+    border-top: 2px solid var(--color-border);
+    padding-top: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .total-number {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--color-primary);
+  }
+
+  .checkout-security-card {
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.85rem;
+    margin-top: 1.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-text);
+  }
+
+  /* Confirmation Dialog */
+  .success-dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 540px;
+    margin: auto;
+  }
+
+  .success-dialog::backdrop {
+    background: rgba(12, 34, 31, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .dialog-inner {
+    text-align: center;
+    padding: 2.5rem 2rem;
+  }
+
+  .dialog-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #27ae60;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 auto 1.25rem;
+  }
+
+  .dialog-lead {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .dialog-details-box {
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    font-size: 0.9375rem;
+  }
+
+  .dialog-details-box p {
+    margin-bottom: 0.5rem;
+  }
+
+  .dialog-note {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+</style>
+

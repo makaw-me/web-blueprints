@@ -1,0 +1,28 @@
+# Aurelia Hotel & Suites
+
+> An intimate boutique luxury hotel and residential retreat located on the Champs-Élysées in Paris, France.
+
+## Overview
+Aurelia Hotel & Suites pairs classic French neoclassical architecture with modern luxury. The property features 6 signature handcrafted guest rooms and suites, tranquil interior courtyard gardens, Michelin-inspired dining, and 24-hour dedicated concierge service.
+
+- Website: https://aureliahotel.com
+- Location: 124 Avenue des Champs-Élysées, 75008 Paris, France
+- Telephone: +33 1 42 68 55 00
+- Email: reservations@aureliahotel.com
+- Powered by: MAKAW (https://makaw.me)
+
+## Accommodations
+- Deluxe King Room: Handcrafted king bed, Italian linens, rainfall shower, garden courtyard view.
+- Executive Suite: Expansive sitting salon, dedicated executive writing desk, artisan espresso bar.
+- Prestige Terrace Room: Private sun-drenched balcony overlooking historic Parisian rooftops.
+- Presidential Suite: Deep-soaking whirlpool bath, 24-hour butler care, formal dining salon.
+- Junior Garden Suite: Ground-floor sanctuary with direct access to private botanical pathways.
+- Ambassador Residence: Two-bedroom luxury residence with curated contemporary artwork.
+
+## Amenities & Services
+- 24-Hour Multilingual Concierge
+- Fine Dining & Evening Wine Lounge
+- Heated Courtyard Relaxation Pool
+- In-Suite Spa & Wellness Treatments
+- Private Chauffeur & Airport Transfers
+

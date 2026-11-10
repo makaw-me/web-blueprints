@@ -1,0 +1,27 @@
+# Ignore dependencies across all project directories
+**/node_modules/
+node_modules/
+
+# Ignore build artifacts and caches
+**/dist/
+dist/
+**/.astro/
+.astro/
+
+# Environment files
+**/.env
+**/.env.*
+!.env.example
+
+# Logs and temp files
+**/temp/
+temp/
+*.log
+npm-debug.log*
+
+# OS & Editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

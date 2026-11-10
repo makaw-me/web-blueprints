@@ -1,0 +1,22 @@
+{
+  "name": "tangerina-preschool-website",
+  "version": "1.0.0",
+  "description": "Tangerina Preschool and Kindergarten website demo template",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 .",
+    "build": "echo 'Static build ready'"
+  },
+  "keywords": [
+    "preschool",
+    "kindergarten",
+    "website",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "MIT"
+}
+

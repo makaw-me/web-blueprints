@@ -1,0 +1,349 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isDemo = process.env.SITE_MODE !== 'production';
+---
+
+<aside class="closing-cta-band" aria-label="Appointment booking">
+  <div class="container cta-band-content">
+    <div class="cta-text-side">
+      <h2 class="cta-heading">Ready to Restore Pain-Free Mobility?</h2>
+      <p class="cta-lead">
+        Comprehensive clinical evaluation, evidence-based spinal care, and personalized rehabilitation in Back Bay, Boston.
+      </p>
+    </div>
+    <div class="cta-action-side">
+      <a href={`${base}/contact/`} class="btn btn-light cta-btn">
+        <span>Schedule Evaluation</span>
+      </a>
+      <a href="tel:6176232338" class="cta-tel-link">
+        Or Call (617) 623-2338
+      </a>
+    </div>
+  </div>
+</aside>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-main">
+    <div class="footer-grid">
+      <!-- Col 1: Clinic Identity & Mission -->
+      <div class="footer-col col-brand">
+        <span class="footer-logo">ChiroHaven</span>
+        <p class="footer-desc">
+          Board-certified chiropractic physicians and licensed physical therapists dedicated to structural rehabilitation, acute pain relief, and postural restoration.
+        </p>
+        <div class="footer-meta">
+          <p><strong>NPI Registered & Licensed:</strong> Commonwealth of Massachusetts</p>
+          <p><strong>Payment:</strong> FSA/HSA Accepted, Out-of-Network Superbills Provided</p>
+        </div>
+      </div>
+
+      <!-- Col 2: Clinical Services -->
+      <div class="footer-col col-services">
+        <h3 class="footer-heading">Services</h3>
+        <ul class="footer-links" role="list">
+          <li><a href={`${base}/services/chiropractic-therapy/`}>Chiropractic Therapy</a></li>
+          <li><a href={`${base}/services/physiotherapy/`}>Physical Therapy</a></li>
+          <li><a href={`${base}/services/clinical-pilates/`}>Clinical Reformer Pilates</a></li>
+          <li><a href={`${base}/services/soft-tissue-therapy/`}>Soft Tissue & Myofascial</a></li>
+          <li><a href={`${base}/services/`}>All Clinical Programs</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Information & Resources -->
+      <div class="footer-col col-nav">
+        <h3 class="footer-heading">Patient Info</h3>
+        <ul class="footer-links" role="list">
+          <li><a href={`${base}/about/`}>About Our Clinicians</a></li>
+          <li><a href={`${base}/pricing/`}>Pricing & Insurance</a></li>
+          <li><a href={`${base}/case-studies/`}>Case Studies & Outcomes</a></li>
+          <li><a href={`${base}/faq/`}>Frequently Asked Questions</a></li>
+          <li><a href={`${base}/classes/`}>Patient Classes</a></li>
+          <li><a href={`${base}/shop/`}>Clinic Store & Supplies</a></li>
+          <li><a href={`${base}/cart/`}>Shopping Cart</a></li>
+          <li><a href={`${base}/wishlist/`}>Saved Wishlist</a></li>
+          <li><a href={`${base}/contact/`}>Directions & Parking</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Location, Hours, Contact (Matches JSON-LD) -->
+      <div class="footer-col col-contact">
+        <h3 class="footer-heading">Boston Clinic</h3>
+        <address class="footer-address">
+          <p>450 Boylston Street, 4th Floor</p>
+          <p>Boston, MA 02116</p>
+          <p class="mt-xs">
+            <a href="https://maps.google.com/?q=450+Boylston+St,+Boston,+MA+02116" target="_blank" rel="noopener noreferrer" class="map-link">
+              View on Google Maps (opens new tab)
+            </a>
+          </p>
+        </address>
+
+        <div class="footer-hours">
+          <h4 class="hours-title">Clinical Hours</h4>
+          <dl class="hours-list">
+            <div class="hours-row"><dt>Mon – Thu:</dt><dd>8:00 AM – 6:00 PM</dd></div>
+            <div class="hours-row"><dt>Friday:</dt><dd>8:00 AM – 4:30 PM</dd></div>
+            <div class="hours-row"><dt>Sat – Sun:</dt><dd>Closed (Emergency on-call)</dd></div>
+          </dl>
+        </div>
+
+        <div class="footer-direct">
+          <p>Phone: <a href="tel:6176232338">(617) 623-2338</a></p>
+          <p>Email: <a href="mailto:info@chirohaven.com">info@chirohaven.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Legal Row -->
+    <div class="footer-bottom">
+      <div class="legal-links">
+        <span>&copy; {new Date().getFullYear()} ChiroHaven Spine & Physical Therapy LLC. All rights reserved.</span>
+        <a href={`${base}/privacy/`}>Privacy Policy</a>
+        <a href={`${base}/accessibility/`}>Accessibility Statement</a>
+      </div>
+
+      {isDemo && (
+        <div class="demo-notice" role="note">
+          <span>Demo site, sample content. Built for client demonstration purposes only.</span>
+        </div>
+      )}
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* CTA Band */
+  .closing-cta-band {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+
+  .cta-band-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 800px) {
+    .cta-band-content {
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+    }
+  }
+
+  .cta-heading {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-lead {
+    color: #f7eae5;
+    font-size: 1.125rem;
+    max-width: 58ch;
+    margin-bottom: 0;
+  }
+
+  .cta-action-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .cta-tel-link {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 1.0625rem;
+  }
+
+  .cta-tel-link:hover {
+    color: #ffe0d6;
+  }
+
+  /* Footer */
+  .site-footer {
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: 2rem;
+    border-top: 1px solid var(--color-dark-border);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .footer-grid {
+      grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+      gap: 2rem;
+    }
+  }
+
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-desc {
+    font-size: 0.95rem;
+    color: var(--color-dark-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-meta {
+    font-size: 0.875rem;
+    color: #8fb1a6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-dark-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer-links a {
+    color: #e2ece7;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-size: 0.95rem;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-dark-focus);
+  }
+
+  .footer-address {
+    font-style: normal;
+    color: var(--color-dark-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .map-link {
+    color: #8be2c7;
+    font-weight: 600;
+  }
+
+  .map-link:hover {
+    color: #ffffff;
+  }
+
+  .hours-title {
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+  }
+
+  .hours-list {
+    font-size: 0.875rem;
+    color: var(--color-dark-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .hours-row dt {
+    font-weight: 600;
+    color: #e2ece7;
+  }
+
+  .footer-direct {
+    font-size: 0.95rem;
+  }
+
+  .footer-direct a {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Bottom Row */
+  .footer-bottom {
+    border-top: 1px solid var(--color-dark-border);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-dark-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .legal-links a {
+    color: #8be2c7;
+    text-decoration: underline;
+  }
+
+  .demo-notice {
+    background-color: #1a3832;
+    color: #e0f2eb;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    border: 1px solid #29554d;
+  }
+
+  .mt-xs {
+    margin-top: 0.35rem;
+  }
+</style>
+

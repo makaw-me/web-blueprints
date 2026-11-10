@@ -1,0 +1,371 @@
+---
+const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const navLinks = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/services/`, label: 'Services' },
+  { href: `${base}/about/`, label: 'About' },
+  { href: `${base}/pricing/`, label: 'Pricing' },
+  { href: `${base}/shop/`, label: 'Store' },
+  { href: `${base}/case-studies/`, label: 'Case Studies' },
+  { href: `${base}/contact/`, label: 'Contact' },
+];
+
+const isCurrent = (href: string) => {
+  if (href === `${base}/` || href === '/') {
+    return currentPath === '/' || currentPath === `${base}/`;
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="site-header" role="banner">
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-item">
+        <span class="top-label">Call direct:</span>
+        <a href="tel:6176232338" class="top-link">(617) 623-2338</a>
+      </div>
+      <div class="top-bar-item">
+        <span class="top-label">Hours:</span>
+        <span>Mon–Fri 8:00 AM – 6:00 PM</span>
+      </div>
+      <div class="top-bar-item desktop-only">
+        <span class="top-label">Location:</span>
+        <span>450 Boylston St, Boston, MA</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-bar">
+    <div class="container main-bar-content">
+      <a href={`${base}/`} class="brand-logo" aria-label="ChiroHaven Spine and Physical Therapy Home">
+        <span class="brand-name">ChiroHaven</span>
+        <span class="brand-tag">Spine & Physical Therapy</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list" role="list">
+          {navLinks.map((link) => (
+            <li class="nav-item">
+              <a
+                href={link.href}
+                class={`nav-link ${isCurrent(link.href) ? 'active' : ''}`}
+                aria-current={isCurrent(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href={`${base}/wishlist/`} class="header-icon-btn" aria-label="View Saved Wishlist" title="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+          <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+        </a>
+
+        <a href={`${base}/cart/`} class="header-icon-btn" aria-label="View Shopping Cart" title="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </a>
+
+        <a href={`${base}/contact/`} class="btn btn-primary header-cta">
+          <span>Book Appointment</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+          type="button"
+          class="mobile-toggle"
+          id="mobile-menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-menu-drawer"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="menu-icon" aria-hidden="true"></span>
+          <span class="menu-text">Menu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu-drawer" class="mobile-drawer" hidden>
+    <div class="container mobile-drawer-content">
+      <nav aria-label="Mobile Primary Navigation">
+        <ul class="mobile-nav-list" role="list">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class={`mobile-nav-link ${isCurrent(link.href) ? 'active' : ''}`}
+                aria-current={isCurrent(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="mobile-drawer-cta">
+        <a href={`${base}/contact/`} class="btn btn-primary btn-block">
+          Book Appointment
+        </a>
+        <a href="tel:6176232338" class="btn btn-secondary btn-block">
+          Call: (617) 623-2338
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Tiny progressive disclosure for mobile menu (zero dependencies, fully keyboard operable)
+  const btn = document.getElementById('mobile-menu-btn');
+  const drawer = document.getElementById('mobile-menu-drawer');
+  if (btn && drawer) {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      drawer.hidden = expanded;
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        btn.setAttribute('aria-expanded', 'false');
+        drawer.hidden = true;
+        btn.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .top-bar {
+    background-color: #081715;
+    font-size: 0.875rem;
+    color: var(--color-dark-text-muted);
+    border-bottom: 1px solid var(--color-dark-border);
+    padding: 0.35rem 0;
+  }
+
+  .top-bar-content {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .top-bar-item {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .top-label {
+    color: #92b5ab;
+  }
+
+  .top-link {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .top-link:hover {
+    color: var(--color-dark-focus);
+  }
+
+  .main-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    gap: 1rem;
+  }
+
+  .brand-logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--color-dark-text);
+  }
+
+  .brand-name {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .brand-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a0c2b7;
+    margin-top: 2px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .desktop-nav {
+      display: block;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: #f3f6f4;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem;
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--color-dark-focus);
+  }
+
+  .nav-link.active {
+    color: #ffffff;
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-dark-focus);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .header-cta {
+      display: inline-flex;
+    }
+  }
+
+  .mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #102622;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    padding: 0.4rem 0.75rem;
+    min-height: 44px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .menu-text {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 900px) {
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  .menu-icon {
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    position: relative;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    left: 0;
+  }
+
+  .menu-icon::before { top: -6px; }
+  .menu-icon::after { top: 6px; }
+
+  .mobile-drawer {
+    background-color: #0f2723;
+    border-top: 1px solid var(--color-dark-border);
+    padding: 1.25rem 0 2rem;
+  }
+
+  .mobile-drawer[hidden] {
+    display: none;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    color: #f3f6f4;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-nav-link.active {
+    color: var(--color-dark-focus);
+  }
+
+  .mobile-drawer-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .desktop-only {
+      display: none;
+    }
+  }
+</style>
+

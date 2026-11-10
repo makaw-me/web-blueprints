@@ -1,0 +1,410 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Contact & Book an Appointment | Boston MA';
+const description = 'Schedule an initial evaluation with our licensed chiropractors and physical therapists in Back Bay Boston. Working appointment request form and directions.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Contact & Booking', url: `${base}/contact/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-header">
+        <p class="section-eyebrow">Get In Touch</p>
+        <h1>Schedule a Clinical Evaluation in Boston</h1>
+        <p class="section-lead">
+          Take the first step toward lasting mobility and pain relief. Fill out the appointment request below, or contact our Back Bay clinic reception directly.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Form Side -->
+        <div class="form-wrapper">
+          <h2>Request an Appointment</h2>
+          <p class="form-intro">
+            Complete this brief intake. Our clinical coordinator will respond within 2 business hours to confirm your preferred time slot.
+          </p>
+
+          <form id="appointment-form" class="appointment-form" novalidate>
+            <div id="demo-success-msg" class="demo-success" hidden role="alert" tabindex="-1">
+              <strong>Thank you for your demo request!</strong>
+              <p>This is a static demonstration site. No data was transmitted over the network. In production, this form connects directly to your HIPAA-compliant intake system or practice EHR.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="full-name" class="form-label">Full Legal Name <span class="required" aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="full-name"
+                name="fullName"
+                required
+                autocomplete="name"
+                class="form-input"
+                aria-describedby="name-desc"
+              />
+              <p id="name-desc" class="form-hint">Please enter your first and last name as listed on your photo ID.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone-number" class="form-label">Phone Number <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="tel"
+                  id="phone-number"
+                  name="phoneNumber"
+                  required
+                  autocomplete="tel"
+                  placeholder="(617) 000-0000"
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email-address" class="form-label">Email Address <span class="required" aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="email-address"
+                  name="emailAddress"
+                  required
+                  autocomplete="email"
+                  placeholder="name@example.com"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service-select" class="form-label">Primary Clinical Focus <span class="required" aria-hidden="true">*</span></label>
+              <select id="service-select" name="service" required class="form-select">
+                <option value="">-- Please select clinical specialty --</option>
+                <option value="chiropractic">Chiropractic Evaluation & Spinal Care</option>
+                <option value="physiotherapy">Physical Therapy & Musculoskeletal Rehab</option>
+                <option value="pilates">Clinical Reformer Pilates</option>
+                <option value="soft-tissue">Soft Tissue & Myofascial Release</option>
+                <option value="unsure">Not Sure / Multi-Discipline Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="symptoms-desc" class="form-label">Brief Description of Pain or Injury</label>
+              <textarea
+                id="symptoms-desc"
+                name="symptoms"
+                rows="4"
+                class="form-textarea"
+                placeholder="Where is the pain located, how long has it persisted, and what activities aggravate it?"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-submit">
+                Submit Appointment Request
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Info & Location Side -->
+        <aside class="clinic-info-sidebar" aria-label="Clinic information and directions">
+          <div class="info-card">
+            <h2>Boston Clinic Location</h2>
+            <address class="clinic-address">
+              <strong>ChiroHaven Spine & Physical Therapy</strong><br />
+              450 Boylston Street, 4th Floor<br />
+              Boston, MA 02116<br />
+              (Back Bay / Copley Square neighborhood)
+            </address>
+
+            <div class="contact-links-list">
+              <p><strong>Phone:</strong> <a href="tel:6176232338">(617) 623-2338</a></p>
+              <p><strong>Email:</strong> <a href="mailto:info@chirohaven.com">info@chirohaven.com</a></p>
+              <p>
+                <strong>Directions:</strong>
+                <a href="https://maps.google.com/?q=450+Boylston+St,+Boston,+MA+02116" target="_blank" rel="noopener noreferrer">
+                  Open Google Maps (opens new tab)
+                </a>
+              </p>
+            </div>
+
+            <h3>Hours of Operation</h3>
+            <dl class="hours-dl">
+              <div>
+                <dt>Monday – Thursday:</dt>
+                <dd>8:00 AM – 6:00 PM</dd>
+              </div>
+              <div>
+                <dt>Friday:</dt>
+                <dd>8:00 AM – 4:30 PM</dd>
+              </div>
+              <div>
+                <dt>Saturday – Sunday:</dt>
+                <dd>Closed (Emergency triage on-call)</dd>
+              </div>
+            </dl>
+
+            <div class="transit-interactive-box" id="transit-tabs">
+              <h3>Getting Here: Transit & Parking</h3>
+              <div class="transit-tab-row" role="tablist" aria-label="Transit and parking options">
+                <button type="button" class="transit-tab active" data-opt="mbta" role="tab" aria-selected="true" id="tab-mbta" aria-controls="panel-transit-content">
+                  MBTA Subway
+                </button>
+                <button type="button" class="transit-tab" data-opt="parking" role="tab" aria-selected="false" id="tab-parking" aria-controls="panel-transit-content">
+                  Garage Parking
+                </button>
+                <button type="button" class="transit-tab" data-opt="commuter" role="tab" aria-selected="false" id="tab-commuter" aria-controls="panel-transit-content">
+                  Commuter Rail
+                </button>
+              </div>
+
+              <div class="transit-panel-body" id="panel-transit-content" role="tabpanel" aria-labelledby="tab-mbta" aria-live="polite">
+                <p id="transit-text">
+                  <strong>Green Line:</strong> Arlington Station (B, C, D, E branches) is a 2-minute walk (1 block). Copley Station is a 3-minute walk.<br />
+                  <strong>Orange Line:</strong> Back Bay Station is a 4-minute walk north via Dartmouth Street.
+                </p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const form = document.getElementById('appointment-form');
+    const alertBox = document.getElementById('demo-success-msg');
+    if (form && alertBox) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        alertBox.hidden = false;
+        alertBox.focus();
+        form.reset();
+      });
+    }
+
+    const transitData = {
+      mbta: '<strong>Green Line:</strong> Arlington Station (B, C, D, E branches) is a 2-minute walk (1 block). Copley Station is a 3-minute walk.<br /><strong>Orange Line:</strong> Back Bay Station is a 4-minute walk north via Dartmouth Street.',
+      parking: '<strong>500 Boylston St Garage:</strong> Direct underground parking entrance on St. James Avenue. ChiroHaven clinic provides 2-hour parking validation stamps at our reception desk.<br /><strong>Street Parking:</strong> Metered 2-hour parking available on Boylston, Berkeley, and Clarendon Streets.',
+      commuter: '<strong>Back Bay Station (Amtrak & Commuter Rail):</strong> Framingham/Worcester, Franklin, Needham, and Providence lines stop directly at Back Bay Station, located 0.2 miles (4-minute walk) from our clinic front entrance.'
+    };
+
+    const tabsBox = document.getElementById('transit-tabs');
+    if (tabsBox) {
+      const tabs = tabsBox.querySelectorAll('.transit-tab');
+      const panel = document.getElementById('panel-transit-content');
+      const textEl = document.getElementById('transit-text');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const opt = tab.getAttribute('data-opt');
+          if (!opt || !transitData[opt]) return;
+          tabs.forEach((t) => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          panel.setAttribute('aria-labelledby', tab.id);
+          textEl.innerHTML = transitData[opt];
+        });
+      });
+    }
+  })();
+</script>
+
+<style>
+  .contact-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 3.5rem;
+    }
+  }
+
+  .form-wrapper {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .form-wrapper h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-intro {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .demo-success {
+    background-color: #e8f5ee;
+    border: 1.5px solid #238059;
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    color: #0c3623;
+  }
+
+  .demo-success strong {
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .demo-success p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .required {
+    color: #b71c1c;
+    font-weight: 700;
+  }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .btn-submit {
+      width: auto;
+    }
+  }
+
+  .info-card {
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  }
+
+  .info-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card h3 {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .clinic-address {
+    font-style: normal;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .hours-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hours-dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .hours-dl dt {
+    font-weight: 600;
+  }
+
+  .transit-interactive-box {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .transit-tab-row {
+    display: flex;
+    gap: 0.35rem;
+    margin: 0.75rem 0;
+  }
+
+  .transit-tab {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .transit-tab:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+
+  .transit-tab.active {
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    border-color: var(--color-dark-bg);
+  }
+
+  .transit-panel-body {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.85rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .transit-panel-body p {
+    margin-bottom: 0;
+  }
+</style>
+

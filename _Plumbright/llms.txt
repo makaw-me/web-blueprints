@@ -1,0 +1,19 @@
+# Plumbright
+
+> Plumbright provides residential and commercial plumbing services across New York and surrounding areas. Established in 1990, Plumbright provides 24/7 emergency leak repair, drain clearing, sewer camera inspection, pipe replacement, and water heater installation.
+
+## Services Offered
+- Residential Plumbing: Complete fixture installations, pipe leak diagnostics, garbage disposals, and re-piping.
+- Commercial Plumbing: Industrial drainage, backflow prevention testing, high-capacity water systems, and facility maintenance.
+- Drain Repair & Cleaning: Snaking, motorized hydro-jetting, and root removal.
+- Sewer Line Repair: Trenchless sewer repair, video inspection, and mainline clearing.
+- Water Heater Services: Conventional tank water heaters and tankless continuous hot water systems.
+- Emergency Services: 24/7 dispatch for urgent leaks, broken pipes, and overflows.
+
+## Key Information
+- Established: 1990
+- Hours: Monday - Friday: 09:00 AM - 09:00 PM; Saturday - Sunday: 09:00 AM - 12:00 PM; Emergency Service: 24/7.
+- Phone: +012 345 6789
+- Email: info@example.com
+- Location: 123 Street, New York, USA
+

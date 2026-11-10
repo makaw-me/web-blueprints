@@ -1,0 +1,30 @@
+# Voyagio
+
+> Voyagio is a global travel and tourism agency providing curated vacation packages, international guided tours, hotel and flight booking, destination guides, and adventure excursions worldwide.
+
+## Primary Services
+- International Vacation Packages: All-inclusive holiday itineraries across Europe, Asia, North America, and beyond.
+- Guided City & Nature Tours: Multilingual, certified local guides leading cultural and adventure trips.
+- Travel Reservations: Airline booking, luxury hotel reservations, and travel insurance assistance.
+- Custom Travel Planning: Personalized family vacations, solo expeditions, and honeymoon itineraries.
+
+## Core Pages
+- Homepage: https://voyagio.vercel.app/
+- About Us: https://voyagio.vercel.app/about
+- Travel Services: https://voyagio.vercel.app/services
+- Vacation Packages: https://voyagio.vercel.app/packages
+- Popular Destinations: https://voyagio.vercel.app/destination
+- Guided Tours: https://voyagio.vercel.app/tour
+- Online Booking: https://voyagio.vercel.app/booking
+- Travel Guides: https://voyagio.vercel.app/guides
+- Travel Blog: https://voyagio.vercel.app/blog
+- Traveler Reviews: https://voyagio.vercel.app/testimonial
+- Contact & Support: https://voyagio.vercel.app/contact
+
+## Contact Information
+- Address: 123 Fifth Avenue, New York, NY 10001, USA
+- Phone: +012 345 67890
+- Email: info@voyagio.com
+- Hours: Monday - Friday 09:00 - 18:00 EST
+- Attribution: Powered by MAKAW (https://makaw.me)
+

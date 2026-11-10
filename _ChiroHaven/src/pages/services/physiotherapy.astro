@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Physical Therapy & Orthopedic Rehab | Boston MA';
+const description = 'Doctor-led physical therapy and sports injury rehabilitation in Back Bay, Boston. Individualized progressive strengthening and joint mobility protocols.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Services', url: `${base}/services/` },
+  { name: 'Physical Therapy', url: `${base}/services/physiotherapy/` }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Orthopedic Physical Therapy',
+  provider: {
+    '@type': 'MedicalBusiness',
+    name: 'ChiroHaven Spine & Physical Therapy'
+  },
+  areaServed: 'Boston',
+  description: 'Evidence-based physical therapy, neuromuscular re-education, and sports injury rehabilitation.'
+};
+---
+
+<BaseLayout title={title} description={description} extraSchema={serviceSchema}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="service-detail-header">
+        <p class="section-eyebrow">Medical Specialty</p>
+        <h1>Orthopedic Physical Therapy & Rehabilitation</h1>
+        <p class="section-lead">
+          Restoring muscular symmetry, joint stability, and functional athletic performance through progressive loading, manual therapy, and movement re-education.
+        </p>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="media-banner">
+            <img
+              src={`${base}/images/service-physiotherapy.webp`}
+              alt="Physical therapist guiding patient through shoulder external rotation loading exercise"
+              width="800"
+              height="450"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+              class="featured-image"
+            />
+          </div>
+
+          <h2>Active Rehabilitation Over Passive Modalities</h2>
+          <p>
+            At ChiroHaven, our physical therapy philosophy rejects cookie-cutter treatment sheets. Every patient receives direct, one-on-one attention from a Doctor of Physical Therapy throughout the entire 45 to 60-minute appointment.
+          </p>
+          <p>
+            We focus on understanding the exact biomechanical compensations behind your injury. By progressively loading healing tissues and retraining motor control, we empower your body to handle real-world athletic and occupational physical demands.
+          </p>
+
+          <h2>Core Clinical Focus Areas</h2>
+          <ul class="conditions-list" role="list">
+            <li><strong>Post-Operative Orthopedic Rehabilitation:</strong> Protocol-driven recovery after ACL reconstruction, rotator cuff repair, meniscus debridement, or hip labral surgery.</li>
+            <li><strong>Running Gait Analysis & Lower Limb Overuse:</strong> Assessment of cadence, foot strike, and hip drop to resolve IT band friction and patellofemoral pain.</li>
+            <li><strong>Shoulder Impingement & Scapular Dyskinesis:</strong> Restoring overhead mechanics through posterior rotator cuff hypertrophy and serratus anterior activation.</li>
+            <li><strong>Core & Pelvic Floor Integration:</strong> Eliminating recurrent lumbopelvic instability and postpartum diastasis recti.</li>
+          </ul>
+
+          <h2>Objective Assessment & Recovery Milestones</h2>
+          <p>
+            We utilize dynamometry strength testing, video motion capture, and functional movement screening to objectively quantify your recovery progress. You leave each session with access to a clear digital home exercise program with video demonstrations.
+          </p>
+        </div>
+
+        <aside class="detail-sidebar" aria-label="Appointment and pricing summary">
+          <div class="sidebar-card">
+            <h3>Quick Service Summary</h3>
+            <dl class="sidebar-dl">
+              <div>
+                <dt>Lead Clinician:</dt>
+                <dd>Sarah Miller, PT, DPT</dd>
+              </div>
+              <div>
+                <dt>Initial Exam Length:</dt>
+                <dd>60 Minutes (Comprehensive)</dd>
+              </div>
+              <div>
+                <dt>Follow-up Sessions:</dt>
+                <dd>45 Minutes 1-on-1</dd>
+              </div>
+              <div>
+                <dt>Self-Pay Initial Fee:</dt>
+                <dd>$175 (Superbill provided)</dd>
+              </div>
+              <div>
+                <dt>Clinic Location:</dt>
+                <dd>450 Boylston St, Boston MA</dd>
+              </div>
+            </dl>
+            <div class="sidebar-cta">
+              <a href={`${base}/contact/`} class="btn btn-primary btn-block">
+                Schedule PT Assessment
+              </a>
+              <a href="tel:6176232338" class="btn btn-secondary btn-block">
+                Call: (617) 623-2338
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-detail-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .detail-layout {
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+    }
+  }
+
+  .media-banner {
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+    background: #edf1ee;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .detail-main h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .conditions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .conditions-list li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .conditions-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .sidebar-dl div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-dl dt {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar-dl dd {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .sidebar-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+

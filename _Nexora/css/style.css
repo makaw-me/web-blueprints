@@ -1,0 +1,582 @@
+/********** Template CSS **********/
+:root {
+    --primary: #C62828;
+    --primary-dark: #A31515;
+    --primary-text: #B71C1C;
+    --secondary: #F6F6F6;
+    --light: #FFFFFF;
+    --dark: #152440;
+    --text-body: #2B2D38;
+    --text-muted: #495057;
+}
+
+body {
+    color: var(--text-body);
+}
+
+.text-primary {
+    color: var(--primary-text) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+h1,
+h2,
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+h3,
+h4,
+.font-weight-semi-bold {
+    font-weight: 600 !important;
+}
+
+h5,
+h6,
+.font-weight-medium {
+    font-weight: 500 !important;
+}
+
+.pt-6 {
+    padding-top: 90px;
+}
+
+.pb-6 {
+    padding-bottom: 90px;
+}
+
+.py-6 {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -120px;
+    left: 16px;
+    z-index: 10000;
+    padding: 12px 20px;
+    background-color: var(--dark);
+    color: #FFFFFF !important;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid #FFFFFF;
+    border-radius: 4px;
+    transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 16px;
+    outline: 3px solid var(--primary) !important;
+    outline-offset: 3px !important;
+}
+
+/* Touch Targets & Button Sizing */
+.btn {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    transition: .3s;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-dark) !important;
+    border-color: var(--primary-dark) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-square {
+    width: 44px;
+    height: 44px;
+}
+
+.btn-sm-square {
+    width: 36px;
+    height: 36px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+/* Topbar Links */
+.topbar-nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.topbar-nav a:hover,
+.topbar-nav a:focus {
+    color: var(--primary-text);
+    text-decoration: underline;
+}
+
+.top-shape::before {
+    position: absolute;
+    content: "";
+    width: 35px;
+    height: 100%;
+    top: 0;
+    left: -17px;
+    background: var(--primary);
+    transform: skew(40deg);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Barlow', sans-serif;
+    padding: 35px 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--dark);
+    outline: none;
+    transition: .3s;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.sticky-top.navbar-light .navbar-nav .nav-link {
+    padding: 20px 15px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary-text);
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    font-weight: 700;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-light .navbar-nav .nav-link  {
+        padding: 12px 0;
+        min-height: 44px;
+    }
+}
+
+.carousel-caption {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(21, 36, 64, .75);
+    z-index: 1;
+}
+
+@media (max-width: 576px) {
+    .carousel-caption h5 {
+        font-size: 14px;
+        font-weight: 500 !important;
+    }
+
+    .carousel-caption h1 {
+        font-size: 30px;
+        font-weight: 600 !important;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* ============================================================
+   Page Header & Breadcrumb Navigation
+   ============================================================ */
+.breadcrumb {
+    margin-bottom: 0;
+    background: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item {
+    font-size: 1.125rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumb-item a {
+    color: #FFFFFF !important;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.breadcrumb-item a:hover,
+.breadcrumb-item a:focus {
+    color: #A6B4C9 !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Clean, neutral slash divider (replaces old red icon separator) */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.45) !important;
+    content: "/" !important;
+    padding: 0 0.65rem;
+    font-weight: 400;
+}
+
+/* Active Page Landing Indication - Distinct, high-contrast, accessible */
+.breadcrumb-item.active {
+    color: #FF6B6B !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.2px;
+}
+
+.service-item {
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+.service-item::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 50px;
+    bottom: -50px;
+    left: 0;
+    background: var(--light);
+    border-radius: 100% 100% 0 0;
+    box-shadow: 0px -10px 5px #EEEEEE;
+    transition: .5s;
+}
+
+.service-item:hover::after {
+    bottom: -25px;
+}
+
+.service-item p {
+    transition: .3s;
+}
+
+.service-item:hover p {
+    margin-bottom: 25px !important;
+}
+
+.team-item img {
+    transform: scale(1.15);
+    margin-left: -30px;
+    transition: .5s;
+}
+
+.team-item:hover img {
+    margin-left: 0;
+}
+
+.team-item .team-text {
+    left: -100%;
+    transition: .5s;
+}
+
+.team-item .team-text::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    top: 50%;
+    right: -60px;
+    margin-top: -30px;
+    border: 30px solid;
+    border-color: transparent transparent transparent var(--primary);
+}
+
+.team-item:hover .team-text {
+    left: 0;
+}
+
+.testimonial-carousel .owl-nav {
+    margin-top: 30px;
+    display: flex;
+    justify-content: start;
+}
+
+.testimonial-carousel .owl-nav .owl-prev,
+.testimonial-carousel .owl-nav .owl-next {
+    position: relative;
+    margin: 0 5px;
+    width: 48px;
+    height: 48px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    background: var(--primary);
+    font-size: 22px;
+    border-radius: 48px;
+    transition: .3s;
+}
+
+.testimonial-carousel .owl-nav .owl-prev:hover,
+.testimonial-carousel .owl-nav .owl-next:hover,
+.testimonial-carousel .owl-nav .owl-prev:focus,
+.testimonial-carousel .owl-nav .owl-next:focus {
+    color: #FFFFFF;
+    background: var(--dark);
+}
+
+.testimonial-carousel .owl-item img {
+    width: 90px;
+    height: 90px;
+}
+
+.blog-item img {
+    transition: .3s;
+}
+
+.blog-item:hover img {
+    transform: scale(1.05);
+}
+
+/* In-text Links Accessibility */
+p a:not(.btn) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+p a:not(.btn):hover,
+p a:not(.btn):focus {
+    text-decoration: none;
+}
+
+/* Pagination Accessibility */
+.pagination .page-link {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #FFFFFF !important;
+}
+
+/* Form Controls Accessibility & Focus */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(198, 40, 40, 0.25) !important;
+}
+
+/* Accessibility: Visible Focus Indicators */
+:focus-visible {
+    outline: 3px solid var(--dark) !important;
+    outline-offset: 3px !important;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--dark) !important;
+    outline-offset: 2px !important;
+}
+
+.bg-dark a:focus-visible,
+.bg-dark button:focus-visible,
+.bg-primary a:focus-visible,
+.bg-primary button:focus-visible {
+    outline: 3px solid #FFFFFF !important;
+    outline-offset: 2px !important;
+}
+
+/* ============================================================
+   Footer Interactivity & Styling
+   ============================================================ */
+footer.bg-dark {
+    position: relative;
+    background-color: var(--dark) !important;
+}
+
+/* Base Footer Link Transitions */
+footer a.text-secondary,
+.footer-bottom-bar a.text-secondary {
+    color: #A6B4C9 !important;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+}
+
+/* Quick Links & Advisory Practices Column Links */
+footer .d-flex.flex-column a.text-secondary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 4px 0;
+    position: relative;
+    width: fit-content;
+}
+
+footer .d-flex.flex-column a.text-secondary i.bi-arrow-right {
+    color: var(--primary) !important;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Hover & Focus state for Footer Column Links */
+footer .d-flex.flex-column a.text-secondary:hover,
+footer .d-flex.flex-column a.text-secondary:focus {
+    color: #FFFFFF !important;
+    transform: translateX(6px);
+    text-decoration: none;
+}
+
+footer .d-flex.flex-column a.text-secondary:hover i.bi-arrow-right,
+footer .d-flex.flex-column a.text-secondary:focus i.bi-arrow-right {
+    color: #EF5350 !important;
+    transform: translateX(2px);
+}
+
+/* Contact Info in Footer */
+footer a.footer-contact-link {
+    color: #A6B4C9 !important;
+    text-decoration: none;
+    transition: color 0.25s ease;
+    display: inline-block;
+    padding: 2px 0;
+}
+
+footer a.footer-contact-link:hover,
+footer a.footer-contact-link:focus {
+    color: #FFFFFF !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Social Media Buttons in Footer */
+footer .btn-lg-square.rounded-circle {
+    background-color: var(--primary);
+    border: 2px solid transparent;
+    color: #FFFFFF !important;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+footer .btn-lg-square.rounded-circle:hover,
+footer .btn-lg-square.rounded-circle:focus {
+    background-color: #FFFFFF !important;
+    color: var(--primary-text) !important;
+    border-color: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(198, 40, 40, 0.45);
+}
+
+/* Footer Bottom Bar Links */
+.footer-bottom-bar a.text-secondary {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.footer-bottom-bar a.text-secondary:hover,
+.footer-bottom-bar a.text-secondary:focus {
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+.footer-bottom-bar .mt-2.mt-md-0 a {
+    display: inline-block;
+    padding: 6px 4px;
+    min-height: 44px;
+    line-height: 32px;
+    transition: color 0.25s ease, text-decoration 0.25s ease;
+}
+
+.footer-bottom-bar .mt-2.mt-md-0 a:hover,
+.footer-bottom-bar .mt-2.mt-md-0 a:focus {
+    color: #FFFFFF !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .carousel-item {
+        transition: none !important;
+    }
+    footer .d-flex.flex-column a.text-secondary,
+    footer .btn-lg-square.rounded-circle {
+        transform: none !important;
+    }
+}
+
+/* Accessibility: High Contrast / Forced Colors */
+@media (forced-colors: active) {
+    :focus-visible,
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 3px solid Highlight !important;
+        outline-offset: 3px !important;
+    }
+    .btn-primary,
+    .btn-secondary,
+    .btn-light,
+    .btn-dark {
+        border: 2px solid ButtonText !important;
+    }
+}

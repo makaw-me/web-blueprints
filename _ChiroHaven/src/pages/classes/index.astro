@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Clinical Mobility & Posture Classes | Boston MA';
+const description = 'Upcoming clinical mobility, spine health, and reformer rehabilitation group workshops led by licensed physical therapists in Back Bay Boston.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinical Classes', url: `${base}/classes/` }
+];
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section stub-section">
+    <div class="container stub-container">
+      <div class="stub-card">
+        <p class="section-eyebrow">Group Rehabilitation</p>
+        <h1>Clinical Spine Mobility & Posture Classes</h1>
+        <p class="stub-lead">
+          Small-group therapeutic movement sessions designed for desk professionals and post-rehabilitation maintenance. Taught exclusively by licensed physical therapists.
+        </p>
+
+        <div class="stub-info-box">
+          <p>
+            This section represents planned clinical programming. In the full production release, this page will host active registration schedules, curriculum outlines, and clinical instructor assignments.
+          </p>
+        </div>
+
+        <div class="sample-links-box">
+          <h2>Featured Workshop Outline</h2>
+          <p>
+            Explore our curriculum overview for the <a href={`${base}/classes/growing-spines-posture/`}>Growing Spines: Safe Posture & Ergonomics Workshop</a>.
+          </p>
+        </div>
+
+        <div class="stub-actions">
+          <a href={`${base}/contact/`} class="btn btn-primary">
+            Inquire at Boston Reception
+          </a>
+          <a href={`${base}/`} class="btn btn-secondary">
+            Return to Home Page
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .stub-section {
+    padding: clamp(3rem, 7vw, 5.5rem) 0;
+  }
+
+  .stub-container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .stub-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: clamp(1.75rem, 5vw, 3rem);
+  }
+
+  .stub-lead {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    margin: 1rem 0 1.75rem;
+  }
+
+  .stub-info-box {
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-primary);
+    padding: 1.25rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  .stub-info-box p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  .sample-links-box {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sample-links-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stub-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

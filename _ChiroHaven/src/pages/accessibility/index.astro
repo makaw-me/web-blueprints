@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Accessibility Statement | ChiroHaven Boston Clinic';
+const description = 'Our formal commitment to digital accessibility, WCAG 2.2 AAA conformance benchmarks, keyboard navigation guidelines, and contact for accommodations.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Accessibility Statement', url: `${base}/accessibility/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container legal-container">
+      <p class="section-eyebrow">Universal Access</p>
+      <h1>Website Accessibility Statement</h1>
+      <p class="section-lead">
+        ChiroHaven Spine & Physical Therapy is committed to ensuring that our digital resources, appointment intake forms, and educational content are fully accessible to individuals of all abilities.
+      </p>
+
+      <div class="legal-content">
+        <h2>1. Conformance Standards</h2>
+        <p>
+          We aim to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.2 Level AAA</strong> criteria. These guidelines define best practices for making web content accessible to people with visual, motor, auditory, cognitive, and neurological conditions.
+        </p>
+
+        <h2>2. Key Accessibility Features Implemented</h2>
+        <ul role="list">
+          <li><strong>Enhanced Contrast:</strong> All text maintains a contrast ratio exceeding 7:1 against its background (and exceeding 4.5:1 for large text), verified in both normal and dark layout sections.</li>
+          <li><strong>Full Keyboard Operability:</strong> Every interactive link, button, disclosure accordion, and form control is fully navigable using the Tab, Shift+Tab, Enter, Space, and Escape keys.</li>
+          <li><strong>Visible Focus Indicators:</strong> High-contrast custom focus rings (3px width with 3px offset) outline active elements to ensure clear orientation.</li>
+          <li><strong>Semantic Landmarks & Structure:</strong> Native semantic HTML5 landmarks (header, nav, main, footer, article, aside, details) ensure seamless screen reader tree navigation.</li>
+          <li><strong>Touch Target Sizing:</strong> All touch targets are built with a minimum dimension of 44x44 CSS pixels with generous surrounding margin to prevent accidental activation.</li>
+          <li><strong>Respect for User Preferences:</strong> Animations, scroll reveals, and transitions are completely suppressed when <code>prefers-reduced-motion: reduce</code> is detected. High-contrast system modes (<code>forced-colors: active</code>) are fully supported.</li>
+        </ul>
+
+        <h2>3. Physical Facility Accessibility</h2>
+        <p>
+          Our clinical facility at 450 Boylston Street, Boston, MA is fully ADA-compliant. The building features zero-step street-level entrance doors, wheelchair-accessible elevators, wide clinic doorways, and accessible restroom facilities on the 4th floor.
+        </p>
+
+        <h2>4. Feedback and Accommodation Requests</h2>
+        <p>
+          If you encounter any difficulty accessing content or navigating this website, or if you need assistance booking an appointment using alternative communication formats, please contact our accessibility coordinator:
+        </p>
+        <address class="legal-address">
+          <strong>ChiroHaven Accessibility Coordinator</strong><br />
+          450 Boylston Street, 4th Floor, Boston, MA 02116<br />
+          Phone: <a href="tel:6176232338">(617) 623-2338</a> (Voice & TTY relay)<br />
+          Email: <a href="mailto:info@chirohaven.com">info@chirohaven.com</a>
+        </address>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .legal-content {
+    margin-top: 3rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .legal-address {
+    font-style: normal;
+    background: var(--color-surface-subtle);
+    padding: 1.25rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--color-primary);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+</style>
+

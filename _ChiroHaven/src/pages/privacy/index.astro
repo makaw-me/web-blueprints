@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Patient Privacy Policy & HIPAA | ChiroHaven Boston';
+const description = 'Read our comprehensive patient privacy policy, HIPAA compliance notice, website data practices, and healthcare confidentiality standards in Boston.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Privacy Policy', url: `${base}/privacy/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container legal-container">
+      <p class="section-eyebrow">Legal & Compliance</p>
+      <h1>Patient Privacy Policy & Notice of Health Data Practices</h1>
+      <p class="section-lead">
+        Last updated: November 2024. ChiroHaven Spine & Physical Therapy is dedicated to maintaining the strictest standards of patient confidentiality and medical record privacy.
+      </p>
+
+      <div class="legal-content">
+        <h2>1. Commitment to Health Information Privacy</h2>
+        <p>
+          This notice describes how medical information about you may be used and disclosed and how you can obtain access to this information under the Health Insurance Portability and Accountability Act (HIPAA) and Massachusetts state laws (M.G.L. c. 111, § 70E).
+        </p>
+
+        <h2>2. Permitted Uses and Disclosures</h2>
+        <p>We use your Protected Health Information (PHI) exclusively for:</p>
+        <ul role="list">
+          <li><strong>Treatment:</strong> Providing, coordinating, and managing your chiropractic adjustments, physical therapy, and rehabilitation protocols between our clinical team members.</li>
+          <li><strong>Payment:</strong> Generating compliant itemized Superbills containing ICD-10 diagnostic codes and CPT billing codes for your out-of-network insurer reimbursement.</li>
+          <li><strong>Healthcare Operations:</strong> Internal quality improvement reviews, clinician credentialing, and compliance audits.</li>
+        </ul>
+
+        <h2>3. Zero Third-Party Web Tracking</h2>
+        <p>
+          We do not employ cross-site marketing trackers, advertising pixels (e.g. Meta Pixel, Google Ads tags), or behavioral data brokers on this website. Any contact or intake information submitted through our website is transmitted via encrypted SSL/TLS channels directly to our secure clinical administration.
+        </p>
+
+        <h2>4. Your Rights Regarding Your Health Records</h2>
+        <p>As a patient of ChiroHaven, you retain the legal right to:</p>
+        <ul role="list">
+          <li>Inspect and request a digital copy of your physical therapy notes, chiropractic exam charts, and billing history.</li>
+          <li>Request an amendment to your clinical record if you believe diagnostic information is incomplete or inaccurate.</li>
+          <li>Request confidential communications via a specific email address, phone number, or physical mailing address.</li>
+          <li>Receive an accounting of disclosures made of your health information for purposes outside treatment or billing.</li>
+        </ul>
+
+        <h2>5. Privacy Officer Contact</h2>
+        <p>
+          For questions regarding this policy or to exercise your privacy rights, please contact our designated Privacy Compliance Officer:
+        </p>
+        <address class="legal-address">
+          <strong>ChiroHaven Privacy Compliance Officer</strong><br />
+          450 Boylston Street, 4th Floor<br />
+          Boston, MA 02116<br />
+          Telephone: <a href="tel:6176232338">(617) 623-2338</a><br />
+          Email: <a href="mailto:info@chirohaven.com">info@chirohaven.com</a>
+        </address>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .legal-content {
+    margin-top: 3rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legal-address {
+    font-style: normal;
+    background: var(--color-surface-subtle);
+    padding: 1.25rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--color-primary);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+</style>
+

@@ -1,0 +1,22 @@
+{
+  "name": "chirohaven-demo",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.18"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "http-server": "^14.1.1",
+    "lighthouse": "^12.3.0",
+    "linkinator": "^6.1.2",
+    "playwright": "^1.50.1"
+  }
+}
+

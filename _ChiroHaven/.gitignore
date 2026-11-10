@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build & Astro cache
+dist/
+.astro/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs and temp files
+temp/
+*.log
+npm-debug.log*
+
+# OS & Editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

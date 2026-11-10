@@ -1,0 +1,24 @@
+{
+  "name": "dextria",
+  "version": "1.0.0",
+  "description": "Dextria - Digital Agency & Creative Web Solutions Demo Website",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 .",
+    "build": "echo 'Static build ready'"
+  },
+  "keywords": [
+    "digital-agency",
+    "web-design",
+    "creative",
+    "website",
+    "portfolio",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "MIT"
+}
+

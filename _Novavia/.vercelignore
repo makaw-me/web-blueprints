@@ -1,0 +1,12 @@
+# SCSS source files (pre-compiled CSS is in css/)
+scss/
+
+# Template mockups & previews
+visa-immigration-website-template.jpg
+
+# Stray unused PHP file from third-party vendor
+lib/waypoints/links.php
+
+# Local documentation text file
+READ-ME.txt
+

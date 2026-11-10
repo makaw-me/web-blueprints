@@ -1,0 +1,11 @@
+{
+  "name": "wanderly",
+  "version": "1.0.0",
+  "description": "Wanderly - Travel Agency Demo Website",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  }
+}
+

@@ -1,0 +1,609 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div class="spine-story-widget double-bezel" id="spine-interactive-widget" aria-label="Interactive Biomechanical Spine Telemetry">
+  <div class="double-bezel-inner">
+    <div class="spine-widget-header">
+      <h2 class="widget-title">Interactive Spinal Segment & Decompression Analysis</h2>
+    </div>
+
+    <div class="spine-viewport">
+      <!-- Anatomical Interactive Spine Selector & Diagram -->
+      <div class="spine-diagram-area">
+        <div class="spine-interactive-column" role="region" aria-label="Vertebrae region selection">
+          <!-- Cervical Region -->
+          <button
+            type="button"
+            class="vertebrae-segment active"
+            data-segment="cervical"
+            id="btn-cervical"
+            aria-pressed="true"
+            aria-controls="spine-telemetry-output"
+          >
+            <div class="segment-meta-row">
+              <span class="segment-pill pill-cervical">C1 – C7</span>
+              <span class="segment-name">Cervical Spine</span>
+            </div>
+            <span class="segment-status">Cranio-Cervical Axis & Neck Lordosis</span>
+          </button>
+
+          <!-- Thoracic Region -->
+          <button
+            type="button"
+            class="vertebrae-segment"
+            data-segment="thoracic"
+            id="btn-thoracic"
+            aria-pressed="false"
+            aria-controls="spine-telemetry-output"
+          >
+            <div class="segment-meta-row">
+              <span class="segment-pill pill-thoracic">T1 – T12</span>
+              <span class="segment-name">Thoracic Spine</span>
+            </div>
+            <span class="segment-status">Kyphotic Curve & Costovertebral Rib Cage</span>
+          </button>
+
+          <!-- Lumbar Region -->
+          <button
+            type="button"
+            class="vertebrae-segment"
+            data-segment="lumbar"
+            id="btn-lumbar"
+            aria-pressed="false"
+            aria-controls="spine-telemetry-output"
+          >
+            <div class="segment-meta-row">
+              <span class="segment-pill pill-lumbar">L1 – L5</span>
+              <span class="segment-name">Lumbar Spine</span>
+            </div>
+            <span class="segment-status">Intradiscal Load & Sciatic Nerve Roots</span>
+          </button>
+
+          <!-- Sacrum / Pelvis Region -->
+          <button
+            type="button"
+            class="vertebrae-segment"
+            data-segment="sacrum"
+            id="btn-sacrum"
+            aria-pressed="false"
+            aria-controls="spine-telemetry-output"
+          >
+            <div class="segment-meta-row">
+              <span class="segment-pill pill-sacrum">S1 – S5</span>
+              <span class="segment-name">Sacrum & SI Joints</span>
+            </div>
+            <span class="segment-status">Pelvic Foundation & Lumbopelvic Rhythm</span>
+          </button>
+        </div>
+
+        <!-- SVG Spine Column Silhouette Visual -->
+        <div class="spine-svg-visual" aria-hidden="true">
+          <svg viewBox="0 0 100 280" class="spine-svg" preserveAspectRatio="xMidYMid meet">
+            <!-- Spine Axis Line -->
+            <path d="M50 15 Q46 60 50 105 Q56 160 50 215 L50 265" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3" opacity="0.3" />
+            
+            <!-- Cervical Segment (C1-C7) -->
+            <g id="svg-seg-cervical" class="svg-segment active" data-seg="cervical">
+              <rect x="36" y="20" width="28" height="7" rx="3" fill="currentColor" />
+              <rect x="34" y="31" width="32" height="7" rx="3" fill="currentColor" />
+              <rect x="33" y="42" width="34" height="8" rx="3" fill="currentColor" />
+              <rect x="32" y="54" width="36" height="8" rx="3" fill="currentColor" />
+              <circle cx="50" cy="12" r="6" fill="currentColor" opacity="0.6" />
+            </g>
+
+            <!-- Thoracic Segment (T1-T12) -->
+            <g id="svg-seg-thoracic" class="svg-segment" data-seg="thoracic">
+              <rect x="30" y="68" width="40" height="9" rx="3" fill="currentColor" />
+              <rect x="29" y="81" width="42" height="9" rx="3" fill="currentColor" />
+              <rect x="28" y="94" width="44" height="10" rx="3" fill="currentColor" />
+              <rect x="28" y="108" width="44" height="10" rx="3" fill="currentColor" />
+              <rect x="27" y="122" width="46" height="11" rx="3" fill="currentColor" />
+              <rect x="27" y="137" width="46" height="11" rx="3" fill="currentColor" />
+              <rect x="26" y="152" width="48" height="12" rx="3" fill="currentColor" />
+            </g>
+
+            <!-- Lumbar Segment (L1-L5) -->
+            <g id="svg-seg-lumbar" class="svg-segment" data-seg="lumbar">
+              <rect x="24" y="170" width="52" height="13" rx="4" fill="currentColor" />
+              <rect x="23" y="187" width="54" height="13" rx="4" fill="currentColor" />
+              <rect x="22" y="204" width="56" height="14" rx="4" fill="currentColor" />
+              <rect x="21" y="222" width="58" height="14" rx="4" fill="currentColor" />
+            </g>
+
+            <!-- Sacrum / Coccyx -->
+            <g id="svg-seg-sacrum" class="svg-segment" data-seg="sacrum">
+              <polygon points="20,240 80,240 58,272 42,272" fill="currentColor" />
+              <ellipse cx="50" cy="275" rx="5" ry="3" fill="currentColor" />
+            </g>
+          </svg>
+          <span class="svg-spine-caption">Interactive Spine Telemetry</span>
+        </div>
+      </div>
+
+      <!-- Live Clinical Telemetry Output Box -->
+      <div class="spine-telemetry-panel" id="spine-telemetry-output" aria-live="polite">
+        <div class="telemetry-top-bar">
+          <span class="telemetry-badge" id="telemetry-badge">Cervical Segment • C1–C7</span>
+          <span class="telemetry-status-tag" id="telemetry-status-tag">Compressive Risk: HIGH</span>
+        </div>
+
+        <h3 class="telemetry-heading" id="telemetry-title">Cervical Lordosis & Forward-Head Decompression</h3>
+
+        <!-- Live Load & Biomechanical Metric Bars -->
+        <div class="telemetry-metrics-card">
+          <div class="metric-meter-row">
+            <div class="meter-info">
+              <span class="meter-label">Calculated Compressive Disc Loading</span>
+              <span class="meter-value" id="telemetry-load">42 lbs (3.8x baseline)</span>
+            </div>
+            <div class="meter-track" role="progressbar" aria-label="Compressive disc load percentage" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" id="meter-bar-wrap">
+              <div class="meter-fill fill-cervical" id="telemetry-meter-bar" style="width: 82%;"></div>
+            </div>
+          </div>
+
+          <div class="telemetry-stat-pair">
+            <div class="stat-unit">
+              <span class="unit-title">Primary Nerve Involvement</span>
+              <span class="unit-desc" id="telemetry-nerve">Greater Occipital & C5/C6 Roots</span>
+            </div>
+            <div class="stat-unit">
+              <span class="unit-title">Typical Mechanical Presentation</span>
+              <span class="unit-desc" id="telemetry-symptom">Suboccipital Tension Headaches & Upper Trap Spasms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="telemetry-body">
+          <p id="telemetry-desc">
+            Prolonged desk and display viewing forces cervical vertebra into 35° forward flexion, quadrupling posterior ligament tensile stress. Targeted high-velocity joint mobilization combined with deep cervical flexor retraining restores natural lordotic curvature and eliminates referred pain.
+          </p>
+        </div>
+
+        <div class="telemetry-protocol-card">
+          <span class="protocol-label">Physician-Directed Clinical Intervention:</span>
+          <p class="protocol-text" id="telemetry-protocol">
+            Gentle C1–C2 facet distraction, myofascial trigger-point release, and guided chin-tuck isometric re-education.
+          </p>
+        </div>
+
+        <div class="telemetry-action-row">
+          <a href={`${base}/services/chiropractic-therapy/`} class="btn btn-primary" id="telemetry-link">
+            <span>Explore Cervical Treatment</span>
+          </a>
+          <a href={`${base}/contact/`} class="btn btn-secondary">
+            <span>Book Clinical Evaluation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ base }}>
+  (function() {
+    const data = {
+      cervical: {
+        badge: 'Cervical Segment • C1–C7',
+        status: 'Compressive Risk: HIGH',
+        title: 'Cervical Lordosis & Forward-Head Decompression',
+        load: '42 lbs (3.8x baseline)',
+        percent: '82%',
+        nerve: 'Greater Occipital & C5/C6 Roots',
+        symptom: 'Suboccipital Tension Headaches & Upper Trap Spasms',
+        desc: 'Prolonged desk and display viewing forces cervical vertebra into 35° forward flexion, quadrupling posterior ligament tensile stress. Targeted high-velocity joint mobilization combined with deep cervical flexor retraining restores natural lordotic curvature and eliminates referred pain.',
+        protocol: 'Gentle C1–C2 facet distraction, myofascial trigger-point release, and guided chin-tuck isometric re-education.',
+        linkText: 'Explore Cervical Treatment',
+        href: `${base}/services/chiropractic-therapy/`
+      },
+      thoracic: {
+        badge: 'Thoracic Segment • T1–T12',
+        status: 'Mobility Deficit: MODERATE',
+        title: 'Thoracic Kyphosis & Costovertebral Articulation',
+        load: 'Slouched Kyphotic Shear',
+        percent: '65%',
+        nerve: 'Thoracic Spinal Nerves & Intercostal Rami',
+        symptom: 'Mid-Back Burning & Restricted Rib Inhalation',
+        desc: 'The thoracic vertebrae articulate with 12 pairs of ribs. Chronic slouching binds costo-vertebral joints, decreasing thoracic extension capacity and triggering sharp spasms between the shoulder blades during deep respiration.',
+        protocol: 'Thoracic extension mobilization, foam-roller extension retraining, and scapular retractor strengthening.',
+        linkText: 'Explore Physical Therapy',
+        href: `${base}/services/physiotherapy/`
+      },
+      lumbar: {
+        badge: 'Lumbar Segment • L1–L5',
+        status: 'Intradiscal Pressure: SEVERE',
+        title: 'L4–L5 Disc Decompression & Sciatic Nerve Relief',
+        load: '260 kPa Intradiscal Pressure',
+        percent: '94%',
+        nerve: 'L4, L5 & S1 Sciatic Nerve Trunk',
+        symptom: 'Radiating Buttock & Leg Pain (Sciatica)',
+        desc: 'The lower lumbar discs bear 70% of total axial spine loading. When posterior annular fibers tear, nucleus pulposus material extrudes into the spinal canal, impinging sciatic roots. Motorized flexion-distraction creates negative intradiscal pressure to facilitate retraction.',
+        protocol: 'Motorized Cox flexion-distraction traction, active nerve flossing, and clinical reformer pelvic stabilization.',
+        linkText: 'Read Disc Decompression Case',
+        href: `${base}/case-studies/spinal-decompression-lumbar-herniation/`
+      },
+      sacrum: {
+        badge: 'Pelvic Base • Sacrum & SI Joints',
+        status: 'Joint Asymmetry: MODERATE',
+        title: 'Sacroiliac Joint Alignment & Lumbopelvic Rhythm',
+        load: 'Asymmetrical Pelvic Shear',
+        percent: '58%',
+        nerve: 'Sacral Plexus & Superior Gluteal Nerve',
+        symptom: 'Unilateral Hip Aching & Pelvic Instability',
+        desc: 'The sacroiliac joints transfer load between the trunk and lower extremities. Weakness in the transversus abdominis and gluteus medius causes SI ligament micro-shearing and chronic compensatory hamstring tightness.',
+        protocol: 'Clinical reformer pelvic core retraining, sacroiliac joint mobilization, and unilateral glute activation.',
+        linkText: 'Explore Clinical Pilates Reformer',
+        href: `${base}/services/clinical-pilates/`
+      }
+    };
+
+    const container = document.getElementById('spine-interactive-widget');
+    if (!container) return;
+
+    const buttons = container.querySelectorAll('.vertebrae-segment');
+    const svgSegments = container.querySelectorAll('.svg-segment');
+    const badgeEl = document.getElementById('telemetry-badge');
+    const statusEl = document.getElementById('telemetry-status-tag');
+    const titleEl = document.getElementById('telemetry-title');
+    const loadEl = document.getElementById('telemetry-load');
+    const meterBar = document.getElementById('telemetry-meter-bar');
+    const meterWrap = document.getElementById('meter-bar-wrap');
+    const nerveEl = document.getElementById('telemetry-nerve');
+    const symptomEl = document.getElementById('telemetry-symptom');
+    const descEl = document.getElementById('telemetry-desc');
+    const protocolEl = document.getElementById('telemetry-protocol');
+    const linkEl = document.getElementById('telemetry-link');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const seg = btn.getAttribute('data-segment');
+        if (!seg || !data[seg]) return;
+
+        buttons.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        svgSegments.forEach((s) => {
+          if (s.getAttribute('data-seg') === seg) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+
+        const item = data[seg];
+        badgeEl.textContent = item.badge;
+        statusEl.textContent = item.status;
+        titleEl.textContent = item.title;
+        loadEl.textContent = item.load;
+        meterBar.style.width = item.percent;
+        meterWrap.setAttribute('aria-valuenow', parseInt(item.percent, 10));
+        nerveEl.textContent = item.nerve;
+        symptomEl.textContent = item.symptom;
+        descEl.textContent = item.desc;
+        protocolEl.textContent = item.protocol;
+        if (linkEl) {
+          const span = linkEl.querySelector('span');
+          if (span) span.textContent = item.linkText;
+          linkEl.setAttribute('href', item.href);
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .spine-story-widget {
+    margin: 2.5rem 0;
+  }
+
+  .telemetry-live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .widget-title {
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    margin-bottom: 0.5rem;
+    color: #ffffff;;
+  }
+
+  .widget-hint {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    max-width: var(--max-measure);
+    margin-bottom: 2rem;
+  }
+
+  .spine-viewport {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .spine-viewport {
+      grid-template-columns: 1.1fr 1.35fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .spine-diagram-area {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  @media (max-width: 520px) {
+    .spine-diagram-area {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .spine-interactive-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .vertebrae-segment {
+    background: #ffffff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    position: relative;
+  }
+
+  .vertebrae-segment:hover {
+    border-color: var(--color-primary);
+    transform: translateX(3px);
+  }
+
+  .vertebrae-segment.active {
+    background-color: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 14px rgba(119, 39, 11, 0.15);
+  }
+
+  .segment-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .segment-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background-color: var(--color-text);
+    color: #ffffff;
+  }
+
+  .pill-cervical { background-color: #00473e; }
+  .pill-thoracic { background-color: #2c3e50; }
+  .pill-lumbar { background-color: var(--color-primary); }
+  .pill-sacrum { background-color: #5c1c06; }
+
+  .segment-name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-text);
+  }
+
+  .segment-status {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  /* SVG Spine Silhouette Visual */
+  .spine-svg-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    padding: 0.5rem;
+  }
+
+  .spine-svg {
+    width: 75px;
+    height: 240px;
+  }
+
+  .svg-segment {
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--color-border-strong);
+  }
+
+  .svg-segment.active {
+    color: var(--color-primary);
+    filter: drop-shadow(0 2px 6px rgba(119, 39, 11, 0.3));
+  }
+
+  .svg-spine-caption {
+    font-size: 0.6875rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  /* Telemetry Panel */
+  .spine-telemetry-panel {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .telemetry-top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .telemetry-badge {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+  }
+
+  .telemetry-status-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background-color: #fde8e4;
+    color: #900c3f;
+    border: 1px solid #f5b7b1;
+  }
+
+  .telemetry-heading {
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+  }
+
+  /* Metrics Card */
+  .telemetry-metrics-card {
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .metric-meter-row {
+    margin-bottom: 1rem;
+  }
+
+  .meter-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+
+  .meter-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .meter-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .meter-track {
+    width: 100%;
+    height: 8px;
+    background-color: var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    transition: width var(--transition-spring);
+  }
+
+  .telemetry-stat-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.85rem;
+  }
+
+  @media (min-width: 600px) {
+    .telemetry-stat-pair {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .unit-title {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+
+  .unit-desc {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .telemetry-body p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .telemetry-protocol-card {
+    background-color: #fafcfb;
+    border-left: 3px solid var(--color-focus);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .protocol-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-focus);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+
+  .protocol-text {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    margin-bottom: 0;
+  }
+
+  .telemetry-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

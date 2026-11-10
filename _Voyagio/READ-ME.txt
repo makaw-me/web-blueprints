@@ -1,0 +1,5 @@
+  =>  Site Name        : Voyagio - Tourism & Travel Agency
+
+  =>  Powered By       : MAKAW (https://makaw.me)
+
+  =>  Deployment Ready : Vercel (Static Web Architecture)

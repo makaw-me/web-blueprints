@@ -1,0 +1,1155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Transparent Pricing & Insurance Guide | Boston MA';
+const description = 'Review clear clinical evaluation fees, session rates, package options, and insurance Superbill reimbursement guidance at ChiroHaven Clinic in Boston.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Pricing & Insurance', url: `${base}/pricing/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="pricing-header">
+        <p class="section-eyebrow">Clear Healthcare Costs</p>
+        <h1>Transparent Clinical Fees & Insurance Policy</h1>
+        <p class="section-lead">
+          Healthcare should never involve surprise bills or opaque facility fees. We maintain a clear, upfront fee-for-service model so you always know what care costs before your appointment.
+        </p>
+      </div>
+
+      <!-- Creative Clinical Fee Schedule Section -->
+      <div class="pricing-table-container" id="fee-schedule">
+        <div class="fee-schedule-header-row">
+          <div>
+            <p class="section-eyebrow">Clear Healthcare Fees</p>
+            <h2>Clinical Fee Schedule</h2>
+            <p class="fee-schedule-lead">
+              Select a care category below to review itemized 1-on-1 session protocols, duration, and self-pay fees:
+            </p>
+          </div>
+
+          <!-- Interactive View Switcher: Cards vs. Table -->
+          <div class="view-mode-toggle" role="group" aria-label="Fee schedule display mode">
+            <button type="button" class="view-btn active" id="btn-view-cards" aria-pressed="true">
+              <span class="view-icon" aria-hidden="true">&#9783;</span>
+              <span>Cards</span>
+            </button>
+            <button type="button" class="view-btn" id="btn-view-table" aria-pressed="false">
+              <span class="view-icon" aria-hidden="true">&#9776;</span>
+              <span>Table</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Category Filter Chips -->
+        <div class="fee-category-nav" role="tablist" aria-label="Filter clinical fees by specialty">
+          <button type="button" class="fee-filter-chip active" data-category="all" role="tab" aria-selected="true" id="tab-fee-all">
+            All Clinical Care (6)
+          </button>
+          <button type="button" class="fee-filter-chip" data-category="evaluations" role="tab" aria-selected="false" id="tab-fee-eval">
+            Initial Evaluations (2)
+          </button>
+          <button type="button" class="fee-filter-chip" data-category="followups" role="tab" aria-selected="false" id="tab-fee-follow">
+            Follow-Up Treatments (2)
+          </button>
+          <button type="button" class="fee-filter-chip" data-category="specialty" role="tab" aria-selected="false" id="tab-fee-specialty">
+            Specialty Modalities (2)
+          </button>
+        </div>
+
+        <!-- Interactive Fee Cards Grid (Default Creative View) -->
+        <div class="fee-cards-grid" id="fee-cards-view">
+          <!-- Card 1: Chiropractic Exam -->
+          <div class="fee-card double-bezel" data-fee-cat="evaluations">
+            <div class="double-bezel-inner fee-card-inner">
+              <div class="fee-card-top">
+                <span class="fee-type-pill">Comprehensive Exam</span>
+                <span class="fee-duration-badge">60 Minutes</span>
+              </div>
+              <h3 class="fee-card-title">Chiropractic Comprehensive Exam</h3>
+              <p class="fee-card-desc">Full orthopedic provocative screening, neurological reflexes, digital postural scan, and targeted first-day spinal adjustment.</p>
+              
+              <div class="fee-price-panel">
+                <div class="fee-rate-display">
+                  <span class="fee-currency">$</span><span class="fee-number">165</span>
+                  <span class="fee-period">/ initial visit</span>
+                </div>
+                <div class="fee-superbill-estimate">
+                  <span class="estimate-tag">PPO Est. Net Cost:</span>
+                  <strong>~$49.50</strong> <small>(with 70% Superbill reimbursement)</small>
+                </div>
+              </div>
+
+              <ul class="fee-includes-list" role="list">
+                <li><span class="check-icon">&#10003;</span> 1-on-1 with Doctor of Chiropractic</li>
+                <li><span class="check-icon">&#10003;</span> Motion analysis &amp; spinal palpation</li>
+                <li><span class="check-icon">&#10003;</span> Customized home stabilization roadmap</li>
+              </ul>
+
+              <div class="fee-card-footer">
+                <span class="fee-provider">Provider: <strong>Dr. Benjamin Williams, DC</strong></span>
+                <a href={`${base}/contact/`} class="btn btn-primary btn-sm btn-fee-book">Book Exam</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: PT Initial Evaluation -->
+          <div class="fee-card double-bezel" data-fee-cat="evaluations">
+            <div class="double-bezel-inner fee-card-inner">
+              <div class="fee-card-top">
+                <span class="fee-type-pill">Orthopedic Exam</span>
+                <span class="fee-duration-badge">60 Minutes</span>
+              </div>
+              <h3 class="fee-card-title">Physical Therapy Initial Evaluation</h3>
+              <p class="fee-card-desc">Functional movement screen, joint dynamometry, gait analysis, and progressive orthopedic rehabilitation protocol design.</p>
+              
+              <div class="fee-price-panel">
+                <div class="fee-rate-display">
+                  <span class="fee-currency">$</span><span class="fee-number">175</span>
+                  <span class="fee-period">/ initial visit</span>
+                </div>
+                <div class="fee-superbill-estimate">
+                  <span class="estimate-tag">PPO Est. Net Cost:</span>
+                  <strong>~$52.50</strong> <small>(with 70% Superbill reimbursement)</small>
+                </div>
+              </div>
+
+              <ul class="fee-includes-list" role="list">
+                <li><span class="check-icon">&#10003;</span> 1-on-1 with Doctor of Physical Therapy</li>
+                <li><span class="check-icon">&#10003;</span> Video motion &amp; joint force telemetry</li>
+                <li><span class="check-icon">&#10003;</span> Initial manual therapy &amp; loading drills</li>
+              </ul>
+
+              <div class="fee-card-footer">
+                <span class="fee-provider">Provider: <strong>Sarah Miller, PT, DPT</strong></span>
+                <a href={`${base}/contact/`} class="btn btn-primary btn-sm btn-fee-book">Book Evaluation</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Chiropractic Follow-up -->
+          <div class="fee-card double-bezel" data-fee-cat="followups">
+            <div class="double-bezel-inner fee-card-inner">
+              <div class="fee-card-top">
+                <span class="fee-type-pill">Spinal Restoration</span>
+                <span class="fee-duration-badge">30 Minutes</span>
+              </div>
+              <h3 class="fee-card-title">Chiropractic Follow-Up Visit</h3>
+              <p class="fee-card-desc">Targeted spinal adjustments, motorized Cox flexion-distraction decompression, and progressive corrective exercise checks.</p>
+              
+              <div class="fee-price-panel">
+                <div class="fee-rate-display">
+                  <span class="fee-currency">$</span><span class="fee-number">85</span>
+                  <span class="fee-period">/ session</span>
+                </div>
+                <div class="fee-superbill-estimate">
+                  <span class="estimate-tag">PPO Est. Net Cost:</span>
+                  <strong>~$25.50</strong> <small>(with 70% Superbill reimbursement)</small>
+                </div>
+              </div>
+
+              <ul class="fee-includes-list" role="list">
+                <li><span class="check-icon">&#10003;</span> Precision vertebral joint manipulation</li>
+                <li><span class="check-icon">&#10003;</span> Motorized intervertebral traction</li>
+                <li><span class="check-icon">&#10003;</span> Posture milestone check-in</li>
+              </ul>
+
+              <div class="fee-card-footer">
+                <span class="fee-provider">Provider: <strong>Dr. Benjamin Williams, DC</strong></span>
+                <a href={`${base}/contact/`} class="btn btn-primary btn-sm btn-fee-book">Book Visit</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: PT Follow-up -->
+          <div class="fee-card double-bezel" data-fee-cat="followups">
+            <div class="double-bezel-inner fee-card-inner">
+              <div class="fee-card-top">
+                <span class="fee-type-pill">Functional Rehab</span>
+                <span class="fee-duration-badge">45 Minutes</span>
+              </div>
+              <h3 class="fee-card-title">Physical Therapy Follow-Up</h3>
+              <p class="fee-card-desc">1-on-1 manual joint mobilization, progressive resistance loading, neuromuscular re-education, and return-to-sport testing.</p>
+              
+              <div class="fee-price-panel">
+                <div class="fee-rate-display">
+                  <span class="fee-currency">$</span><span class="fee-number">110</span>
+                  <span class="fee-period">/ session</span>
+                </div>
+                <div class="fee-superbill-estimate">
+                  <span class="estimate-tag">PPO Est. Net Cost:</span>
+                  <strong>~$33.00</strong> <small>(with 70% Superbill reimbursement)</small>
+                </div>
+              </div>
+
+              <ul class="fee-includes-list" role="list">
+                <li><span class="check-icon">&#10003;</span> Active tissue loading &amp; mobility drills</li>
+                <li><span class="check-icon">&#10003;</span> Dedicated private gym equipment space</li>
+                <li><span class="check-icon">&#10003;</span> Continuous progress metrics tracking</li>
+              </ul>
+
+              <div class="fee-card-footer">
+                <span class="fee-provider">Provider: <strong>Sarah Miller, PT, DPT</strong></span>
+                <a href={`${base}/contact/`} class="btn btn-primary btn-sm btn-fee-book">Book Session</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Clinical Reformer Pilates -->
+          <div class="fee-card double-bezel" data-fee-cat="specialty">
+            <div class="double-bezel-inner fee-card-inner">
+              <div class="fee-card-top">
+                <span class="fee-type-pill">Neuromuscular Core</span>
+                <span class="fee-duration-badge">50 Minutes</span>
+              </div>
+              <h3 class="fee-card-title">Clinical Reformer Pilates (Private)</h3>
+              <p class="fee-card-desc">Spring-calibrated spinal decompression on Balanced Body reformers. Isolates deep transversus abdominis and multifidus core stabilizers.</p>
+              
+              <div class="fee-price-panel">
+                <div class="fee-rate-display">
+                  <span class="fee-currency">$</span><span class="fee-number">135</span>
+                  <span class="fee-period">/ private session</span>
+                </div>
+                <div class="fee-superbill-estimate">
+                  <span class="estimate-tag">PPO Est. Net Cost:</span>
+                  <strong>~$40.50</strong> <small>(with 70% Superbill reimbursement)</small>
+                </div>
+              </div>
+
+              <ul class="fee-includes-list" role="list">
+                <li><span class="check-icon">&#10003;</span> Private studio with trapeze tower</li>
+                <li><span class="check-icon">&#10003;</span> Spring tension customized to joint load</li>
+                <li><span class="check-icon">&#10003;</span> Lumbopelvic rhythm restoration</li>
+              </ul>
+
+              <div class="fee-card-footer">
+                <span class="fee-provider">Provider: <strong>Dr. Elena Vance, DC, CPI</strong></span>
+                <a href={`${base}/contact/`} class="btn btn-primary btn-sm btn-fee-book">Book Pilates</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Soft Tissue Therapy -->
+          <div class="fee-card double-bezel" data-fee-cat="specialty">
+            <div class="double-bezel-inner fee-card-inner">
+              <div class="fee-card-top">
+                <span class="fee-type-pill">Myofascial Release</span>
+                <span class="fee-duration-badge">30 Minutes</span>
+              </div>
+              <h3 class="fee-card-title">Soft Tissue &amp; Myofascial Therapy</h3>
+              <p class="fee-card-desc">Instrument-assisted soft tissue mobilization (IASTM), Active Release Technique (ART), and targeted trigger-point knot deactivation.</p>
+              
+              <div class="fee-price-panel">
+                <div class="fee-rate-display">
+                  <span class="fee-currency">$</span><span class="fee-number">95</span>
+                  <span class="fee-period">/ session</span>
+                </div>
+                <div class="fee-superbill-estimate">
+                  <span class="estimate-tag">PPO Est. Net Cost:</span>
+                  <strong>~$28.50</strong> <small>(with 70% Superbill reimbursement)</small>
+                </div>
+              </div>
+
+              <ul class="fee-includes-list" role="list">
+                <li><span class="check-icon">&#10003;</span> Medical-grade stainless steel IASTM tools</li>
+                <li><span class="check-icon">&#10003;</span> Active muscle lengthening release</li>
+                <li><span class="check-icon">&#10003;</span> Peripheral nerve entrapment relief</li>
+              </ul>
+
+              <div class="fee-card-footer">
+                <span class="fee-provider">Provider: <strong>Clinical Care Specialist</strong></span>
+                <a href={`${base}/contact/`} class="btn btn-primary btn-sm btn-fee-book">Book Therapy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparative Table View (Accessible, toggleable) -->
+        <div class="fee-table-view" id="fee-table-view" style="display: none;">
+          <div class="data-table-wrapper" tabindex="0" role="region" aria-label="Clinical fee schedule comparative table">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Clinical Service</th>
+                  <th scope="col">Session Description &amp; Scope</th>
+                  <th scope="col">Duration</th>
+                  <th scope="col">Self-Pay Rate</th>
+                  <th scope="col">PPO Est. Net (70%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Chiropractic Comprehensive Exam</th>
+                  <td>Full orthopedic assessment, neuro screening, motion analysis &amp; first adjustment</td>
+                  <td>60 Minutes</td>
+                  <td><strong>$165</strong></td>
+                  <td><span class="est-net-price">$49.50</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Chiropractic Follow-Up Visit</th>
+                  <td>Targeted spinal adjustments, flexion-distraction &amp; corrective rehab check</td>
+                  <td>30 Minutes</td>
+                  <td><strong>$85</strong></td>
+                  <td><span class="est-net-price">$25.50</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Physical Therapy Initial Evaluation</th>
+                  <td>Biomechanical assessment, functional movement screen &amp; custom rehab protocol</td>
+                  <td>60 Minutes</td>
+                  <td><strong>$175</strong></td>
+                  <td><span class="est-net-price">$52.50</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Physical Therapy Follow-Up</th>
+                  <td>1-on-1 manual therapy, progressive strength loading &amp; gait retraining</td>
+                  <td>45 Minutes</td>
+                  <td><strong>$110</strong></td>
+                  <td><span class="est-net-price">$33.00</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Clinical Reformer Pilates (Private)</th>
+                  <td>1-on-1 spring-calibrated spinal core stabilization with certified clinician</td>
+                  <td>50 Minutes</td>
+                  <td><strong>$135</strong></td>
+                  <td><span class="est-net-price">$40.50</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Soft Tissue &amp; Myofascial Therapy</th>
+                  <td>Instrument-assisted mobilization (IASTM) &amp; active trigger point release</td>
+                  <td>30 Minutes</td>
+                  <td><strong>$95</strong></td>
+                  <td><span class="est-net-price">$28.50</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Out-of-Pocket Insurance Estimator -->
+      <div class="calculator-card" id="reimbursement-calculator" aria-label="Insurance Reimbursement Estimator">
+        <div class="calculator-header">
+          <p class="section-eyebrow">Interactive Planning</p>
+          <h2>Estimate Your Net Out-of-Pocket Cost</h2>
+          <p class="calculator-lead">
+            Most PPO health plans reimburse 50% to 80% of out-of-network chiropractic and physical therapy fees once your annual deductible is satisfied. Calculate your expected net cost below:
+          </p>
+        </div>
+
+        <div class="calculator-grid">
+          <div class="calculator-inputs">
+            <div class="form-group">
+              <label for="calc-service-select" class="form-label">Select Clinical Service:</label>
+              <select id="calc-service-select" class="form-select">
+                <option value="165" selected>Chiropractic Initial Exam ($165)</option>
+                <option value="85">Chiropractic Follow-up ($85)</option>
+                <option value="175">Physical Therapy Evaluation ($175)</option>
+                <option value="110">Physical Therapy Follow-up ($110)</option>
+                <option value="135">Clinical Reformer Pilates ($135)</option>
+                <option value="95">Soft Tissue Therapy ($95)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="slider-label-row">
+                <label for="reimbursement-slider" class="form-label">Your PPO Out-of-Network Reimbursement Rate:</label>
+                <span class="slider-value-badge" id="rate-display">70%</span>
+              </div>
+              <input
+                type="range"
+                id="reimbursement-slider"
+                min="40"
+                max="90"
+                step="5"
+                value="70"
+                class="comparison-range-control"
+                aria-describedby="rate-hint"
+              />
+              <p id="rate-hint" class="form-hint">Standard Massachusetts PPO plans (BCBS, Harvard Pilgrim, Aetna) average 60%–80% reimbursement.</p>
+            </div>
+          </div>
+
+          <div class="calculator-output" aria-live="polite">
+            <div class="output-stat">
+              <span class="output-label">Gross Clinic Fee</span>
+              <span class="output-number" id="out-gross">$165</span>
+            </div>
+            <div class="output-stat highlight-stat">
+              <span class="output-label">Estimated Insurer Reimbursement</span>
+              <span class="output-number highlight-number" id="out-reimbursement">-$115.50</span>
+            </div>
+            <div class="output-stat total-stat">
+              <span class="output-label">Your Estimated Net Cost</span>
+              <span class="output-number total-number" id="out-net">$49.50</span>
+            </div>
+            <p class="output-note">
+              *HSA/FSA cards can be used to pay your remaining balance with pre-tax dollars. We provide itemized Superbills immediately after each visit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rehabilitation Packages -->
+      <div class="packages-section">
+        <h2>Rehabilitation Multi-Session Packages</h2>
+        <p class="packages-intro">
+          For conditions requiring structured multi-week intervention (e.g. disc herniation, post-operative recovery), package options provide predictable costs and bundled savings.
+        </p>
+
+        <div class="packages-grid">
+          <div class="package-card">
+            <h3>Spine Restoration Plan</h3>
+            <p class="package-desc">Best for acute disc bulges, facet syndromes, and chronic sciatica.</p>
+            <p class="package-price">$720</p>
+            <p class="package-savings">Saves $130 compared to single sessions</p>
+            <ul class="package-features" role="list">
+              <li>1x Comprehensive Chiropractic Evaluation (60 min)</li>
+              <li>7x Follow-up Spinal Adjustments & Flexion-Distraction (30 min)</li>
+              <li>Custom digital home stabilization exercise protocol</li>
+            </ul>
+          </div>
+
+          <div class="package-card featured-package">
+            <span class="package-badge">Most Comprehensive</span>
+            <h3>Integrated Kinetic Rehab</h3>
+            <p class="package-desc">Combined chiropractic, physical therapy, and reformer pilates.</p>
+            <p class="package-price">$1,180</p>
+            <p class="package-savings">Saves $225 compared to single sessions</p>
+            <ul class="package-features" role="list">
+              <li>1x Initial Dual Evaluation (Chiropractic + PT)</li>
+              <li>5x Physical Therapy Follow-up Sessions (45 min)</li>
+              <li>4x Clinical Reformer Pilates Sessions (50 min)</li>
+              <li>Ongoing digital progress tracking & functional re-test</li>
+            </ul>
+          </div>
+
+          <div class="package-card">
+            <h3>Postural Reset Package</h3>
+            <p class="package-desc">For desk-related forward head posture, kyphosis, and chronic neck tightness.</p>
+            <p class="package-price">$590</p>
+            <p class="package-savings">Saves $95 compared to single sessions</p>
+            <ul class="package-features" role="list">
+              <li>1x Postural & Ergonomic Screen (60 min)</li>
+              <li>3x Soft Tissue & Myofascial Sessions (30 min)</li>
+              <li>3x Clinical Reformer Scapular Sessions (50 min)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insurance & Superbill Information -->
+      <div class="insurance-guide-card">
+        <h2>How Insurance Reimbursement Works (Out-of-Network)</h2>
+        <p>
+          We operate as an out-of-network clinic to prioritize your health over insurance bureaucracy. In standard in-network clinics, insurers dictate which treatments are permitted, cut session lengths to 15 minutes, and impose arbitrary visit caps regardless of your pain.
+        </p>
+
+        <div class="insurance-steps-grid">
+          <div class="step-item">
+            <h3>1. Pay at the Time of Service</h3>
+            <p>You pay your session fee using any major credit card, debit card, or your <strong>HSA/FSA card</strong>.</p>
+          </div>
+          <div class="step-item">
+            <h3>2. Receive an Itemized Superbill</h3>
+            <p>We automatically provide you with a detailed, compliant medical Superbill containing standard ICD-10 diagnostic codes and CPT procedure codes.</p>
+          </div>
+          <div class="step-item">
+            <h3>3. Submit for Direct Reimbursement</h3>
+            <p>You submit the Superbill to your insurer via their portal or app. Most PPO plans reimburse 50% to 80% of out-of-network physical therapy and chiropractic care once your deductible is met.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const serviceSelect = document.getElementById('calc-service-select');
+    const slider = document.getElementById('reimbursement-slider');
+    const rateDisplay = document.getElementById('rate-display');
+    const outGross = document.getElementById('out-gross');
+    const outReimbursement = document.getElementById('out-reimbursement');
+    const outNet = document.getElementById('out-net');
+
+    if (serviceSelect && slider) {
+      function recalculate() {
+        const gross = parseFloat(serviceSelect.value);
+        const rate = parseFloat(slider.value) / 100;
+        const reimbursement = gross * rate;
+        const net = gross - reimbursement;
+
+        if (rateDisplay) rateDisplay.textContent = `${slider.value}%`;
+        if (outGross) outGross.textContent = `$${gross.toFixed(0)}`;
+        if (outReimbursement) outReimbursement.textContent = `-$${reimbursement.toFixed(2)}`;
+        if (outNet) outNet.textContent = `$${net.toFixed(2)}`;
+      }
+
+      serviceSelect.addEventListener('change', recalculate);
+      slider.addEventListener('input', recalculate);
+      recalculate();
+    }
+
+    // View Switcher (Cards vs Table)
+    const btnCards = document.getElementById('btn-view-cards');
+    const btnTable = document.getElementById('btn-view-table');
+    const cardsView = document.getElementById('fee-cards-view');
+    const tableView = document.getElementById('fee-table-view');
+
+    if (btnCards && btnTable && cardsView && tableView) {
+      btnCards.addEventListener('click', function() {
+        btnCards.classList.add('active');
+        btnCards.setAttribute('aria-pressed', 'true');
+        btnTable.classList.remove('active');
+        btnTable.setAttribute('aria-pressed', 'false');
+        cardsView.style.display = 'grid';
+        tableView.style.display = 'none';
+      });
+
+      btnTable.addEventListener('click', function() {
+        btnTable.classList.add('active');
+        btnTable.setAttribute('aria-pressed', 'true');
+        btnCards.classList.remove('active');
+        btnCards.setAttribute('aria-pressed', 'false');
+        cardsView.style.display = 'none';
+        tableView.style.display = 'block';
+      });
+    }
+
+    // Category Filter Chips
+    const filterChips = document.querySelectorAll('.fee-filter-chip');
+    const feeCards = document.querySelectorAll('.fee-card');
+
+    filterChips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        filterChips.forEach(function(c) {
+          c.classList.remove('active');
+          c.setAttribute('aria-selected', 'false');
+        });
+        chip.classList.add('active');
+        chip.setAttribute('aria-selected', 'true');
+
+        const cat = chip.getAttribute('data-category');
+        feeCards.forEach(function(card) {
+          if (cat === 'all' || card.getAttribute('data-fee-cat') === cat) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  /* Fee Schedule Interactive Section */
+  .fee-schedule-header-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .fee-schedule-header-row {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .fee-schedule-lead {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+    max-width: 580px;
+  }
+
+  .view-mode-toggle {
+    display: inline-flex;
+    background: #eef4f1;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 3px;
+    gap: 3px;
+    align-self: flex-start;
+  }
+
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1a3832;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .view-btn:hover {
+    color: var(--color-text);
+  }
+
+  .view-btn.active {
+    background: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(12, 34, 31, 0.12);
+  }
+
+  .view-btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .view-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  /* Category Filter Chips */
+  .fee-category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+  }
+
+  .fee-filter-chip {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1a3832;
+    background: #ffffff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .fee-filter-chip:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: #f7faf9;
+  }
+
+  .fee-filter-chip.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .fee-filter-chip:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Fee Cards Grid */
+  .fee-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 680px) {
+    .fee-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1060px) {
+    .fee-cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .fee-card {
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .fee-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .fee-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .fee-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .fee-type-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #063b31;
+    background: #e8f5f0;
+    border: 1px solid #c2e5d9;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+  }
+
+  .fee-duration-badge {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #2a4e47;
+    background: #f0f4f2;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+  }
+
+  .fee-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .fee-card-desc {
+    font-size: 0.875rem;
+    color: #2a4e47;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .fee-price-panel {
+    background: #f7faf9;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .fee-rate-display {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .fee-currency {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .fee-number {
+    font-size: 1.85rem;
+    font-weight: 800;
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .fee-period {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #2a4e47;
+    margin-left: 0.25rem;
+  }
+
+  .fee-superbill-estimate {
+    font-size: 0.8125rem;
+    color: #063b31;
+    background: #e8f5f0;
+    border: 1px solid #bce3d6;
+    border-radius: 4px;
+    padding: 0.35rem 0.6rem;
+    line-height: 1.4;
+  }
+
+  .estimate-tag {
+    font-weight: 700;
+    margin-right: 0.25rem;
+  }
+
+  .fee-superbill-estimate strong {
+    font-size: 0.9375rem;
+    color: #063b31;
+  }
+
+  .fee-superbill-estimate small {
+    display: block;
+    color: #2a4e47;
+    font-size: 0.75rem;
+    margin-top: 0.15rem;
+  }
+
+  .fee-includes-list {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    color: #1a3832;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.85rem;
+  }
+
+  .fee-includes-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .check-icon {
+    color: #063b31;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+
+  .fee-card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.85rem;
+  }
+
+  .fee-provider {
+    font-size: 0.78125rem;
+    color: #2a4e47;
+  }
+
+  .fee-provider strong {
+    color: var(--color-text);
+  }
+
+  .btn-fee-book {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.55rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Table View Enhancements */
+  .est-net-price {
+    font-weight: 700;
+    color: #063b31;
+    background: #e8f5f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #bce3d6;
+  }
+  .calculator-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 3.5rem 0 4rem;
+    box-shadow: 0 4px 18px rgba(12, 34, 31, 0.05);
+  }
+
+  .calculator-header {
+    max-width: var(--max-measure);
+    margin-bottom: 2rem;
+  }
+
+  .calculator-header h2 {
+    font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .calculator-lead {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+  }
+
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .calculator-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+    }
+  }
+
+  .slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .slider-value-badge {
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .comparison-range-control {
+    width: 100%;
+    height: 36px;
+    accent-color: var(--color-primary);
+    cursor: ew-resize;
+  }
+
+  .calculator-output {
+    background: #fafcfb;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .output-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .output-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .output-number {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+
+  .highlight-stat {
+    border-color: #8be2c7;
+  }
+
+  .highlight-number {
+    color: #063b31;
+    font-weight: 700;
+  }
+
+  .total-stat {
+    border-bottom: none;
+    padding-top: 0.5rem;
+  }
+
+  .total-stat .output-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .total-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+  }
+
+  .output-note {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+  }
+  .pricing-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .pricing-table-container {
+    margin-bottom: 4rem;
+  }
+
+  .pricing-table-container h2 {
+    margin-bottom: 1rem;
+  }
+
+  .packages-section {
+    margin-bottom: 4rem;
+  }
+
+  .packages-section h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .packages-intro {
+    max-width: var(--max-measure);
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 860px) {
+    .packages-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .package-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .featured-package {
+    border-color: var(--color-primary);
+    border-width: 2px;
+    background: #fffdfc;
+  }
+
+  .package-badge {
+    position: absolute;
+    top: -12px;
+    left: 1.5rem;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+  }
+
+  .package-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .package-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .package-price {
+    font-size: 2.25rem;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .package-savings {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .package-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: 0.9375rem;
+    margin-top: auto;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  .package-features li {
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .package-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .insurance-guide-card {
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .insurance-guide-card h2 {
+    margin-bottom: 1rem;
+  }
+
+  .insurance-steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .insurance-steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .step-item {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+  }
+
+  .step-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-item p {
+    font-size: 0.9375rem;
+    margin-bottom: 0;
+  }
+</style>
+

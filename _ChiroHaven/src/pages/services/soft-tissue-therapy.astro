@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Soft Tissue & Myofascial Release | Boston MA';
+const description = 'Targeted myofascial release, active trigger point therapy, and IASTM instrument mobilization in Back Bay Boston. Relieve chronic tension and scar tissue.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Services', url: `${base}/services/` },
+  { name: 'Soft Tissue Therapy', url: `${base}/services/soft-tissue-therapy/` }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Soft Tissue & Myofascial Therapy',
+  provider: {
+    '@type': 'MedicalBusiness',
+    name: 'ChiroHaven Spine & Physical Therapy'
+  },
+  areaServed: 'Boston',
+  description: 'Evidence-based myofascial release, instrument-assisted mobilization, and neuromuscular trigger point therapy.'
+};
+---
+
+<BaseLayout title={title} description={description} extraSchema={serviceSchema}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="service-detail-header">
+        <p class="section-eyebrow">Medical Specialty</p>
+        <h1>Soft Tissue & Myofascial Release Therapy</h1>
+        <p class="section-lead">
+          Deactivating painful muscular trigger points, breaking down collagenous scar tissue adhesions, and restoring microvascular blood flow to chronically constricted muscles.
+        </p>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="media-banner">
+            <img
+              src={`${base}/images/service-soft-tissue.webp`}
+              alt="Licensed clinician performing manual myofascial trigger point release on cervical musculature"
+              width="800"
+              height="450"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+              class="featured-image"
+            />
+          </div>
+
+          <h2>Why Healthy Muscular Fascia Matters</h2>
+          <p>
+            Fascia is the continuous connective tissue sheath that envelopes every muscle fiber, tendon, and organ in the body. When subjected to repetitive microtrauma, prolonged sedentary postures, or acute tears, fascial layers bind together and develop dense cross-linked adhesions.
+          </p>
+          <p>
+            These adhesions restrict normal muscle glide, compress sensory nociceptors, and limit joint range of motion. Our soft tissue protocols use specific clinical hands-on and instrument-assisted techniques to physically separate bound fibers and stimulate fibroblasts for tissue remodeling.
+          </p>
+
+          <h2>Techniques Applied in Your Treatment</h2>
+          <ul class="conditions-list" role="list">
+            <li><strong>Instrument-Assisted Soft Tissue Mobilization (IASTM):</strong> Medical-grade stainless steel tools designed to detect and resolve fascial densification.</li>
+            <li><strong>Active Release Style Pin-and-Stretch:</strong> Trapping the restricted muscular tissue while actively taking the joint through its full functional range.</li>
+            <li><strong>Ischemic Compression for Trigger Points:</strong> Sustained mechanical pressure on taut bands to release sustained acetylcholine discharge.</li>
+            <li><strong>Cross-Friction Tendon Mobilization:</strong> Stimulating blood flow and collagen realignment in chronic tendonitis.</li>
+          </ul>
+
+          <h2>Integration with Chiropractic & Physical Therapy</h2>
+          <p>
+            Soft tissue therapy is rarely delivered in isolation. By pairing manual release with spinal adjustments, adjustments hold significantly longer because tight opposing musculature is no longer exerting abnormal rotational forces on vertebrae.
+          </p>
+        </div>
+
+        <aside class="detail-sidebar" aria-label="Appointment and pricing summary">
+          <div class="sidebar-card">
+            <h3>Quick Service Summary</h3>
+            <dl class="sidebar-dl">
+              <div>
+                <dt>Treatment Format:</dt>
+                <dd>Targeted Manual Therapy</dd>
+              </div>
+              <div>
+                <dt>Session Length:</dt>
+                <dd>30 to 45 Minutes</dd>
+              </div>
+              <div>
+                <dt>Treatment Frequency:</dt>
+                <dd>1-2x Weekly during acute phase</dd>
+              </div>
+              <div>
+                <dt>Single Session Fee:</dt>
+                <dd>$110 (Superbill provided)</dd>
+              </div>
+              <div>
+                <dt>Clinic Location:</dt>
+                <dd>450 Boylston St, Boston MA</dd>
+              </div>
+            </dl>
+            <div class="sidebar-cta">
+              <a href={`${base}/contact/`} class="btn btn-primary btn-block">
+                Book Soft Tissue Session
+              </a>
+              <a href="tel:6176232338" class="btn btn-secondary btn-block">
+                Call: (617) 623-2338
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-detail-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .detail-layout {
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+    }
+  }
+
+  .media-banner {
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+    background: #edf1ee;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .detail-main h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .conditions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .conditions-list li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .conditions-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .sidebar-dl div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-dl dt {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar-dl dd {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .sidebar-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+

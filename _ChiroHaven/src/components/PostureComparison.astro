@@ -1,0 +1,319 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div class="posture-comparison-block" id="posture-slider-widget" aria-label="Interactive Posture Alignment Comparison">
+  <div class="comparison-header">
+    <p class="section-eyebrow">Biomechanical Restoration</p>
+    <h3>Visualizing Posture Correction & Joint Space Restoration</h3>
+    <p class="comparison-lead">
+      Drag or slide horizontally to compare uncorrected desk kyphosis versus active rehabilitation alignment:
+    </p>
+  </div>
+
+  <div class="comparison-viewer-container">
+    <div class="comparison-image-stack" id="image-stack">
+      <!-- After Image (Base) -->
+      <div class="image-layer layer-after">
+        <img
+          src={`${base}/images/clinic-facility-1.webp`}
+          alt="Restored upright posture with aligned cervical spine and open thoracic cage"
+          width="800"
+          height="480"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="layer-tag tag-after">
+          <strong>Restored Alignment:</strong> Neutral cervical curve • 11 lbs load
+        </div>
+      </div>
+
+      <!-- Before Image (Clipped) -->
+      <div class="image-layer layer-before" id="layer-before-clip">
+        <img
+          src={`${base}/images/clinic-facility-2.webp`}
+          alt="Before treatment posture assessment demonstrating forward head tilt and joint compression"
+          width="800"
+          height="480"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="layer-tag tag-before">
+          <strong>Uncorrected Kyphosis:</strong> 35° Forward head tilt • 42 lbs load
+        </div>
+      </div>
+
+      <!-- Divider line & drag handle -->
+      <div class="slider-divider" id="slider-divider" style="left: 50%;">
+        <div class="slider-handle" aria-hidden="true">
+          <span class="handle-arrow left">&larr;</span>
+          <span class="handle-line"></span>
+          <span class="handle-arrow right">&rarr;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessible Native Range Input -->
+    <div class="slider-input-wrapper">
+      <label for="posture-range-input" class="visually-hidden">
+        Adjust comparison slider between uncorrected posture and restored alignment
+      </label>
+      <input
+        type="range"
+        id="posture-range-input"
+        min="0"
+        max="100"
+        value="50"
+        class="comparison-range-control"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="50"
+        aria-valuetext="50 percent revealed"
+      />
+    </div>
+
+    <div class="slider-footer-metrics">
+      <div class="metric-item">
+        <span class="metric-dot dot-before"></span>
+        <span>Left: <strong>Uncorrected Compression</strong> (Nerve impingement risk)</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-dot dot-after"></span>
+        <span>Right: <strong>Active Rehabilitation</strong> (Restored joint space)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const range = document.getElementById('posture-range-input');
+    const clipLayer = document.getElementById('layer-before-clip');
+    const divider = document.getElementById('slider-divider');
+    if (!range || !clipLayer || !divider) return;
+
+    function update(val) {
+      clipLayer.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+      divider.style.left = `${val}%`;
+      range.setAttribute('aria-valuenow', String(val));
+      range.setAttribute('aria-valuetext', `${val} percent revealed`);
+    }
+
+    range.addEventListener('input', (e) => {
+      update(e.target.value);
+    });
+
+    // Initialize at 50%
+    update(50);
+  })();
+</script>
+
+<style>
+  .posture-comparison-block {
+    background: #ffffff;
+    color: var(--color-text, #081714);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 3.5rem 0;
+  }
+
+  .comparison-header {
+    max-width: var(--max-measure);
+    margin-bottom: 1.75rem;
+    color: #081714;
+  }
+
+  .comparison-header .section-eyebrow {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--color-primary, #77270b) !important;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .comparison-header h3 {
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    margin-bottom: 0.5rem;
+    color: #081714 !important;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .comparison-lead {
+    font-size: 1rem;
+    color: #18332e !important;
+    line-height: 1.6;
+  }
+
+  .comparison-viewer-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .comparison-image-stack {
+    position: relative;
+    height: 420px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #0c221f;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 640px) {
+    .comparison-image-stack {
+      height: 280px;
+    }
+  }
+
+  .image-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+
+  .image-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .layer-before {
+    z-index: 2;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  }
+
+  .layer-after {
+    z-index: 1;
+  }
+
+  .layer-tag {
+    position: absolute;
+    bottom: 1rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    color: #ffffff;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .tag-before {
+    left: 1rem;
+    background: rgba(119, 39, 11, 0.9);
+  }
+
+  .tag-after {
+    right: 1rem;
+    background: rgba(12, 34, 31, 0.9);
+  }
+
+  /* Divider */
+  .slider-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ffffff;
+    z-index: 4;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .slider-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: #0c221f;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    font-size: 0.875rem;
+  }
+
+  .handle-arrow {
+    font-weight: 700;
+  }
+
+  .handle-line {
+    width: 1px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 0 4px;
+  }
+
+  /* Range control overlay */
+  .slider-input-wrapper {
+    margin-top: 1.25rem;
+  }
+
+  .comparison-range-control {
+    width: 100%;
+    height: 36px;
+    accent-color: var(--color-primary);
+    cursor: ew-resize;
+  }
+
+  .slider-footer-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #18332e !important;
+  }
+
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #18332e !important;
+  }
+
+  .metric-item strong {
+    color: #081714 !important;
+  }
+
+  .metric-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot-before {
+    background: var(--color-primary);
+  }
+
+  .dot-after {
+    background: #0c221f;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
+

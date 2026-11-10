@@ -1,0 +1,690 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Ergonomic Memory Foam Lumbar Support Cushion | Boston MA';
+const description = 'Clinical memory foam lumbar cushion engineered by Boston chiropractors. Relieves L4-L5 disc compression and supports natural spine curvature during sitting.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinic Store', url: `${base}/shop/` },
+  { name: 'Ergonomic Lumbar Cushion', url: `${base}/shop/ergonomic-lumbar-cushion/` }
+];
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Ergonomic Memory Foam Lumbar Support Cushion',
+  image: `${base}/images/prod-lumbar-cushion.webp`,
+  description: 'Clinical grade memory foam lumbar support cushion with spinal groove for posture correction and disc decompression.',
+  sku: 'CH-LUM-01',
+  offers: {
+    '@type': 'Offer',
+    price: '48.00',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    seller: {
+      '@type': 'MedicalBusiness',
+      name: 'ChiroHaven Spine & Physical Therapy'
+    }
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '142'
+  }
+};
+---
+
+<BaseLayout title={title} description={description} extraSchema={productSchema}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section product-pdp-section">
+    <div class="container">
+      <div class="pdp-grid">
+        <!-- Media Visual Gallery -->
+        <div class="pdp-visual-col">
+          <div class="pdp-main-photo double-bezel">
+            <div class="double-bezel-inner">
+              <img
+                id="main-pdp-img"
+                src={`${base}/images/prod-lumbar-cushion.webp`}
+                alt="Ergonomic Memory Foam Lumbar Support Cushion showing central spinal groove"
+                width="600"
+                height="600"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
+                class="main-photo"
+              />
+            </div>
+          </div>
+
+          <div class="pdp-thumbnails-row">
+            <button type="button" class="thumb-btn active" data-src={`${base}/images/prod-lumbar-cushion.webp`} aria-label="Main front view">
+              <img src={`${base}/images/prod-lumbar-cushion.webp`} alt="Cushion front" width="100" height="100" />
+            </button>
+            <button type="button" class="thumb-btn" data-src={`${base}/images/clinic-facility-1.webp`} aria-label="In-clinic ergonomic testing">
+              <img src={`${base}/images/clinic-facility-1.webp`} alt="Clinical evaluation" width="100" height="100" />
+            </button>
+            <button type="button" class="thumb-btn" data-src={`${base}/images/mobility-exercise.webp`} aria-label="Home exercise pairing">
+              <img src={`${base}/images/mobility-exercise.webp`} alt="Spine mobility" width="100" height="100" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Purchase Information -->
+        <div class="pdp-info-col">
+          <div class="pdp-kicker-row">
+            <span class="pdp-badge">Doctor Prescribed</span>
+            <span class="pdp-stock-status">✓ In Stock at Back Bay Clinic</span>
+          </div>
+
+          <h1 class="pdp-title">Ergonomic Memory Foam Lumbar Support Cushion</h1>
+
+          <div class="pdp-reviews-summary">
+            <span class="star-rating" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9 / 5.0</span>
+            <span class="review-count">(142 verified clinical patients)</span>
+            <span class="fsa-badge">FSA/HSA Eligible</span>
+          </div>
+
+          <div class="pdp-pricing-box">
+            <span class="pdp-price">$48.00</span>
+            <span class="pdp-price-note">Tax deductible medical expense with itemized receipt</span>
+          </div>
+
+          <p class="pdp-lead">
+            Engineered by our Boston chiropractic physicians to counteract the compressive forces of prolonged desk seating. The anatomical central contour offloads pressure from the L4-S1 spinous processes while guiding the pelvis into neutral anterior tilt.
+          </p>
+
+          <!-- Interactive Add to Cart & Quantity Selector -->
+          <div class="pdp-purchase-controls double-bezel">
+            <div class="double-bezel-inner">
+              <div class="qty-and-action-row">
+                <div class="qty-control" aria-label="Quantity selector">
+                  <span class="qty-label">Quantity:</span>
+                  <div class="qty-input-group">
+                    <button type="button" class="qty-btn" id="btn-qty-minus" aria-label="Decrease quantity">−</button>
+                    <input type="number" id="pdp-qty-input" value="1" min="1" max="10" class="qty-number-input" aria-label="Product quantity" />
+                    <button type="button" class="qty-btn" id="btn-qty-plus" aria-label="Increase quantity">+</button>
+                  </div>
+                </div>
+
+                <div class="pdp-action-buttons">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-add-pdp"
+                    id="btn-pdp-add-to-cart"
+                    data-product-id="lumbar-cushion"
+                    data-product-name="Ergonomic Memory Foam Lumbar Support Cushion"
+                    data-product-price="48"
+                    data-product-image={`${base}/images/prod-lumbar-cushion.webp`}
+                    data-product-url={`${base}/shop/ergonomic-lumbar-cushion/`}
+                  >
+                    <span>Add to Cart ($48.00)</span>
+                    <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-wishlist-pdp"
+                    id="btn-pdp-wishlist"
+                    data-product-id="lumbar-cushion"
+                    data-product-name="Ergonomic Memory Foam Lumbar Support Cushion"
+                    data-product-price="48"
+                    data-product-image={`${base}/images/prod-lumbar-cushion.webp`}
+                    data-product-url={`${base}/shop/ergonomic-lumbar-cushion/`}
+                  >
+                    <span>♥ Save to Wishlist</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pdp-pickup-notice">
+                <p>
+                  <strong>Pick-up Location:</strong> 450 Boylston St, 4th Floor, Boston MA. Same-day pickup during clinic hours (Mon–Fri 8:00 AM – 6:00 PM). Flat-rate MA shipping available at checkout.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabbed Clinical Specifications & Physician Guidance -->
+      <div class="pdp-spec-tabs-section double-bezel">
+        <div class="double-bezel-inner">
+          <div class="spec-tablist" role="tablist" aria-label="Product specifications and clinical guidelines">
+            <button type="button" class="spec-tab-btn active" role="tab" id="tab-biomechanics" aria-selected="true" aria-controls="panel-biomechanics">
+              Clinical Biomechanics
+            </button>
+            <button type="button" class="spec-tab-btn" role="tab" id="tab-materials" aria-selected="false" aria-controls="panel-materials">
+              Materials & Dimensions
+            </button>
+            <button type="button" class="spec-tab-btn" role="tab" id="tab-instructions" aria-selected="false" aria-controls="panel-instructions">
+              Physician Instructions
+            </button>
+            <button type="button" class="spec-tab-btn" role="tab" id="tab-reviews" aria-selected="false" aria-controls="panel-reviews">
+              Verified Patient Reviews (142)
+            </button>
+          </div>
+
+          <div class="spec-panels-wrap">
+            <!-- Panel 1 -->
+            <div class="spec-tab-panel active" id="panel-biomechanics" role="tabpanel" aria-labelledby="tab-biomechanics" tabindex="0">
+              <h2>Biomechanical Action on the Lumbar Spine</h2>
+              <p>
+                During seated posture without lumbar support, the pelvis tilts backward (posterior pelvic tilt), reversing normal lumbar lordosis into kyphosis. This increases intradiscal hydrostatic pressure on the L4-L5 and L5-S1 discs from 100 kPa to over 240 kPa.
+              </p>
+              <ul class="spec-points">
+                <li><strong>Central Spinal Relief Groove:</strong> Prevents direct compressive pressure on the bony lumbar spinous processes.</li>
+                <li><strong>Lateral Lumbar Wings:</strong> Gently cradle the quadratus lumborum muscles, preventing lateral slouching.</li>
+                <li><strong>Sacral Base Angle Support:</strong> Maintains a 30° sacral tilt, promoting effortless upright sitting.</li>
+              </ul>
+            </div>
+
+            <!-- Panel 2 -->
+            <div class="spec-tab-panel" id="panel-materials" role="tabpanel" aria-labelledby="tab-materials" tabindex="0" hidden>
+              <h2>Materials, Certifications & Care</h2>
+              <table class="data-table">
+                <tbody>
+                  <tr>
+                    <th scope="row">Core Foam:</th>
+                    <td>100% High-Density Viscoelastic Medical Foam (CertiPUR-US® Certified)</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Outer Cover:</th>
+                    <td>Breathable 3D Honeycomb Mesh (Removable and machine washable)</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dimensions:</th>
+                    <td>14.5" Width × 13.0" Height × 4.2" Depth (Universal chair fit)</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Strapping System:</th>
+                    <td>Dual elastic adjustable straps with heavy-duty quick-release buckles</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Panel 3 -->
+            <div class="spec-tab-panel" id="panel-instructions" role="tabpanel" aria-labelledby="tab-instructions" tabindex="0" hidden>
+              <h2>Prescribed Ergonomic Setup Instructions</h2>
+              <ol class="spec-steps">
+                <li><strong>Positioning:</strong> Place the cushion flush against the back of your office chair or driver seat. The narrowest portion should align directly with your beltline (L3-L4 junction).</li>
+                <li><strong>Strapping:</strong> Fasten the dual elastic straps around the chair back to prevent the cushion from shifting during sit-to-stand transitions.</li>
+                <li><strong>Seating:</strong> Sit all the way back into the chair so your sacrum makes firm contact with the base of the cushion. Keep your knees bent at 90° with feet flat on the floor.</li>
+              </ol>
+            </div>
+
+            <!-- Panel 4 -->
+            <div class="spec-tab-panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" tabindex="0" hidden>
+              <h2>Verified Patient Feedback</h2>
+              <div class="reviews-list">
+                <div class="review-item">
+                  <div class="review-header">
+                    <strong>Marcus K., Software Architect (Cambridge MA)</strong>
+                    <span class="star-rating">★★★★★</span>
+                  </div>
+                  <p>"Dr. Williams prescribed this cushion during my 6-week disc herniation rehab. Sitting for 8 hours used to trigger severe leg burning. Within two days of using this cushion, the sciatic flare-ups stopped entirely."</p>
+                </div>
+                <div class="review-item">
+                  <div class="review-header">
+                    <strong>Rachel B., Financial Analyst (Back Bay Boston)</strong>
+                    <span class="star-rating">★★★★★</span>
+                  </div>
+                  <p>"Unlike generic Amazon cushions that compress into a pancake, this foam maintains its firmness all day. The dual straps keep it securely locked to my chair."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Back to Store / Cart navigation -->
+      <div class="pdp-footer-nav">
+        <a href={`${base}/shop/`} class="btn btn-secondary">
+          &larr; Back to Full Clinic Store
+        </a>
+        <a href={`${base}/cart/`} class="btn btn-primary">
+          <span>View Cart & Checkout</span>
+          <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    // Quantity controls
+    const qtyInput = document.getElementById('pdp-qty-input');
+    const btnMinus = document.getElementById('btn-qty-minus');
+    const btnPlus = document.getElementById('btn-qty-plus');
+    const btnAddToCart = document.getElementById('btn-pdp-add-to-cart');
+    const btnWishlist = document.getElementById('btn-pdp-wishlist');
+
+    if (btnMinus && qtyInput) {
+      btnMinus.addEventListener('click', () => {
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val > 1) {
+          qtyInput.value = val - 1;
+        }
+      });
+    }
+
+    if (btnPlus && qtyInput) {
+      btnPlus.addEventListener('click', () => {
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val < 10) {
+          qtyInput.value = val + 1;
+        }
+      });
+    }
+
+    if (btnAddToCart) {
+      btnAddToCart.addEventListener('click', () => {
+        const qty = parseInt(qtyInput ? qtyInput.value : '1', 10) || 1;
+        const product = {
+          id: btnAddToCart.getAttribute('data-product-id'),
+          name: btnAddToCart.getAttribute('data-product-name'),
+          price: Number(btnAddToCart.getAttribute('data-product-price')),
+          image: btnAddToCart.getAttribute('data-product-image'),
+          url: btnAddToCart.getAttribute('data-product-url')
+        };
+        if (window.ChiroStore) {
+          window.ChiroStore.addToCart(product, qty);
+        }
+      });
+    }
+
+    if (btnWishlist) {
+      btnWishlist.addEventListener('click', () => {
+        const product = {
+          id: btnWishlist.getAttribute('data-product-id'),
+          name: btnWishlist.getAttribute('data-product-name'),
+          price: Number(btnWishlist.getAttribute('data-product-price')),
+          image: btnWishlist.getAttribute('data-product-image'),
+          url: btnWishlist.getAttribute('data-product-url')
+        };
+        if (window.ChiroStore) {
+          const added = window.ChiroStore.toggleWishlist(product);
+          btnWishlist.classList.toggle('is-saved', added);
+          btnWishlist.querySelector('span').textContent = added ? '♥ Saved in Wishlist' : '♥ Save to Wishlist';
+        }
+      });
+
+      // Check current state
+      if (window.ChiroStore && window.ChiroStore.isWishlisted('lumbar-cushion')) {
+        btnWishlist.classList.add('is-saved');
+        btnWishlist.querySelector('span').textContent = '♥ Saved in Wishlist';
+      }
+    }
+
+    // Thumbnail switcher
+    const mainImg = document.getElementById('main-pdp-img');
+    const thumbBtns = document.querySelectorAll('.thumb-btn');
+    thumbBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        thumbBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (mainImg) {
+          mainImg.src = btn.getAttribute('data-src');
+        }
+      });
+    });
+
+    // Specifications tab switcher
+    const tabBtns = document.querySelectorAll('.spec-tab-btn');
+    const panels = document.querySelectorAll('.spec-tab-panel');
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach((p) => {
+          p.classList.remove('active');
+          p.hidden = true;
+        });
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        const targetId = btn.getAttribute('aria-controls');
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+          targetPanel.hidden = false;
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .product-pdp-section {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .pdp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .pdp-grid {
+      grid-template-columns: 1fr 1.15fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+  }
+
+  .pdp-main-photo .double-bezel-inner {
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--color-dark-bg);
+  }
+
+  .main-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .pdp-thumbnails-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .thumb-btn {
+    width: 75px;
+    height: 75px;
+    border-radius: 6px;
+    border: 2px solid var(--color-border);
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--color-dark-bg);
+    transition: all var(--transition-fast);
+  }
+
+  .thumb-btn:hover, .thumb-btn.active {
+    border-color: var(--color-primary);
+  }
+
+  .thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Info Column */
+  .pdp-kicker-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pdp-badge {
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+  }
+
+  .pdp-stock-status {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #075240;
+  }
+
+  .pdp-title {
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .pdp-reviews-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .star-rating {
+    color: #8a5300;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+  }
+
+  .rating-val {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .review-count {
+    color: var(--color-text-muted);
+  }
+
+  .fsa-badge {
+    background-color: #075240;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .pdp-pricing-box {
+    margin-bottom: 1.25rem;
+  }
+
+  .pdp-price {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .pdp-price-note {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .pdp-lead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 1.75rem;
+  }
+
+  /* Purchase Controls */
+  .pdp-purchase-controls {
+    margin-top: 1.5rem;
+  }
+
+  .qty-and-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .qty-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .qty-label {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+  }
+
+  .qty-input-group {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+
+  .qty-btn {
+    background: transparent;
+    border: none;
+    width: 38px;
+    height: 42px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .qty-btn:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  .qty-number-input {
+    width: 48px;
+    height: 42px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    -moz-appearance: textfield;
+  }
+
+  .qty-number-input::-webkit-outer-spin-button,
+  .qty-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .pdp-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .btn-wishlist-pdp.is-saved {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+  }
+
+  .pdp-pickup-notice {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.85rem;
+  }
+
+  .pdp-pickup-notice p {
+    margin-bottom: 0;
+  }
+
+  /* Specification Tabs */
+  .pdp-spec-tabs-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .spec-tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .spec-tab-btn {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+  }
+
+  .spec-tab-btn:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface-subtle);
+  }
+
+  .spec-tab-btn.active {
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+  }
+
+  .spec-tab-panel h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .spec-points, .spec-steps {
+    margin: 1.25rem 0;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .review-item {
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.25rem;
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .pdp-footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+</style>

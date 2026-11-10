@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Your Saved Wishlist | ChiroHaven Boston';
+const description = 'Saved orthopedic rehabilitation supports and posture aids. Easily move items to your cart or review clinical indications.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinic Store', url: `${base}/shop/` },
+  { name: 'Wishlist', url: `${base}/wishlist/` }
+];
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section wishlist-page-section">
+    <div class="container">
+      <div class="wishlist-header">
+        <p class="section-eyebrow">Saved Items</p>
+        <h1>Your Orthopedic Wishlist</h1>
+        <p class="section-lead">
+          Keep track of prescribed rehabilitation supports recommended during your clinical evaluations.
+        </p>
+      </div>
+
+      <!-- Wishlist Grid Container -->
+      <div id="wishlist-content-wrapper">
+        <div id="wishlist-items-grid" class="wishlist-grid" role="list">
+          <!-- Dynamically populated via store.js -->
+        </div>
+
+        <div class="wishlist-actions-bar">
+          <a href={`${base}/shop/`} class="btn btn-secondary">
+            &larr; Back to Clinic Store
+          </a>
+          <button type="button" class="btn btn-primary" id="btn-move-all-cart">
+            <span>Move All Items to Cart</span>
+            <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Empty Wishlist State -->
+      <div id="wishlist-empty-state" class="empty-wishlist-container double-bezel" style="display: none;">
+        <div class="double-bezel-inner">
+          <div class="empty-icon-wrap" aria-hidden="true">♥</div>
+          <h2>Your Wishlist is Empty</h2>
+          <p>You haven't saved any clinical orthopedic supports or rehabilitation supplies yet.</p>
+          <a href={`${base}/shop/`} class="btn btn-primary">
+            <span>Explore Clinic Store</span>
+            <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const wrapper = document.getElementById('wishlist-content-wrapper');
+    const emptyState = document.getElementById('wishlist-empty-state');
+    const grid = document.getElementById('wishlist-items-grid');
+    const btnMoveAll = document.getElementById('btn-move-all-cart');
+
+    function renderWishlist() {
+      if (!window.ChiroStore) return;
+      const items = window.ChiroStore.getWishlist();
+
+      if (!items || items.length === 0) {
+        if (wrapper) wrapper.style.display = 'none';
+        if (emptyState) emptyState.style.display = 'block';
+        return;
+      }
+
+      if (wrapper) wrapper.style.display = 'block';
+      if (emptyState) emptyState.style.display = 'none';
+
+      if (grid) {
+        grid.innerHTML = '';
+        items.forEach((item) => {
+          const card = document.createElement('article');
+          card.className = 'wishlist-card double-bezel interactive-hover-lift';
+          card.setAttribute('role', 'listitem');
+          card.innerHTML = `
+            <div class="double-bezel-inner wish-inner">
+              <div class="wish-media">
+                <a href="${item.url}">
+                  <img src="${item.image}" alt="${item.name}" width="300" height="300" class="wish-photo" />
+                </a>
+                <button type="button" class="btn-remove-wishlist" data-id="${item.id}" aria-label="Remove ${item.name} from wishlist">✕</button>
+              </div>
+              <div class="wish-details">
+                <h2 class="wish-title"><a href="${item.url}">${item.name}</a></h2>
+                <div class="wish-price">$${item.price.toFixed(2)}</div>
+                <div class="wish-card-actions">
+                  <button type="button" class="btn btn-primary btn-sm btn-move-cart" data-id="${item.id}">
+                    Move to Cart &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+    }
+
+    if (grid) {
+      grid.addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('.btn-remove-wishlist');
+        const moveBtn = e.target.closest('.btn-move-cart');
+
+        if (removeBtn && window.ChiroStore) {
+          const id = removeBtn.getAttribute('data-id');
+          const item = window.ChiroStore.getWishlist().find(i => i.id === id);
+          if (item) {
+            window.ChiroStore.toggleWishlist(item);
+            renderWishlist();
+          }
+        } else if (moveBtn && window.ChiroStore) {
+          const id = moveBtn.getAttribute('data-id');
+          const item = window.ChiroStore.getWishlist().find(i => i.id === id);
+          if (item) {
+            window.ChiroStore.addToCart(item, 1);
+            window.ChiroStore.toggleWishlist(item);
+            renderWishlist();
+          }
+        }
+      });
+    }
+
+    if (btnMoveAll) {
+      btnMoveAll.addEventListener('click', () => {
+        if (!window.ChiroStore) return;
+        const items = window.ChiroStore.getWishlist();
+        items.forEach((item) => {
+          window.ChiroStore.addToCart(item, 1);
+        });
+        window.ChiroStore.saveWishlist([]);
+        renderWishlist();
+      });
+    }
+
+    window.addEventListener('chiro:wishlist-updated', () => renderWishlist());
+
+    renderWishlist();
+  })();
+</script>
+
+<style>
+  .wishlist-page-section {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .wishlist-header {
+    max-width: var(--max-measure);
+    margin-bottom: 2.5rem;
+  }
+
+  .wishlist-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .wishlist-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .wishlist-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .wishlist-card .wish-inner {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .wish-media {
+    position: relative;
+    background-color: var(--color-dark-bg);
+    aspect-ratio: 1 / 1;
+  }
+
+  .wish-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .btn-remove-wishlist {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(12, 34, 31, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+
+  .btn-remove-wishlist:hover {
+    background-color: #d32f2f;
+  }
+
+  .wish-details {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .wish-title {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .wish-title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .wish-title a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .wish-price {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .wish-card-actions {
+    margin-top: auto;
+  }
+
+  .btn-move-cart {
+    width: 100%;
+  }
+
+  .wishlist-actions-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  /* Empty State */
+  .empty-wishlist-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+  }
+
+  .empty-icon-wrap {
+    font-size: 3.5rem;
+    color: #d32f2f;
+    margin-bottom: 1rem;
+  }
+
+  .empty-wishlist-container h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .empty-wishlist-container p {
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+</style>
+

@@ -1,0 +1,11 @@
+# Vercel deployment ignore rules
+.git/
+.github/
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
+node_modules/
+scratch/
+

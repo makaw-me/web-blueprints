@@ -1,0 +1,467 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div class="recovery-roadmap-widget double-bezel" id="recovery-roadmap-widget" aria-label="Interactive 4-Phase Recovery Roadmap">
+  <div class="double-bezel-inner">
+    <div class="roadmap-header">
+      <div class="roadmap-badge-row">
+        <span class="roadmap-badge">Structured Orthopedic Pathway</span>
+        <span class="roadmap-phase-indicator" id="phase-counter-indicator">Phase 01 of 04 Active</span>
+      </div>
+      <h2 class="roadmap-title">Your 4-Phase Roadmap to Lasting Pain Relief & Mobility</h2>
+      <p class="roadmap-lead">
+        Rehabilitation is not a guessing game. Every patient follows an objective, milestones-based clinical pathway designed to transition you from acute pain to complete functional independence.
+      </p>
+    </div>
+
+    <!-- Stepper Navigation (Accessible tablist / buttons) -->
+    <div class="stepper-nav" role="tablist" aria-label="Roadmap recovery phases">
+      <button
+        type="button"
+        role="tab"
+        class="step-nav-btn active"
+        id="step-tab-1"
+        data-phase="1"
+        aria-selected="true"
+        aria-controls="panel-phase-detail"
+      >
+        <div class="step-circle">01</div>
+        <div class="step-nav-text">
+          <span class="step-nav-phase">Phase 01 • Day 1</span>
+          <span class="step-nav-name">Diagnostic Exam</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        class="step-nav-btn"
+        id="step-tab-2"
+        data-phase="2"
+        aria-selected="false"
+        aria-controls="panel-phase-detail"
+      >
+        <div class="step-circle">02</div>
+        <div class="step-nav-text">
+          <span class="step-nav-phase">Phase 02 • Weeks 1–3</span>
+          <span class="step-nav-name">Decompression</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        class="step-nav-btn"
+        id="step-tab-3"
+        data-phase="3"
+        aria-selected="false"
+        aria-controls="panel-phase-detail"
+      >
+        <div class="step-circle">03</div>
+        <div class="step-nav-text">
+          <span class="step-nav-phase">Phase 03 • Weeks 4–8</span>
+          <span class="step-nav-name">Core Retraining</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        class="step-nav-btn"
+        id="step-tab-4"
+        data-phase="4"
+        aria-selected="false"
+        aria-controls="panel-phase-detail"
+      >
+        <div class="step-circle">04</div>
+        <div class="step-nav-text">
+          <span class="step-nav-phase">Phase 04 • Week 8+</span>
+          <span class="step-nav-name">Independence</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Active Phase Details Panel -->
+    <div
+      class="phase-detail-panel"
+      id="panel-phase-detail"
+      role="tabpanel"
+      aria-labelledby="step-tab-1"
+      aria-live="polite"
+    >
+      <div class="phase-detail-grid">
+        <div class="phase-main-info">
+          <span class="phase-status-label" id="phase-status-label">Clinical Milestone #1</span>
+          <h3 class="phase-heading" id="phase-heading">Comprehensive Orthopedic & Neurological Diagnostics</h3>
+          <p class="phase-summary" id="phase-summary">
+            We spend 60 minutes mapping joint restrictions, neurological reflexes, disc stress points, and postural asymmetries before initiating any manipulation. You leave with an accurate diagnosis and clear prognosis.
+          </p>
+
+          <div class="phase-features-list">
+            <div class="feature-item">
+              <span class="feature-bullet">&bull;</span>
+              <div>
+                <strong>In-Clinic Procedures:</strong>
+                <span id="phase-procedures">Digital range of motion, dermatome sensation testing, orthopedic provocative stress testing, and first-day gentle joint alignment.</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="feature-bullet">&bull;</span>
+              <div>
+                <strong>Patient Deliverables:</strong>
+                <span id="phase-deliverables">Personalized prognosis report, anti-inflammatory sleeping ergonomics, and immediate sitting posture modifications.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-metric-card">
+          <span class="metric-card-kicker">Target Outcome Metric</span>
+          <div class="metric-big-value" id="phase-metric-val">100%</div>
+          <p class="metric-desc" id="phase-metric-desc">Diagnostic clarity with documented mechanical causation and care blueprint.</p>
+          
+          <div class="phase-timeline-badge">
+            <span>Typical Frequency:</span>
+            <strong id="phase-frequency">1 Evaluation (60 Min)</strong>
+          </div>
+
+          <a href={`${base}/contact/`} class="btn btn-primary btn-block">
+            <span>Book Initial Evaluation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const phases = {
+      '1': {
+        counter: 'Phase 01 of 04 Active',
+        milestone: 'Clinical Milestone #1',
+        heading: 'Comprehensive Orthopedic & Neurological Diagnostics',
+        summary: 'We spend 60 minutes mapping joint restrictions, neurological reflexes, disc stress points, and postural asymmetries before initiating any manipulation. You leave with an accurate diagnosis and clear prognosis.',
+        procedures: 'Digital range of motion, dermatome sensation testing, orthopedic provocative stress testing, and first-day gentle joint alignment.',
+        deliverables: 'Personalized prognosis report, anti-inflammatory sleeping ergonomics, and immediate sitting posture modifications.',
+        metricVal: '100%',
+        metricDesc: 'Diagnostic clarity with documented mechanical causation and care blueprint.',
+        frequency: '1 Evaluation (60 Min)'
+      },
+      '2': {
+        counter: 'Phase 02 of 04 Active',
+        milestone: 'Clinical Milestone #2',
+        heading: 'Acute Nerve Decompression & Joint Mobilization',
+        summary: 'Focuses entirely on abolishing acute nerve impingement, reducing localized edema, and freeing restricted spinal facet joints to rapidly drive down pain scores (VAS).',
+        procedures: 'Motorized flexion-distraction traction, gentle HVLA adjustments, active myofascial trigger point release, and cryo-thermal modulation.',
+        deliverables: 'Nerve-gliding mobility exercises, ice-application schedules, and lumbar support cushioning guidance.',
+        metricVal: '75%',
+        metricDesc: 'Average reduction in acute radicular pain within the first 14 days of care.',
+        frequency: '2 Visits / Week (30 Min)'
+      },
+      '3': {
+        counter: 'Phase 03 of 04 Active',
+        milestone: 'Clinical Milestone #3',
+        heading: 'Reformer Neuromuscular Core Stabilization',
+        summary: 'Once acute pain has receded, we retrain the deep spinal stabilizers (transversus abdominis, multifidus, pelvic floor) using spring-calibrated reformer pilates equipment to prevent recurrence.',
+        procedures: '1-on-1 reformer resistance loading, dynamic spinal extension drills, hip hinge mechanics, and eccentric posterior chain loading.',
+        deliverables: 'Progressive home resistance band protocols, functional lift retraining, and desk mobility routines.',
+        metricVal: '2.5x',
+        metricDesc: 'Measured increase in lumbar core endurance and functional pelvic stability.',
+        frequency: '1–2 Visits / Week (45 Min)'
+      },
+      '4': {
+        counter: 'Phase 04 of 04 Active',
+        milestone: 'Clinical Milestone #4',
+        heading: 'Functional Autonomy & Long-Term Prevention',
+        summary: 'You transition from clinic visits to self-directed movement mastery. We equip you with the biomechanical knowledge and habits required to remain pain-free indefinitely without ongoing appointments.',
+        procedures: 'Final orthopedic re-assessment, athletic functional movement screen, and customized monthly maintenance regimen.',
+        deliverables: 'Lifetime home exercise library, annual spinal health check schedule, and digital posture ergonomics plan.',
+        metricVal: '0 / 10',
+        metricDesc: 'Pain score on visual analogue scale with full return to athletics and work.',
+        frequency: 'Monthly or As-Needed'
+      }
+    };
+
+    const widget = document.getElementById('recovery-roadmap-widget');
+    if (!widget) return;
+
+    const tabs = widget.querySelectorAll('.step-nav-btn');
+    const panel = document.getElementById('panel-phase-detail');
+    const counterEl = document.getElementById('phase-counter-indicator');
+    const milestoneEl = document.getElementById('phase-status-label');
+    const headingEl = document.getElementById('phase-heading');
+    const summaryEl = document.getElementById('phase-summary');
+    const procEl = document.getElementById('phase-procedures');
+    const delivEl = document.getElementById('phase-deliverables');
+    const metricValEl = document.getElementById('phase-metric-val');
+    const metricDescEl = document.getElementById('phase-metric-desc');
+    const freqEl = document.getElementById('phase-frequency');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const phaseNum = tab.getAttribute('data-phase');
+        if (!phaseNum || !phases[phaseNum]) return;
+
+        tabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        panel.setAttribute('aria-labelledby', tab.id);
+
+        const d = phases[phaseNum];
+        counterEl.textContent = d.counter;
+        milestoneEl.textContent = d.milestone;
+        headingEl.textContent = d.heading;
+        summaryEl.textContent = d.summary;
+        procEl.textContent = d.procedures;
+        delivEl.textContent = d.deliverables;
+        metricValEl.textContent = d.metricVal;
+        metricDescEl.textContent = d.metricDesc;
+        freqEl.textContent = d.frequency;
+      });
+    });
+  })();
+</script>
+
+<style>
+  .recovery-roadmap-widget {
+    margin: 2.5rem 0;
+  }
+
+  .roadmap-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .roadmap-badge {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+  }
+
+  .roadmap-phase-indicator {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background-color: var(--color-surface-subtle);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .roadmap-title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .roadmap-lead {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    max-width: var(--max-measure);
+    margin-bottom: 2rem;
+  }
+
+  /* Stepper Navigation */
+  .stepper-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .stepper-nav {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .step-nav-btn {
+    background: #ffffff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-fast);
+  }
+
+  .step-nav-btn:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface-subtle);
+  }
+
+  .step-nav-btn.active {
+    background-color: var(--color-dark-bg);
+    border-color: var(--color-dark-bg);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(12, 34, 31, 0.15);
+  }
+
+  .step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-surface-subtle);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step-nav-btn.active .step-circle {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .step-nav-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-nav-phase {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+
+  .step-nav-name {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    font-weight: 700;
+  }
+
+  /* Phase Detail Panel */
+  .phase-detail-panel {
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .phase-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .phase-detail-grid {
+      grid-template-columns: 1.35fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .phase-status-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .phase-heading {
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    line-height: 1.3;
+    margin-bottom: 0.85rem;
+    color: var(--color-text);
+  }
+
+  .phase-summary {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .feature-item {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .feature-bullet {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  /* Metric Card */
+  .phase-metric-card {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(12, 34, 31, 0.06);
+  }
+
+  .metric-card-kicker {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-big-value {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .phase-timeline-badge {
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+</style>
+

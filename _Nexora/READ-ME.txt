@@ -1,0 +1,4 @@
+  =>  Project Name    : Nexora - Strategic Business Consultancy Website
+  =>  Powered By      : MAKAW ( https://makaw.me )
+  =>  Description     : Corporate consultancy and advisory web platform for Nexora.
+  =>  Deployment      : Ready for standalone and Vercel monorepo deployment (see README.md).

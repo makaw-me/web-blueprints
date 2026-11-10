@@ -1,0 +1,637 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'About Our Clinicians & Facility | ChiroHaven Boston';
+const description = 'Meet our board-certified chiropractic physicians, physical therapists, and clinical pilates instructors in Back Bay Boston. Learn our clinical standards.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'About Us', url: `${base}/about/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="about-header">
+        <p class="section-eyebrow">Our Mission & Standards</p>
+        <h1>Evidence-Based Rehabilitation in the Heart of Boston</h1>
+        <p class="section-lead">
+          Founded on the principle that true recovery requires restoring both joint mechanics and muscular control, ChiroHaven unites chiropractic medicine and physical therapy under one clinical roof.
+        </p>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-content">
+          <h2>Why We Built ChiroHaven</h2>
+          <p>
+            For years, musculoskeletal healthcare in Boston has been fragmented. Patients experiencing severe back pain or sports injuries were forced to shuttle between separate chiropractic offices, physical therapy gyms, and imaging centers—receiving disjointed recommendations and conflicting timelines.
+          </p>
+          <p>
+            At ChiroHaven, our multidisciplinary team shares diagnostic records, treatment spaces, and clinical conferences. When you present with complex spinal or extremity symptoms, your chiropractor and physical therapist communicate directly to design a cohesive care plan.
+          </p>
+          <p>
+            We hold ourselves to strict ethical guidelines: no pre-paid long-term contracts, no unscientific claims, and no keeping patients on therapy once their functional goals and self-management benchmarks are achieved.
+          </p>
+        </div>
+
+        <div class="story-media">
+          <img
+            src={`${base}/images/clinic-facility-1.webp`}
+            alt="Clinician conducting an in-depth cervical and postural assessment in consultation suite"
+            width="500"
+            height="380"
+            loading="lazy"
+            decoding="async"
+            class="facility-photo"
+          />
+        </div>
+      </div>
+
+      <!-- Clinical Facility & Equipment Tour -->
+      <div class="facility-tour-section double-bezel" id="facility-tour" aria-label="Interactive Clinical Facility Tour">
+        <div class="double-bezel-inner tour-inner">
+          <div class="tour-header">
+            <p class="section-eyebrow">Clinical Environments</p>
+            <h2>Interactive Clinical Facility Tour</h2>
+            <p class="tour-lead">Explore our specialized treatment environments engineered for patient privacy, biomechanical precision, and verified safety:</p>
+          </div>
+
+          <div class="tour-layout">
+            <div class="tour-nav-tabs" role="tablist" aria-label="Clinical rooms">
+              <button type="button" class="tour-tab active" data-room="decompression" role="tab" aria-selected="true" id="tab-room-decompression" aria-controls="panel-room">
+                <span class="tour-tab-indicator" aria-hidden="true"></span>
+                <span class="tour-tab-text">
+                  <strong>Cox Decompression Suite</strong>
+                  <small>Motorized lumbar & cervical traction tables</small>
+                </span>
+              </button>
+              <button type="button" class="tour-tab" data-room="reformer" role="tab" aria-selected="false" id="tab-room-reformer" aria-controls="panel-room">
+                <span class="tour-tab-indicator" aria-hidden="true"></span>
+                <span class="tour-tab-text">
+                  <strong>Clinical Reformer Studio</strong>
+                  <small>Balanced Body spring-calibrated reformers</small>
+                </span>
+              </button>
+              <button type="button" class="tour-tab" data-room="orthopedic" role="tab" aria-selected="false" id="tab-room-orthopedic" aria-controls="panel-room">
+                <span class="tour-tab-indicator" aria-hidden="true"></span>
+                <span class="tour-tab-text">
+                  <strong>Orthopedic PT Gym</strong>
+                  <small>Progressive resistance & gait loading</small>
+                </span>
+              </button>
+              <button type="button" class="tour-tab" data-room="diagnostic" role="tab" aria-selected="false" id="tab-room-diagnostic" aria-controls="panel-room">
+                <span class="tour-tab-indicator" aria-hidden="true"></span>
+                <span class="tour-tab-text">
+                  <strong>Diagnostic Motion Lab</strong>
+                  <small>Digital posture scans & range of motion</small>
+                </span>
+              </button>
+            </div>
+
+            <div class="tour-display-card" id="panel-room" role="tabpanel" aria-labelledby="tab-room-decompression" aria-live="polite">
+              <div class="tour-media-wrap">
+                <img
+                  src={`${base}/images/clinic-facility-1.webp`}
+                  alt="Cox Technic motorized decompression table in private clinical treatment room"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  id="tour-img"
+                />
+              </div>
+              <div class="tour-info">
+                <h3 id="tour-title">Cox Decompression Suite</h3>
+                <p id="tour-desc">Equipped with specialized motorized flexion-distraction tables designed by Dr. James Cox. Rhythmic long-axis traction opens narrowed intervertebral disc spaces by up to 28%, relieving impinged spinal nerves without surgical trauma.</p>
+                <div class="tour-meta">
+                  <div class="tour-meta-item">
+                    <span class="meta-label">Key Technology:</span>
+                    <strong id="tour-tech">Automated Flexion-Distraction Tables</strong>
+                  </div>
+                  <div class="tour-meta-item">
+                    <span class="meta-label">Primary Indications:</span>
+                    <strong id="tour-care">Disc Herniations, Facet Syndrome, Sciatica</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Clinical Principles -->
+      <div class="principles-band">
+        <h2>Our Three Clinical Pillars</h2>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <h3>1. Complete 1-on-1 Sessions</h3>
+            <p>
+              Your appointments are never passed off to clinical aides or divided among three patients at once. You spend the full scheduled time directly with your licensed doctor or therapist.
+            </p>
+          </div>
+          <div class="principle-card">
+            <h3>2. Measurable Outcomes</h3>
+            <p>
+              We objectively re-evaluate range of motion, muscle firing thresholds, and pain-free load capacity every 4 weeks to ensure therapy is producing verifiable results.
+            </p>
+          </div>
+          <div class="principle-card">
+            <h3>3. Patient Self-Efficacy</h3>
+            <p>
+              Our ultimate clinical victory is your independence. We equip you with custom corrective exercises, workstation ergonomics, and movement strategies so pain does not return.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Clinician Bios -->
+      <div class="team-section" id="team">
+        <h2>Meet Our Licensed Clinical Team</h2>
+        <p class="team-intro">
+          Our providers hold doctorates, board certifications, and specialized post-doctoral credentials in orthopedics, spinal rehabilitation, and sports science.
+        </p>
+
+        <div class="team-bios-list">
+          <article class="bio-card">
+            <div class="bio-media">
+              <img
+                src={`${base}/images/dr-benjamin-williams.webp`}
+                alt="Dr. Benjamin Williams, Clinic Director and Doctor of Chiropractic"
+                width="300"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="bio-content">
+              <h3>Dr. Benjamin Williams, DC</h3>
+              <p class="bio-credential">Clinic Director & Chiropractic Physician</p>
+              <p>
+                Dr. Williams received his Doctor of Chiropractic degree from Palmer College of Chiropractic, graduating summa cum laude. Over his 14 years of practice in Massachusetts, he has treated over 6,000 patients suffering from acute disc herniations, spinal stenosis, and intractable sciatica.
+              </p>
+              <ul class="bio-details" role="list">
+                <li><strong>Certifications:</strong> Certified in Cox Flexion-Distraction, Graston Technique (IASTM), Websters Technique.</li>
+                <li><strong>Memberships:</strong> Massachusetts Chiropractic Society (MCS), American Chiropractic Association (ACA).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="bio-card">
+            <div class="bio-media">
+              <img
+                src={`${base}/images/sarah-miller-pt.webp`}
+                alt="Sarah Miller, Doctor of Physical Therapy"
+                width="300"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="bio-content">
+              <h3>Sarah Miller, PT, DPT, OCS</h3>
+              <p class="bio-credential">Director of Physical Therapy & Board-Certified Orthopedic Specialist</p>
+              <p>
+                Sarah earned her Doctor of Physical Therapy degree from Boston University Sargent College. Her clinical practice centers on sports injury rehabilitation, running gait analysis, and complex shoulder and knee biomechanics. She previously consulted for regional collegiate track and rowing teams.
+              </p>
+              <ul class="bio-details" role="list">
+                <li><strong>Certifications:</strong> Orthopedic Clinical Specialist (OCS), Selective Functional Movement Assessment (SFMA).</li>
+                <li><strong>Memberships:</strong> American Physical Therapy Association (APTA Orthopedic Section).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="bio-card">
+            <div class="bio-media">
+              <img
+                src={`${base}/images/dr-elena-vance.webp`}
+                alt="Dr. Elena Vance, Chiropractor and Certified Pilates Instructor"
+                width="300"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="bio-content">
+              <h3>Dr. Elena Vance, DC, CPI</h3>
+              <p class="bio-credential">Chiropractor & Clinical Pilates Specialist</p>
+              <p>
+                Dr. Vance bridges the gap between passive joint manipulation and active neuromuscular control. Following her chiropractic doctorate at New York Chiropractic College, she completed comprehensive rehabilitation certification on the Balanced Body reformer system.
+              </p>
+              <ul class="bio-details" role="list">
+                <li><strong>Specialties:</strong> Postural restoration for desk professionals, perinatal pelvic stability, scoliosis care.</li>
+                <li><strong>Certifications:</strong> Comprehensive Polestar Pilates Rehabilitation, FMS Level 2.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const base = document.querySelector('meta[property="og:image"]')?.content.split('/images/')[0] || '';
+    const rooms = {
+      decompression: {
+        title: 'Cox Decompression Suite',
+        desc: 'Equipped with specialized motorized flexion-distraction tables designed by Dr. James Cox. Rhythmic long-axis traction opens narrowed intervertebral disc spaces by up to 28%, relieving impinged spinal nerves without surgical trauma.',
+        tech: 'Automated Flexion-Distraction Tables',
+        care: 'Disc Herniations, Facet Syndrome, Sciatica',
+        src: 'clinic-facility-1.webp',
+        alt: 'Cox Technic motorized decompression table in private clinical treatment room'
+      },
+      reformer: {
+        title: 'Clinical Reformer Studio',
+        desc: 'Our private pilates studio features medical-grade Balanced Body reformers and trapeze towers. Spring resistance unloads joints while isolating deep stabilizing core musculature (transversus abdominis and multifidus).',
+        tech: 'Balanced Body Medical Reformers & Trapeze Tower',
+        care: 'Core Instability, Scoliosis, Postpartum Pelvic Health',
+        src: 'clinical-reformer.webp',
+        alt: 'Clinical reformer carriage and spring resistance equipment in sunlit studio'
+      },
+      orthopedic: {
+        title: 'Orthopedic PT Gym',
+        desc: 'A dedicated active movement space featuring kettlebells, pneumatic resistance pulleys, and biomechanical agility tracks designed for progressive tissue loading and safe return-to-sport testing.',
+        tech: 'Pneumatic Pulley Systems & Force Dynamometry',
+        care: 'Rotator Cuff Rehab, ACL Recovery, Runner Biomechanics',
+        src: 'clinic-facility-2.webp',
+        alt: 'Orthopedic physical therapy exercise gym with rehabilitation benches and resistance equipment'
+      },
+      diagnostic: {
+        title: 'Diagnostic Motion Lab',
+        desc: 'Every care plan begins with objective digital screening. High-speed video cameras record gait cadence and spinal curvature angles to establish baseline biomechanical benchmarks before treatment starts.',
+        tech: 'Digital Inclinometry & Video Motion Analysis',
+        care: 'Initial Orthopedic Assessments & Progress Tracking',
+        src: 'clinic-facility-3.webp',
+        alt: 'High-resolution motion assessment workspace with digital postural tracking markers'
+      }
+    };
+
+    const tabs = document.querySelectorAll('.tour-tab');
+    const titleEl = document.getElementById('tour-title');
+    const descEl = document.getElementById('tour-desc');
+    const imgEl = document.getElementById('tour-img');
+    const techEl = document.getElementById('tour-tech');
+    const careEl = document.getElementById('tour-care');
+    const panel = document.getElementById('panel-room');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const key = tab.getAttribute('data-room');
+        if (!key || !rooms[key]) return;
+
+        tabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        panel.setAttribute('aria-labelledby', tab.id);
+
+        const r = rooms[key];
+        if (titleEl) titleEl.textContent = r.title;
+        if (descEl) descEl.textContent = r.desc;
+        if (techEl) techEl.textContent = r.tech;
+        if (careEl) careEl.textContent = r.care;
+        if (imgEl) {
+          imgEl.src = `${base}/images/${r.src}`;
+          imgEl.alt = r.alt;
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .about-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 860px) {
+    .story-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+    }
+  }
+
+  .story-content h2 {
+    margin-bottom: 1rem;
+  }
+
+  .story-media {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: #edf1ee;
+  }
+
+  .facility-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .principles-band {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 4rem;
+  }
+
+  .principles-band h2 {
+    margin-bottom: 2rem;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .principles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .principle-card {
+    background: var(--color-surface-subtle);
+    padding: 1.5rem;
+    border-radius: 4px;
+    border-top: 3px solid var(--color-primary);
+  }
+
+  .principle-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .principle-card p {
+    font-size: 0.95rem;
+  }
+
+  .team-section h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .team-intro {
+    max-width: var(--max-measure);
+    margin-bottom: 2.5rem;
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+  }
+
+  .team-bios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .bio-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .bio-card {
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+  }
+
+  .bio-media {
+    border-radius: 4px;
+    overflow: hidden;
+    background: #eef3f0;
+    align-self: flex-start;
+  }
+
+  .bio-media img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .bio-content h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  .bio-credential {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .bio-details {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    background: var(--color-surface-subtle);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+  }
+
+  /* Upgraded Architectural Clinical Facility Tour */
+  .facility-tour-section {
+    margin-bottom: 4rem;
+  }
+
+  .tour-inner {
+    padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  }
+
+  .tour-header {
+    margin-bottom: 2rem;
+  }
+
+  .tour-lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    max-width: var(--max-measure);
+    margin-top: 0.5rem;
+  }
+
+  .tour-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 920px) {
+    .tour-layout {
+      grid-template-columns: 310px 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .tour-nav-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .tour-tab {
+    text-align: left;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem 1.15rem;
+    cursor: pointer;
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    transition: all var(--transition-fast);
+    min-height: 48px;
+  }
+
+  .tour-tab:hover {
+    background: #ffffff;
+    border-color: var(--color-text-muted);
+  }
+
+  .tour-tab.active {
+    background: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 16px rgba(12, 34, 31, 0.08);
+  }
+
+  .tour-tab-indicator {
+    width: 4px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background-color var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .tour-tab.active .tour-tab-indicator {
+    background: var(--color-primary);
+  }
+
+  .tour-tab-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .tour-tab strong {
+    font-size: 1rem;
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    line-height: 1.3;
+  }
+
+  .tour-tab small {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  .tour-display-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(12, 34, 31, 0.04);
+  }
+
+  .tour-media-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #eef3f0;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tour-media-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .tour-info {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tour-info h3 {
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .tour-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .tour-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+  }
+
+  @media (min-width: 600px) {
+    .tour-meta {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .tour-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .meta-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .tour-meta-item strong {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+</style>
+

@@ -1,0 +1,610 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Your Shopping Cart | ChiroHaven Clinic Store';
+const description = 'Review your selected clinical orthopedic supports at ChiroHaven Clinic, configure Boston clinic pickup or delivery, and proceed to secure checkout.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinic Store', url: `${base}/shop/` },
+  { name: 'Shopping Cart', url: `${base}/cart/` }
+];
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section cart-page-section">
+    <div class="container">
+      <div class="cart-header">
+        <p class="section-eyebrow">Clinic Store</p>
+        <h1>Your Shopping Cart</h1>
+        <p class="section-lead">
+          Review your prescribed orthopedic tools. All supplies are eligible for HSA/FSA reimbursement with our clinical itemized receipt.
+        </p>
+      </div>
+
+      <!-- Live Cart Container -->
+      <div id="cart-content-wrapper">
+        <div class="cart-layout-grid">
+          <!-- Items List Column -->
+          <div class="cart-items-col">
+            <div class="cart-table-card double-bezel">
+              <div class="double-bezel-inner">
+                <div class="cart-table-header">
+                  <span class="col-head product-head">Product</span>
+                  <span class="col-head price-head">Price</span>
+                  <span class="col-head qty-head">Quantity</span>
+                  <span class="col-head total-head">Total</span>
+                </div>
+
+                <div id="cart-items-list" class="cart-items-list" role="list">
+                  <!-- Dynamically populated via store.js -->
+                </div>
+
+                <div class="cart-table-footer">
+                  <a href={`${base}/shop/`} class="btn btn-secondary btn-sm">
+                    &larr; Continue Shopping
+                  </a>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-clear-cart">
+                    Clear Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Column -->
+          <div class="cart-summary-col">
+            <div class="summary-card double-bezel" aria-label="Order summary">
+              <div class="double-bezel-inner">
+                <h2>Order Summary</h2>
+
+                <div class="summary-rows">
+                  <div class="summary-row">
+                    <span>Items Subtotal:</span>
+                    <strong id="cart-subtotal">$0.00</strong>
+                  </div>
+
+                  <!-- Shipping Selection -->
+                  <div class="shipping-selection-group">
+                    <span class="shipping-title">Fulfillment Method:</span>
+                    <label class="radio-label">
+                      <input type="radio" name="shipping" value="pickup" checked id="ship-pickup" />
+                      <span>In-Clinic Pickup (450 Boylston St) — <strong>FREE</strong></span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="shipping" value="delivery" id="ship-delivery" />
+                      <span>Standard MA Ground Delivery — <strong>$5.99</strong></span>
+                    </label>
+                  </div>
+
+                  <!-- Promo code row -->
+                  <div class="promo-box">
+                    <label for="promo-input" class="visually-hidden">Promo Code</label>
+                    <div class="promo-input-group">
+                      <input type="text" id="promo-input" placeholder="Promo code (e.g. BOSTON10)" class="promo-input" />
+                      <button type="button" id="btn-apply-promo" class="btn btn-secondary btn-sm">Apply</button>
+                    </div>
+                    <span id="promo-feedback" class="promo-feedback"></span>
+                  </div>
+
+                  <div class="summary-row" id="row-discount" style="display: none;">
+                    <span>Clinical Discount:</span>
+                    <strong id="cart-discount" class="discount-number">-$0.00</strong>
+                  </div>
+
+                  <div class="summary-row">
+                    <span>Estimated Tax (MA):</span>
+                    <strong id="cart-tax">$0.00</strong>
+                  </div>
+
+                  <div class="summary-row total-row">
+                    <span>Estimated Total:</span>
+                    <strong id="cart-total" class="total-price">$0.00</strong>
+                  </div>
+                </div>
+
+                <div class="checkout-actions">
+                  <a href={`${base}/checkout/`} class="btn btn-primary btn-block btn-checkout" id="btn-proceed-checkout">
+                    <span>Proceed to Checkout</span>
+                    <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+
+                <div class="summary-assurances">
+                  <p>🔒 256-Bit Encrypted Healthcare Checkout</p>
+                  <p>📋 Itemized FSA/HSA Invoice Provided</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div id="cart-empty-state" class="empty-cart-container double-bezel" style="display: none;">
+        <div class="double-bezel-inner">
+          <div class="empty-icon-wrap" aria-hidden="true">🛒</div>
+          <h2>Your Shopping Cart is Empty</h2>
+          <p>You haven't added any clinical orthopedic supports or rehabilitation supplies to your order yet.</p>
+          <a href={`${base}/shop/`} class="btn btn-primary">
+            <span>Explore Clinic Store</span>
+            <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    let discountRate = 0;
+    let shippingFee = 0;
+
+    const wrapper = document.getElementById('cart-content-wrapper');
+    const emptyState = document.getElementById('cart-empty-state');
+    const listEl = document.getElementById('cart-items-list');
+    const subtotalEl = document.getElementById('cart-subtotal');
+    const taxEl = document.getElementById('cart-tax');
+    const totalEl = document.getElementById('cart-total');
+    const discountRow = document.getElementById('row-discount');
+    const discountEl = document.getElementById('cart-discount');
+    const promoInput = document.getElementById('promo-input');
+    const promoFeedback = document.getElementById('promo-feedback');
+    const btnApplyPromo = document.getElementById('btn-apply-promo');
+    const btnClear = document.getElementById('btn-clear-cart');
+
+    function renderCart() {
+      if (!window.ChiroStore) return;
+      const items = window.ChiroStore.getCart();
+
+      if (!items || items.length === 0) {
+        if (wrapper) wrapper.style.display = 'none';
+        if (emptyState) emptyState.style.display = 'block';
+        return;
+      }
+
+      if (wrapper) wrapper.style.display = 'block';
+      if (emptyState) emptyState.style.display = 'none';
+
+      if (listEl) {
+        listEl.innerHTML = '';
+        items.forEach((item) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item-row';
+          row.setAttribute('role', 'listitem');
+          row.innerHTML = `
+            <div class="item-product-info">
+              <img src="${item.image}" alt="${item.name}" class="item-thumb" width="70" height="70" />
+              <div>
+                <a href="${item.url}" class="item-name">${item.name}</a>
+                <span class="item-sku">SKU: ${item.sku || item.id}</span>
+              </div>
+            </div>
+            <div class="item-price-unit">$${item.price.toFixed(2)}</div>
+            <div class="item-qty-control">
+              <button type="button" class="btn-qty-mod minus" data-id="${item.id}" aria-label="Decrease quantity">−</button>
+              <span class="item-qty-val">${item.qty}</span>
+              <button type="button" class="btn-qty-mod plus" data-id="${item.id}" aria-label="Increase quantity">+</button>
+            </div>
+            <div class="item-total-val">$${(item.price * item.qty).toFixed(2)}</div>
+            <button type="button" class="btn-remove-item" data-id="${item.id}" aria-label="Remove ${item.name} from cart">✕</button>
+          `;
+          listEl.appendChild(row);
+        });
+      }
+
+      calculateTotals();
+    }
+
+    function calculateTotals() {
+      if (!window.ChiroStore) return;
+      const subtotal = window.ChiroStore.getCartSubtotal();
+      const discount = subtotal * discountRate;
+      const taxable = Math.max(0, subtotal - discount);
+      // Medical supplies in MA are largely tax exempt; simulate standard minimal non-exempt tax
+      const tax = taxable > 0 ? (taxable * 0.03) : 0;
+      const total = taxable + tax + shippingFee;
+
+      if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+      if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
+      if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+
+      if (discountRow && discountEl) {
+        if (discount > 0) {
+          discountRow.style.display = 'flex';
+          discountEl.textContent = `-$${discount.toFixed(2)}`;
+        } else {
+          discountRow.style.display = 'none';
+        }
+      }
+    }
+
+    // Shipping selection change
+    document.querySelectorAll('input[name="shipping"]').forEach((r) => {
+      r.addEventListener('change', (e) => {
+        shippingFee = e.target.value === 'delivery' ? 5.99 : 0;
+        calculateTotals();
+      });
+    });
+
+    // Promo code apply
+    if (btnApplyPromo && promoInput) {
+      btnApplyPromo.addEventListener('click', () => {
+        const code = promoInput.value.trim().toUpperCase();
+        if (code === 'BOSTON10' || code === 'BOSTONREHAB') {
+          discountRate = 0.10;
+          if (promoFeedback) {
+            promoFeedback.textContent = '✓ 10% Clinical discount applied!';
+            promoFeedback.className = 'promo-feedback success';
+          }
+        } else {
+          discountRate = 0;
+          if (promoFeedback) {
+            promoFeedback.textContent = 'Invalid promo code. Try BOSTON10.';
+            promoFeedback.className = 'promo-feedback error';
+          }
+        }
+        calculateTotals();
+      });
+    }
+
+    // Clear cart
+    if (btnClear) {
+      btnClear.addEventListener('click', () => {
+        if (window.ChiroStore) {
+          window.ChiroStore.clearCart();
+          renderCart();
+        }
+      });
+    }
+
+    // Delegate item events
+    if (listEl) {
+      listEl.addEventListener('click', (e) => {
+        const btnMinus = e.target.closest('.btn-qty-mod.minus');
+        const btnPlus = e.target.closest('.btn-qty-mod.plus');
+        const btnRemove = e.target.closest('.btn-remove-item');
+
+        if (btnMinus && window.ChiroStore) {
+          const id = btnMinus.getAttribute('data-id');
+          const cart = window.ChiroStore.getCart();
+          const item = cart.find(i => i.id === id);
+          if (item) {
+            window.ChiroStore.updateQty(id, item.qty - 1);
+            renderCart();
+          }
+        } else if (btnPlus && window.ChiroStore) {
+          const id = btnPlus.getAttribute('data-id');
+          const cart = window.ChiroStore.getCart();
+          const item = cart.find(i => i.id === id);
+          if (item) {
+            window.ChiroStore.updateQty(id, item.qty + 1);
+            renderCart();
+          }
+        } else if (btnRemove && window.ChiroStore) {
+          const id = btnRemove.getAttribute('data-id');
+          window.ChiroStore.removeFromCart(id);
+          renderCart();
+        }
+      });
+    }
+
+    window.addEventListener('chiro:cart-updated', () => renderCart());
+
+    // Initial render
+    renderCart();
+  })();
+</script>
+
+<style>
+  .cart-page-section {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .cart-header {
+    max-width: var(--max-measure);
+    margin-bottom: 2.5rem;
+  }
+
+  .cart-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .cart-layout-grid {
+      grid-template-columns: 1.4fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+
+  .cart-table-card .double-bezel-inner {
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .cart-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 30px;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-border);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .cart-table-header {
+      display: none;
+    }
+  }
+
+  .cart-items-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-item-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 30px;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    .cart-item-row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+  .item-product-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .item-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+    background-color: var(--color-dark-bg);
+    border: 1px solid var(--color-border);
+  }
+
+  .item-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    text-decoration: none;
+    display: block;
+  }
+
+  .item-name:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .item-sku {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    display: block;
+  }
+
+  .item-price-unit {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .item-qty-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    width: max-content;
+    background: #ffffff;
+  }
+
+  .btn-qty-mod {
+    background: transparent;
+    border: none;
+    width: 28px;
+    height: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--color-text);
+  }
+
+  .btn-qty-mod:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  .item-qty-val {
+    width: 28px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .item-total-val {
+    font-weight: 800;
+    color: var(--color-text);
+    font-size: 1.05rem;
+  }
+
+  .btn-remove-item {
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .btn-remove-item:hover {
+    transform: scale(1.2);
+  }
+
+  .cart-table-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  /* Summary */
+  .summary-card .double-bezel-inner {
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .summary-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .summary-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+
+  .shipping-selection-group {
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .shipping-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+
+  .promo-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .promo-input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .promo-input {
+    flex: 1;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+
+  .promo-feedback {
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .promo-feedback.success {
+    color: #27ae60;
+  }
+
+  .promo-feedback.error {
+    color: #e74c3c;
+  }
+
+  .discount-number {
+    color: #27ae60;
+  }
+
+  .total-row {
+    border-top: 2px solid var(--color-border);
+    padding-top: 1rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .total-price {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    color: var(--color-primary);
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+
+  .summary-assurances {
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .summary-assurances p {
+    margin-bottom: 0;
+  }
+
+  /* Empty state */
+  .empty-cart-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+  }
+
+  .empty-icon-wrap {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .empty-cart-container h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .empty-cart-container p {
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+</style>
+

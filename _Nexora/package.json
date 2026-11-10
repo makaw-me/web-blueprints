@@ -1,0 +1,23 @@
+{
+  "name": "nexora",
+  "version": "1.0.0",
+  "description": "Nexora - Strategic Corporate & Financial Advisory Demo Website",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 .",
+    "build": "echo 'Static build ready'"
+  },
+  "keywords": [
+    "consulting",
+    "advisory",
+    "corporate",
+    "finance",
+    "website",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "MIT"
+}

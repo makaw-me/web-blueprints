@@ -1,0 +1,12 @@
+========================================================================
+  Novavia - Global Visa & Immigration Consulting Website
+========================================================================
+
+  Website Name    : Novavia
+  Category        : Visa, Immigration & Global Mobility Consulting
+  Status          : Production & Vercel Ready
+  Documentation   : See README.md for full setup, architecture, and deployment
+
+  Powered by      : MAKAW (https://makaw.me)
+
+========================================================================

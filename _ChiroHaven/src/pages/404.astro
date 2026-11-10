@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Page Not Found (404) | ChiroHaven Boston Clinic';
+const description = 'The requested clinical page could not be located. Browse our evidence-based chiropractic, physical therapy, and appointment scheduling resources.';
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <section class="section error-section">
+    <div class="container error-container">
+      <p class="error-code">404 Error</p>
+      <h1>Page Not Found</h1>
+      <p class="error-lead">
+        The page or resource you requested may have moved, been renamed, or is currently unavailable.
+      </p>
+
+      <div class="error-nav-box">
+        <h2>Helpful Navigation Links</h2>
+        <ul class="error-links-list" role="list">
+          <li><a href={`${base}/`}>Return to Clinic Home</a></li>
+          <li><a href={`${base}/services/`}>Browse All Clinical Services</a></li>
+          <li><a href={`${base}/pricing/`}>Review Pricing & Superbill Guide</a></li>
+          <li><a href={`${base}/contact/`}>Book an Appointment or Call Reception</a></li>
+        </ul>
+      </div>
+
+      <div class="error-action">
+        <a href={`${base}/`} class="btn btn-primary">
+          Back to Home Page
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-section {
+    padding: clamp(3rem, 8vw, 6rem) 0;
+  }
+
+  .error-container {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .error-code {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-lead {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    margin: 1rem auto 2.5rem;
+  }
+
+  .error-nav-box {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+  }
+
+  .error-nav-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .error-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .error-links-list a {
+    font-weight: 600;
+  }
+
+  .error-action {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+

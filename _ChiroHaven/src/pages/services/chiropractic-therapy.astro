@@ -1,0 +1,301 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Chiropractic Care & Spinal Alignment | Boston MA';
+const description = 'Specialized chiropractic adjustments, disc decompression, and sciatica treatment in Boston. Gentle, evidence-based spinal care by licensed doctors.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Services', url: `${base}/services/` },
+  { name: 'Chiropractic Therapy', url: `${base}/services/chiropractic-therapy/` }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Chiropractic Therapy & Spinal Care',
+  provider: {
+    '@type': 'MedicalBusiness',
+    name: 'ChiroHaven Spine & Physical Therapy'
+  },
+  areaServed: 'Boston',
+  description: 'Evidence-based chiropractic adjustments, spinal decompression, and facet joint mobilization.'
+};
+---
+
+<BaseLayout title={title} description={description} extraSchema={serviceSchema}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="service-detail-header">
+        <p class="section-eyebrow">Medical Specialty</p>
+        <h1>Chiropractic Therapy & Spinal Realignment</h1>
+        <p class="section-lead">
+          Restoring biomechanical spinal motion, decompressing impinged nerves, and eliminating acute and chronic spinal pain without reliance on pain medication or surgery.
+        </p>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="media-banner double-bezel">
+            <div class="double-bezel-inner">
+              <img
+                src={`${base}/images/service-chiropractic.webp`}
+                alt="Licensed chiropractor performing focused spinal examination on lumbar vertebrae"
+                width="800"
+                height="450"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
+                class="featured-image"
+              />
+            </div>
+          </div>
+
+          <h2>How Chiropractic Adjustments Relieve Spinal Stress</h2>
+          <p>
+            When spinal joints become hypomobile (fixated), surrounding facet capsules swell and adjacent spinal nerves experience compression. This manifests as localized aching, sharp shooting nerve pain, muscle guarding, or referred sensations down the arms or legs.
+          </p>
+          <p>
+            Our Doctors of Chiropractic utilize high-velocity, low-amplitude (HVLA) manual adjustments, gentle instrument-assisted impulses, and mechanized Cox flexion-distraction tables. By restoring physiologic movement to restricted segments, we immediately reduce mechanical tension and stimulate natural joint lubrication.
+          </p>
+
+          <h2>Conditions We Treat Successfully</h2>
+          <ul class="conditions-list" role="list">
+            <li><strong>Herniated & Bulging Lumbar Discs:</strong> Flexion-distraction creates negative intradiscal pressure to retract protrusions.</li>
+            <li><strong>Sciatica & Piriformis Syndrome:</strong> Eliminating nerve root entrapment at the L4-S1 nerve junction.</li>
+            <li><strong>Cervicogenic Headaches & Neck Pain:</strong> Correcting upper cervical subluxations caused by desk ergonomics.</li>
+            <li><strong>Postural Kyphosis & Rib Subluxations:</strong> Restoring thoracic expansion and scapular mechanics.</li>
+          </ul>
+
+          <h2>What to Expect During Your Treatment Session</h2>
+          <div class="session-steps-container double-bezel">
+            <div class="double-bezel-inner">
+              <div class="session-step">
+                <span class="step-badge">Step 1</span>
+                <div>
+                  <strong>Segmental Motion Palpation & Static Scan:</strong>
+                  <p>We systematically inspect joint motion along the cervical, thoracic, and lumbar spine to identify hypomobile fixations and protective muscle guarding.</p>
+                </div>
+              </div>
+              <div class="session-step">
+                <span class="step-badge">Step 2</span>
+                <div>
+                  <strong>Targeted Decompression & Gentle Realignment:</strong>
+                  <p>Gentle high-velocity manipulation or motorized flexion-distraction traction restores proper facet mechanics and relieves pinched nerve roots.</p>
+                </div>
+              </div>
+              <div class="session-step">
+                <span class="step-badge">Step 3</span>
+                <div>
+                  <strong>Post-Adjustment Neuromuscular Retraining:</strong>
+                  <p>Two targeted corrective exercises assigned to stabilize the newly mobilized segment and prevent rapid recurrence.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="detail-sidebar" aria-label="Appointment and pricing summary">
+          <div class="sidebar-card double-bezel">
+            <div class="double-bezel-inner">
+              <h3>Quick Service Summary</h3>
+              <dl class="sidebar-dl">
+                <div>
+                  <dt>Lead Clinician:</dt>
+                  <dd>Dr. Benjamin Williams, DC</dd>
+                </div>
+                <div>
+                  <dt>Initial Exam Length:</dt>
+                  <dd>60 Minutes (Exam + Treatment)</dd>
+                </div>
+                <div>
+                  <dt>Follow-up Visits:</dt>
+                  <dd>30 Minutes</dd>
+                </div>
+                <div>
+                  <dt>Self-Pay Initial Fee:</dt>
+                  <dd>$165 (Superbill provided)</dd>
+                </div>
+                <div>
+                  <dt>Clinic Location:</dt>
+                  <dd>450 Boylston St, Boston MA</dd>
+                </div>
+              </dl>
+              <div class="sidebar-cta">
+                <a href={`${base}/contact/`} class="btn btn-primary btn-block">
+                  <span>Book Chiropractic Exam</span>
+                  <span class="btn-arrow-circle" aria-hidden="true">&rarr;</span>
+                </a>
+                <a href="tel:6176232338" class="btn btn-secondary btn-block">
+                  <span>Call: (617) 623-2338</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-detail-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .detail-layout {
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+    }
+  }
+
+  .media-banner {
+    margin-bottom: 2rem;
+  }
+
+  .media-banner .double-bezel-inner {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .session-steps-container {
+    margin: 1.5rem 0 2rem;
+  }
+
+  .session-step {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .session-step:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .session-step:first-child {
+    padding-top: 0;
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 28px;
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .session-step p {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .detail-main h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .conditions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .conditions-list li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .conditions-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .sidebar-dl div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-dl dt {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar-dl dd {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .sidebar-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+

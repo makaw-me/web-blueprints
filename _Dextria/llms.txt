@@ -1,0 +1,28 @@
+# Dextria Digital Agency
+
+> Dextria is a creative digital agency specializing in custom web design, mobile application development, search engine optimization (SEO), and digital marketing solutions.
+
+## Core Capabilities
+- Web Design & UX/UI Architecture
+- Full-Stack Web & Mobile App Development
+- SEO & Search Visibility Strategy
+- Social Media & Content Marketing
+- Email Marketing Automation
+- PPC & Performance Advertising
+
+## Key Pages
+- Homepage: https://dextria.com/index.html
+- About Us: https://dextria.com/about.html
+- Services: https://dextria.com/service.html
+- Projects: https://dextria.com/project.html
+- Features: https://dextria.com/feature.html
+- Team: https://dextria.com/team.html
+- Testimonials: https://dextria.com/testimonial.html
+- Contact: https://dextria.com/contact.html
+
+## Contact Information
+- Address: 123 Innovation Way, New York, NY 10001, USA
+- Phone: +1 (555) 234-5678
+- Email: info@dextria.com
+- Hours: Mon - Fri, 9:00 AM - 6:00 PM EST
+

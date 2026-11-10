@@ -1,0 +1,24 @@
+---
+import StubPage from '../../components/StubPage.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Pediatric Posture & Spine Class | Boston MA';
+const description = 'Specialized clinical posture and spinal alignment class for children and adolescents experiencing heavy backpack fatigue and screen slouching in Boston.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinical Classes', url: `${base}/classes/` },
+  { name: 'Growing Spines Posture', url: `${base}/classes/growing-spines-posture/` }
+];
+---
+
+<StubPage
+  title={title}
+  description={description}
+  eyebrow="Pediatric & Adolescent Health"
+  h1="Growing Spines: Safe Posture & Ergonomics Workshop"
+  summary="A specialized clinical workshop addressing adolescent idiopathic scoliosis screening, ergonomic digital device usage, and core developmental mechanics."
+  breadcrumbs={breadcrumbs}
+/>
+

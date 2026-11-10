@@ -1,0 +1,165 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/tokens.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+  schemaType?: string;
+  extraSchema?: Record<string, any>;
+  preloadImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  noindex = false,
+  schemaType = 'MedicalBusiness',
+  extraSchema,
+  preloadImage
+} = Astro.props;
+
+const siteUrl = 'https://chirohaven.boston-demo.com';
+const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isProduction = process.env.SITE_MODE === 'production';
+
+// Strict canonical URL
+const canonicalUrl = `${siteUrl}${canonicalPath || currentPath}`;
+const ogImage = `${siteUrl}${base}/images/hero-rehabilitation.webp`;
+
+// Base Clinic Schema (NAP matches footer exactly)
+const clinicSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['MedicalBusiness', 'Chiropractor'],
+  '@id': `${siteUrl}/#organization`,
+  name: 'ChiroHaven Spine & Physical Therapy',
+  url: siteUrl,
+  logo: `${siteUrl}${base}/images/logo.webp`,
+  image: ogImage,
+  telephone: '+1-617-623-2338',
+  email: 'info@chirohaven.com',
+  priceRange: '$$',
+  medicalSpecialty: [
+    'Chiropractic',
+    'Physiotherapy',
+    'SportsMedicine'
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '450 Boylston Street, 4th Floor',
+    addressLocality: 'Boston',
+    addressRegion: 'MA',
+    postalCode: '02116',
+    addressCountry: 'US'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 42.3516,
+    longitude: -71.0722
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      opens: '08:00',
+      closes: '18:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Friday',
+      opens: '08:00',
+      closes: '16:30'
+    }
+  ],
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Boston' },
+    { '@type': 'AdministrativeArea', name: 'Back Bay' },
+    { '@type': 'AdministrativeArea', name: 'Cambridge' }
+  ]
+};
+
+const fullSchema = extraSchema ? [clinicSchema, extraSchema] : [clinicSchema];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    {preloadImage && (
+      <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
+    )}
+
+    {(!isProduction || noindex) ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow" />
+    )}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="ChiroHaven Spine & Physical Therapy" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD Structured Data -->
+    {fullSchema.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <Header />
+
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script src={`${base}/assets/store.js`} is:inline></script>
+
+    <script is:inline>
+      // Progressive reveal observer
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -30px 0px', threshold: 0.08 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+      } else {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+      }
+    </script>
+  </body>
+</html>
+

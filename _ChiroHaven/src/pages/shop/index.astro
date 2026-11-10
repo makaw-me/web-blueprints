@@ -1,0 +1,704 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Clinical Rehabilitation Supplies & Ergonomics | Boston MA';
+const description = 'Physician-recommended ergonomic lumbar cushions, cervical pillows, and resistance rehab bands. Order online for clinic pickup or direct shipping in Boston.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Clinic Store', url: `${base}/shop/` }
+];
+
+const products = [
+  {
+    id: 'lumbar-cushion',
+    name: 'Ergonomic Memory Foam Lumbar Support Cushion',
+    category: 'ergonomics',
+    categoryName: 'Ergonomic Supports',
+    price: 48,
+    badge: "Doctor's Choice",
+    rating: '4.9',
+    reviews: 142,
+    image: `${base}/images/prod-lumbar-cushion.webp`,
+    url: `${base}/shop/ergonomic-lumbar-cushion/`,
+    desc: 'High-density contoured memory foam with spinal relief groove. Enforces natural lumbar lordosis during prolonged desk and driving sessions.'
+  },
+  {
+    id: 'cervical-pillow',
+    name: 'Cervical Contour Orthopedic Traction Pillow',
+    category: 'traction',
+    categoryName: 'Spinal Traction',
+    price: 62,
+    badge: 'Best Seller',
+    rating: '4.9',
+    reviews: 98,
+    image: `${base}/images/prod-cervical-pillow.webp`,
+    url: `${base}/shop/ergonomic-lumbar-cushion/`,
+    desc: 'Ergonomic cervical cradle engineered to align C1-C7 vertebrae and eliminate morning neck stiffness for both back and side sleepers.'
+  },
+  {
+    id: 'rehab-bands',
+    name: 'Progressive Resistance Rehab Loop Bands (Set of 5)',
+    category: 'rehab',
+    categoryName: 'Resistance Rehab',
+    price: 24,
+    badge: 'Clinical Grade',
+    rating: '5.0',
+    reviews: 215,
+    image: `${base}/images/prod-rehab-bands.webp`,
+    url: `${base}/shop/ergonomic-lumbar-cushion/`,
+    desc: 'Calibrated color-coded resistance loops for rotator cuff activation, gluteus medius retraining, and post-surgical kinetic stabilization.'
+  },
+  {
+    id: 'posture-brace',
+    name: 'Adjustable Posture Corrector Clavicle Support Brace',
+    category: 'ergonomics',
+    categoryName: 'Ergonomic Supports',
+    price: 39,
+    badge: 'Postural Reset',
+    rating: '4.8',
+    reviews: 86,
+    image: `${base}/images/prod-posture-brace.webp`,
+    url: `${base}/shop/ergonomic-lumbar-cushion/`,
+    desc: 'Lightweight breathable retractor straps gently remind scapular stabilizers to stay retracted, counteracting slouching kyphosis.'
+  },
+  {
+    id: 'foam-roller',
+    name: 'High-Density Myofascial Spine Foam Roller (36")',
+    category: 'rehab',
+    categoryName: 'Resistance Rehab',
+    price: 32,
+    badge: 'Mobility Essential',
+    rating: '4.9',
+    reviews: 174,
+    image: `${base}/images/prod-foam-roller.webp`,
+    url: `${base}/shop/ergonomic-lumbar-cushion/`,
+    desc: 'Firm closed-cell EPP foam designed for thoracic spine extension, IT band release, and pectoralis minor mobilization.'
+  },
+  {
+    id: 'cryo-pack',
+    name: 'Cryo-Gel Reusable Lumbar Cold & Hot Therapy Pack',
+    category: 'thermal',
+    categoryName: 'Thermal Therapy',
+    price: 22,
+    badge: 'Acute Relief',
+    rating: '4.8',
+    reviews: 112,
+    image: `${base}/images/prod-cryo-pack.webp`,
+    url: `${base}/shop/ergonomic-lumbar-cushion/`,
+    desc: 'Flexible non-freezing gel pack with adjustable hook-and-loop lumbar belt. Dual-temperature therapy for acute swelling or chronic spasms.'
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section shop-hero-section">
+    <div class="container">
+      <div class="shop-header">
+        <p class="section-eyebrow">Clinician-Curated Store</p>
+        <h1>Orthopedic Rehabilitation Supplies & Ergonomics</h1>
+        <p class="section-lead">
+          Every tool in our clinic store is tested and prescribed by our Boston chiropractic physicians and physical therapists. Designed to support your in-clinic care with verified home biomechanics.
+        </p>
+
+        <!-- Quick Store Assurance Badges -->
+        <div class="store-assurance-bar">
+          <div class="assurance-item">
+            <span class="assurance-icon">✓</span>
+            <span><strong>Physician Approved:</strong> Tested in clinical therapy</span>
+          </div>
+          <div class="assurance-item">
+            <span class="assurance-icon">✓</span>
+            <span><strong>Boston Clinic Pickup:</strong> Available same-day at reception</span>
+          </div>
+          <div class="assurance-item">
+            <span class="assurance-icon">✓</span>
+            <span><strong>FSA & HSA Eligible:</strong> Eligible for health savings reimbursement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="shop-toolbar double-bezel" role="search" aria-label="Product catalog filters">
+        <div class="double-bezel-inner toolbar-inner">
+          <div class="filter-pills-row" role="tablist" aria-label="Product categories">
+            <button type="button" class="category-btn active" data-category="all" role="tab" aria-selected="true">
+              All Products (6)
+            </button>
+            <button type="button" class="category-btn" data-category="ergonomics" role="tab" aria-selected="false">
+              Ergonomic Supports
+            </button>
+            <button type="button" class="category-btn" data-category="traction" role="tab" aria-selected="false">
+              Spinal Traction
+            </button>
+            <button type="button" class="category-btn" data-category="rehab" role="tab" aria-selected="false">
+              Resistance Rehab
+            </button>
+            <button type="button" class="category-btn" data-category="thermal" role="tab" aria-selected="false">
+              Thermal Therapy
+            </button>
+          </div>
+
+          <div class="toolbar-search-box">
+            <label for="catalog-search" class="visually-hidden">Search clinical products</label>
+            <input
+              type="search"
+              id="catalog-search"
+              placeholder="Search products or symptoms..."
+              class="search-input"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-catalog-grid">
+        {products.map((p) => (
+          <article
+            class="product-card double-bezel interactive-hover-lift"
+            data-category={p.category}
+            data-name={p.name.toLowerCase()}
+            data-desc={p.desc.toLowerCase()}
+          >
+            <div class="double-bezel-inner product-inner">
+              <div class="product-media">
+                <a href={p.url} class="product-img-link" tabindex="-1" aria-hidden="true">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="product-photo"
+                  />
+                </a>
+                <span class="product-badge">{p.badge}</span>
+                <button
+                  type="button"
+                  class="btn-wishlist-toggle"
+                  data-product-id={p.id}
+                  data-product-name={p.name}
+                  data-product-price={p.price}
+                  data-product-image={p.image}
+                  data-product-url={p.url}
+                  aria-label={`Save ${p.name} to wishlist`}
+                  title="Save to Wishlist"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="product-details">
+                <div class="product-rating-row">
+                  <span class="star-rating" aria-label={`Rating ${p.rating} out of 5 stars`}>
+                    ★★★★★
+                  </span>
+                  <span class="rating-text">{p.rating} ({p.reviews})</span>
+                  <span class="product-cat-tag">{p.categoryName}</span>
+                </div>
+
+                <h2 class="product-title">
+                  <a href={p.url}>{p.name}</a>
+                </h2>
+
+                <p class="product-snippet">{p.desc}</p>
+
+                <div class="product-footer-row">
+                  <div class="price-box">
+                    <div class="price-display">
+                      <span class="price-currency">$</span><span class="price-amount">{p.price}.00</span>
+                    </div>
+                    <span class="price-tax-note">FSA/HSA Eligible</span>
+                  </div>
+
+                  <div class="product-actions-btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-add-cart"
+                      data-product-id={p.id}
+                      data-product-name={p.name}
+                      data-product-price={p.price}
+                      data-product-image={p.image}
+                      data-product-url={p.url}
+                    >
+                      <span>Add to Cart</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty Filter State -->
+      <div id="no-products-msg" class="empty-products-state double-bezel" style="display: none;">
+        <div class="double-bezel-inner">
+          <h3>No products match your search</h3>
+          <p>Try searching for a different orthopedic term (e.g., "lumbar", "neck", "bands", "roller") or clear filters.</p>
+          <button type="button" class="btn btn-secondary" id="btn-reset-filters">
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const grid = document.getElementById('products-catalog-grid');
+    const noMsg = document.getElementById('no-products-msg');
+    const searchInput = document.getElementById('catalog-search');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const resetBtn = document.getElementById('btn-reset-filters');
+
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    function filterCards() {
+      if (!grid) return;
+      const cards = grid.querySelectorAll('.product-card');
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        const name = card.getAttribute('data-name') || '';
+        const desc = card.getAttribute('data-desc') || '';
+
+        const matchesCat = activeCategory === 'all' || cat === activeCategory;
+        const matchesQuery = !searchQuery || name.includes(searchQuery) || desc.includes(searchQuery);
+
+        if (matchesCat && matchesQuery) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noMsg) {
+        noMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    categoryBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        activeCategory = btn.getAttribute('data-category') || 'all';
+        filterCards();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        filterCards();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        activeCategory = 'all';
+        searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        categoryBtns.forEach((b) => {
+          b.classList.toggle('active', b.getAttribute('data-category') === 'all');
+          b.setAttribute('aria-selected', b.getAttribute('data-category') === 'all');
+        });
+        filterCards();
+      });
+    }
+
+    // Interactive Add to Cart & Wishlist Listeners
+    document.addEventListener('click', (e) => {
+      const cartBtn = e.target.closest('.btn-add-cart');
+      if (cartBtn && window.ChiroStore) {
+        const product = {
+          id: cartBtn.getAttribute('data-product-id'),
+          name: cartBtn.getAttribute('data-product-name'),
+          price: Number(cartBtn.getAttribute('data-product-price')),
+          image: cartBtn.getAttribute('data-product-image'),
+          url: cartBtn.getAttribute('data-product-url')
+        };
+        window.ChiroStore.addToCart(product, 1);
+      }
+
+      const wishBtn = e.target.closest('.btn-wishlist-toggle');
+      if (wishBtn && window.ChiroStore) {
+        const product = {
+          id: wishBtn.getAttribute('data-product-id'),
+          name: wishBtn.getAttribute('data-product-name'),
+          price: Number(wishBtn.getAttribute('data-product-price')),
+          image: wishBtn.getAttribute('data-product-image'),
+          url: wishBtn.getAttribute('data-product-url')
+        };
+        const added = window.ChiroStore.toggleWishlist(product);
+        wishBtn.classList.toggle('is-saved', added);
+      }
+    });
+
+    // Check saved state for wishlist buttons
+    if (window.ChiroStore) {
+      document.querySelectorAll('.btn-wishlist-toggle').forEach((btn) => {
+        const id = btn.getAttribute('data-product-id');
+        if (window.ChiroStore.isWishlisted(id)) {
+          btn.classList.add('is-saved');
+        }
+      });
+    }
+  })();
+</script>
+
+<style>
+  .shop-hero-section {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .shop-header {
+    max-width: var(--max-measure);
+    margin-bottom: 2.5rem;
+  }
+
+  .store-assurance-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--color-text);
+  }
+
+  .assurance-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .assurance-icon {
+    color: #075240;
+    font-weight: 800;
+  }
+
+  /* Toolbar */
+  .shop-toolbar {
+    margin-bottom: 2.5rem;
+  }
+
+  .toolbar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .filter-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .category-btn {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .category-btn:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+    background-color: var(--color-surface-subtle);
+  }
+
+  .category-btn.active {
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    border-color: var(--color-dark-bg);
+  }
+
+  .toolbar-search-box {
+    flex: 1;
+    min-width: 240px;
+    max-width: 340px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.55rem 1rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    background-color: #ffffff;
+    color: var(--color-text);
+  }
+
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 680px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .product-card .product-inner {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .product-media {
+    position: relative;
+    background-color: var(--color-dark-bg);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .product-img-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-spring);
+  }
+
+  .product-card:hover .product-photo {
+    transform: scale(1.04);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+  }
+
+  .btn-wishlist-toggle {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    margin: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(12, 34, 31, 0.12);
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+    z-index: 4;
+  }
+
+  .btn-wishlist-toggle svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: currentColor;
+    fill-opacity: 0.15;
+    stroke: currentColor;
+    stroke-width: 2;
+    pointer-events: none;
+    transition: fill-opacity var(--transition-fast);
+  }
+
+  .btn-wishlist-toggle:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+    transform: scale(1.08);
+  }
+
+  .btn-wishlist-toggle:hover svg {
+    fill-opacity: 0.9;
+  }
+
+  .btn-wishlist-toggle.is-saved {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+  }
+
+  .btn-wishlist-toggle.is-saved svg {
+    fill: #ffffff;
+    fill-opacity: 1;
+    stroke: #ffffff;
+  }
+
+  .product-details {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .product-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .star-rating {
+    color: #8a5300;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+  }
+
+  .rating-text {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .product-cat-tag {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    background-color: var(--color-surface-subtle);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .product-title {
+    font-size: 1.1875rem;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .product-title a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .product-snippet {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-footer-row {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+  }
+
+  .price-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .price-display {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .price-currency {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .price-amount {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .price-tax-note {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #075240;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .btn-add-cart {
+    padding: 0.65rem 1.15rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .empty-products-state {
+    margin: 3rem auto;
+    max-width: 600px;
+    text-align: center;
+  }
+</style>

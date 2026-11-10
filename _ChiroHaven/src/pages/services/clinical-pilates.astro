@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Clinical Reformer Pilates | Boston Spine Clinic';
+const description = 'Physiotherapist-guided clinical reformer pilates in Boston. Spring-assisted spinal stabilization, core decompression, and postural re-education.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Services', url: `${base}/services/` },
+  { name: 'Clinical Pilates', url: `${base}/services/clinical-pilates/` }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Clinical Reformer Pilates',
+  provider: {
+    '@type': 'MedicalBusiness',
+    name: 'ChiroHaven Spine & Physical Therapy'
+  },
+  areaServed: 'Boston',
+  description: 'Rehabilitation reformer pilates for spinal stability, core re-education, and postural recovery.'
+};
+---
+
+<BaseLayout title={title} description={description} extraSchema={serviceSchema}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="service-detail-header">
+        <p class="section-eyebrow">Medical Specialty</p>
+        <h1>Clinical Reformer Pilates Rehabilitation</h1>
+        <p class="section-lead">
+          Spring-calibrated reformer equipment tailored for non-weight-bearing core activation, lumbar spine decompression, and postural restoration under clinical guidance.
+        </p>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="media-banner">
+            <img
+              src={`${base}/images/service-clinical-pilates.webp`}
+              alt="Certified clinician directing client during clinical reformer carriage movement"
+              width="800"
+              height="450"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+              class="featured-image"
+            />
+          </div>
+
+          <h2>Why Clinical Pilates Differs from Fitness Studio Classes</h2>
+          <p>
+            Standard group fitness pilates classes often involve rapid transitions and high spinal flexion loads that can exacerbate disc herniations, facet arthritis, or sacroiliac joint instability.
+          </p>
+          <p>
+            Clinical Reformer Pilates at ChiroHaven is conducted exclusively as private or semi-private medical therapy. Each exercise is modified based on your orthopedic diagnosis. The reformer's variable spring resistance supports body weight, allowing deep spinal stabilizer activation without compressive joint loading.
+          </p>
+
+          <h2>Who Benefits Most from Clinical Reformer Training?</h2>
+          <ul class="conditions-list" role="list">
+            <li><strong>Chronic Lower Back Instability:</strong> Retraining the transversus abdominis and multifidus muscles to create an internal muscular corset.</li>
+            <li><strong>Scoliosis & Asymmetric Spine Curvatures:</strong> Unilateral spring loading to strengthen inhibited convex musculature.</li>
+            <li><strong>Postpartum Diastasis Recti & Pelvic Floor Recovery:</strong> Controlled breath-synchronized core re-education.</li>
+            <li><strong>Desk Worker Kyphosis & Forward Head Posture:</strong> Scapular retraction and thoracic extension restoration.</li>
+          </ul>
+
+          <h2>Equipment & Facility Standards</h2>
+          <p>
+            Our dedicated rehabilitation studio features medical-grade Balanced Body reformers, trapeze towers, and stability chairs. Sessions are led by clinicians holding dual degrees in physical rehabilitation and clinical pilates certification.
+          </p>
+        </div>
+
+        <aside class="detail-sidebar" aria-label="Appointment and pricing summary">
+          <div class="sidebar-card">
+            <h3>Quick Service Summary</h3>
+            <dl class="sidebar-dl">
+              <div>
+                <dt>Lead Clinician:</dt>
+                <dd>Dr. Elena Vance, DC, CPI</dd>
+              </div>
+              <div>
+                <dt>Session Format:</dt>
+                <dd>1-on-1 Clinical Private</dd>
+              </div>
+              <div>
+                <dt>Session Length:</dt>
+                <dd>50 Minutes</dd>
+              </div>
+              <div>
+                <dt>Single Session Fee:</dt>
+                <dd>$135 (Package discounts available)</dd>
+              </div>
+              <div>
+                <dt>Clinic Location:</dt>
+                <dd>450 Boylston St, Boston MA</dd>
+              </div>
+            </dl>
+            <div class="sidebar-cta">
+              <a href={`${base}/contact/`} class="btn btn-primary btn-block">
+                Book Reformer Assessment
+              </a>
+              <a href="tel:6176232338" class="btn btn-secondary btn-block">
+                Call: (617) 623-2338
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-detail-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .detail-layout {
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+    }
+  }
+
+  .media-banner {
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+    background: #edf1ee;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .detail-main h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .conditions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .conditions-list li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .conditions-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .sidebar-dl div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-dl dt {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar-dl dd {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .sidebar-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+

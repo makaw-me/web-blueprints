@@ -1,0 +1,383 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'Clinical Services | ChiroHaven Spine & Rehab Boston';
+const description = 'Explore evidence-based chiropractic adjustments, physical therapy, reformer pilates, and soft tissue release in Back Bay Boston. Personalized clinical plans.';
+
+const breadcrumbs = [
+  { name: 'Home', url: `${base}/` },
+  { name: 'Services', url: `${base}/services/` }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="page-header">
+        <p class="section-eyebrow">Comprehensive Clinical Care</p>
+        <h1>Our Specialized Treatment Modalities</h1>
+        <p class="section-lead">
+          We combine advanced spinal manipulation, active physical rehabilitation, and clinical reformer pilates under one unified medical framework to eliminate mechanical dysfunction.
+        </p>
+
+        <!-- Interactive Modality Filter -->
+        <div class="services-filter-bar" role="toolbar" aria-label="Filter clinical specialties">
+          <span class="filter-label">Filter Focus:</span>
+          <button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All Disciplines</button>
+          <button type="button" class="filter-pill" data-filter="spine" aria-pressed="false">Spine & Disc</button>
+          <button type="button" class="filter-pill" data-filter="rehab" aria-pressed="false">Orthopedic PT</button>
+          <button type="button" class="filter-pill" data-filter="pilates" aria-pressed="false">Reformer Core</button>
+          <button type="button" class="filter-pill" data-filter="myofascial" aria-pressed="false">Soft Tissue</button>
+        </div>
+      </div>
+
+      <div class="services-list-detailed">
+        <!-- Service 1 -->
+        <article class="service-row" id="chiropractic" data-category="spine">
+          <div class="service-media">
+            <img
+              src={`${base}/images/service-chiropractic.webp`}
+              alt="Chiropractor assessing thoracic spine curvature and joint mobility"
+              width="450"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="service-content">
+            <h2>Chiropractic Therapy & Spinal Care</h2>
+            <p>
+              Chiropractic medicine focuses on the diagnosis, treatment, and prevention of neuromuscular disorders, with specific emphasis on manual adjustment of the spinal vertebrae and peripheral joints.
+            </p>
+            <div class="service-highlights">
+              <h3>Core Modalities & Techniques</h3>
+              <ul>
+                <li><strong>Diversified Spinal Manipulation:</strong> Precision high-velocity low-amplitude thrusts to restore normal joint motion.</li>
+                <li><strong>Cox Flexion-Distraction:</strong> Decompressive traction for lumbar disc herniation and stenosis.</li>
+                <li><strong>Extremity Mobilization:</strong> Targeted adjustments for shoulder, hip, ankle, and wrist restrictions.</li>
+              </ul>
+            </div>
+            <a href={`${base}/services/chiropractic-therapy/`} class="btn btn-primary">
+              View Chiropractic Details & Pricing
+            </a>
+          </div>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="service-row" id="physiotherapy" data-category="rehab">
+          <div class="service-media">
+            <img
+              src={`${base}/images/service-physiotherapy.webp`}
+              alt="Physical therapist performing targeted joint range-of-motion assessment"
+              width="450"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="service-content">
+            <h2>Orthopedic Physical Therapy</h2>
+            <p>
+              Physical therapy targets the muscular and functional deficits that create recurrent joint overload. We emphasize active patient loading and motor control to ensure long-term stability.
+            </p>
+            <div class="service-highlights">
+              <h3>Core Modalities & Techniques</h3>
+              <ul>
+                <li><strong>Therapeutic Exercise & Progressive Loading:</strong> Targeted strength protocols tailored to joint tolerance.</li>
+                <li><strong>Neuromuscular Re-education:</strong> Restoring correct firing patterns and balance after trauma.</li>
+                <li><strong>Post-Surgical Protocols:</strong> Phased rehabilitation following ACL repair, rotator cuff surgery, or discectomy.</li>
+              </ul>
+            </div>
+            <a href={`${base}/services/physiotherapy/`} class="btn btn-primary">
+              View Physical Therapy Details
+            </a>
+          </div>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="service-row" id="pilates" data-category="pilates">
+          <div class="service-media">
+            <img
+              src={`${base}/images/service-clinical-pilates.webp`}
+              alt="Patient exercising on balanced body reformer with spring resistance"
+              width="450"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="service-content">
+            <h2>Clinical Reformer Pilates</h2>
+            <p>
+              Unlike commercial fitness classes, our clinical pilates is prescribed and supervised by licensed physical therapists and certified clinical instructors for spinal decompression and deep stabilization.
+            </p>
+            <div class="service-highlights">
+              <h3>Core Modalities & Techniques</h3>
+              <ul>
+                <li><strong>Spring-Loaded Axial Decompression:</strong> Spinal loading reduction during core activation.</li>
+                <li><strong>Pelvic Floor & Transverse Abdominis Coordination:</strong> Foundation work for chronic lumbopelvic pain.</li>
+                <li><strong>Dynamic Posture Correction:</strong> Scapular stabilization and cervical spine alignment drills.</li>
+              </ul>
+            </div>
+            <a href={`${base}/services/clinical-pilates/`} class="btn btn-primary">
+              View Clinical Pilates Details
+            </a>
+          </div>
+        </article>
+
+        <!-- Service 4 -->
+        <article class="service-row" id="soft-tissue" data-category="myofascial">
+          <div class="service-media">
+            <img
+              src={`${base}/images/service-soft-tissue.webp`}
+              alt="Clinician administering myofascial release on tight shoulder muscles"
+              width="450"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="service-content">
+            <h2>Soft Tissue & Myofascial Therapy</h2>
+            <p>
+              Muscular tightness, adhesions, and hyperactive trigger points restrict joint mechanics and refer pain. Our manual soft tissue therapy addresses tissue density directly.
+            </p>
+            <div class="service-highlights">
+              <h3>Core Modalities & Techniques</h3>
+              <ul>
+                <li><strong>Active Release Technique (ART):</strong> Movement-based massage targeting entrapped peripheral nerves.</li>
+                <li><strong>IASTM (Instrument-Assisted Mobilization):</strong> Stainless steel tools to break down chronic collagen cross-links.</li>
+                <li><strong>Dry Needling & Trigger Point Work:</strong> Deactivating focal muscular contraction knots.</li>
+              </ul>
+            </div>
+            <a href={`${base}/services/soft-tissue-therapy/`} class="btn btn-primary">
+              View Soft Tissue Protocols
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Treatment Comparison Table -->
+      <div class="comparison-section" id="comparison">
+        <h2>Clinical Comparison Guide</h2>
+        <p>Use the matrix below to understand which discipline addresses your specific clinical symptoms:</p>
+        
+        <div class="data-table-wrapper" tabindex="0" role="region" aria-label="Clinical comparison table">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Modality</th>
+                <th scope="col">Primary Mechanism</th>
+                <th scope="col">Best Suited For</th>
+                <th scope="col">Session Length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Chiropractic Therapy</th>
+                <td>High-velocity spinal adjustment & joint mobilization</td>
+                <td>Acute facet lock, disc herniation, sciatica, rib pain</td>
+                <td>30 – 45 min</td>
+              </tr>
+              <tr>
+                <th scope="row">Physical Therapy</th>
+                <td>Progressive strength loading & biomechanics</td>
+                <td>Tendinopathy, post-op rehab, muscle tears, knee pain</td>
+                <td>45 – 60 min</td>
+              </tr>
+              <tr>
+                <th scope="row">Clinical Pilates</th>
+                <td>Spring-assisted core & deep stabilizer recruitment</td>
+                <td>Postural fatigue, chronic low back weakness, scoliosis</td>
+                <td>45 – 55 min</td>
+              </tr>
+              <tr>
+                <th scope="row">Soft Tissue Therapy</th>
+                <td>Myofascial release & trigger point deactivation</td>
+                <td>Tension headaches, plantar fasciitis, muscle knots</td>
+                <td>30 – 45 min</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const pills = document.querySelectorAll('.filter-pill');
+    const rows = document.querySelectorAll('.service-row');
+
+    pills.forEach((p) => {
+      p.addEventListener('click', () => {
+        const filter = p.getAttribute('data-filter');
+
+        pills.forEach((x) => {
+          x.classList.remove('active');
+          x.setAttribute('aria-pressed', 'false');
+        });
+        p.classList.add('active');
+        p.setAttribute('aria-pressed', 'true');
+
+        rows.forEach((r) => {
+          if (filter === 'all' || r.getAttribute('data-category') === filter) {
+            r.style.display = 'grid';
+          } else {
+            r.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  .services-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .filter-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.25rem;
+  }
+
+  .filter-pill {
+    background: #ffffff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    min-height: 38px;
+  }
+
+  .filter-pill:hover {
+    background: var(--color-surface-subtle);
+    border-color: var(--color-border-strong);
+  }
+
+  .filter-pill.active {
+    background: #0c221f;
+    color: #ffffff;
+    border-color: #0c221f;
+  }
+  .page-header {
+    max-width: var(--max-measure);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .services-list-detailed {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 4rem;
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 860px) {
+    .service-row {
+      grid-template-columns: 1fr 1.3fr;
+      gap: 3rem;
+    }
+
+    .service-row:nth-child(even) .service-media {
+      order: 2;
+    }
+  }
+
+  .service-media {
+    height: 100%;
+    min-height: 280px;
+    background: #eef3f0;
+  }
+
+  .service-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .service-content {
+    padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  }
+
+  .service-content h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .service-highlights {
+    margin: 1.25rem 0 1.5rem;
+    background: var(--color-surface-subtle);
+    padding: 1.25rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--color-primary);
+  }
+
+  .service-highlights h3 {
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-highlights ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .service-highlights li {
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .service-highlights li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .comparison-section {
+    background: #ffffff;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+  }
+
+  .comparison-section h2 {
+    margin-bottom: 0.5rem;
+  }
+</style>
+
