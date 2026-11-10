@@ -94,3 +94,4 @@ Each folder is self-contained and ready for deployment to modern static hosting 
 ## License
 
 This repository is maintained by [MAKAW](https://github.com/makaw-me). Blueprints and source files are provided for demo, template, and client showcase use.
+
