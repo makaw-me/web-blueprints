@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "npx serve -l 3000 .",
-    "start": "npx serve -l 3000 .",
-    "build": "echo 'Static build ready'"
+    "start": "npx serve -l 3000 ."
   },
   "keywords": [
     "digital-agency",
@@ -21,4 +20,3 @@
   "author": "MAKAW",
   "license": "MIT"
 }
-

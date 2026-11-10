@@ -4,7 +4,7 @@
   "private": true,
   "description": "Aurelia Hotel & Suites - Boutique Luxury Hotel Website Template",
   "scripts": {
-    "build": "node -e \"console.log('Build completed: Aurelia Hotel static demo is ready for deployment.')\"",
+    "dev": "npx serve .",
     "start": "npx serve .",
     "test": "node -e \"console.log('Test passed')\""
   },
