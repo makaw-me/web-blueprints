@@ -1,14 +1,21 @@
 # Ignore dependencies across all project directories
 **/node_modules/
 node_modules/
+vendor/
 
 # Ignore build artifacts and caches
 **/dist/
 dist/
+build/
 **/.astro/
 .astro/
+**/.cache/
+**/.sass-cache/
+Prepros Export/
+*.css.map
+*.js.map
 
-# Environment files
+# Environment files and secrets
 **/.env
 **/.env.*
 !.env.example
@@ -16,12 +23,34 @@ dist/
 # Logs and temp files
 **/temp/
 temp/
+**/tmp/
+tmp/
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tmp
+*.bak
+*.pid
+*.lock
 
-# OS & Editor metadata
+# OS metadata
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 Thumbs.db
+ehthumbs.db
+desktop.ini
+Desktop.ini
+
+# Editor & Tooling metadata
 .vscode/
 .idea/
-
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+prepros-6.config

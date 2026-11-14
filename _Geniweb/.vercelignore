@@ -1,0 +1,10 @@
+.git/
+.github/
+.gitignore
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
+node_modules/
+scratch/

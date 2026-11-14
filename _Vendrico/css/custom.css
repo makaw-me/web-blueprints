@@ -1,0 +1,198 @@
+/* Vendrico Accessibility, Consistency & Interactive Enhancements */
+
+:root {
+  --bs-secondary-rgb: 73, 80, 87;
+  --vendrico-ink: #151515;
+  --vendrico-muted: #495057;
+  --vendrico-focus: #151515;
+}
+
+/* Accessible muted text contrast on light surfaces */
+.text-muted,
+.text-secondary {
+  color: var(--vendrico-muted) !important;
+}
+
+.bg-gray-900 .text-muted,
+.bg-gray-900 .text-secondary {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 1rem;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--vendrico-ink);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 1rem;
+  color: #ffffff;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--vendrico-ink);
+}
+
+/* Consistent high-contrast focus indicators */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.accordion-button:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+  outline: 3px solid var(--vendrico-focus);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.bg-gray-900 a:focus-visible,
+.bg-gray-900 button:focus-visible,
+.bg-gray-900 .btn:focus-visible {
+  outline-color: #ffffff;
+}
+
+.btn-white {
+  background-color: #ffffff;
+  color: var(--vendrico-ink);
+  border: 1px solid #ffffff;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-white:hover,
+.btn-white:focus-visible {
+  background-color: #e9ecef;
+  color: var(--vendrico-ink);
+  border-color: #e9ecef;
+}
+
+/* Navbar background, scroll state & item spacing */
+.navbar {
+  transition: background-color 0.25s ease, padding 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar.scrolled {
+  background-color: #ffffff;
+  border-bottom-color: rgba(21, 21, 21, 0.08);
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.navbar .navbar-nav {
+  gap: 0.25rem;
+}
+
+@media (min-width: 992px) {
+  .navbar .navbar-nav {
+    gap: 0.75rem;
+  }
+}
+
+.navbar .nav-link {
+  color: var(--vendrico-muted);
+  padding: 0.5rem 0.75rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible,
+.navbar .nav-link.active {
+  color: var(--vendrico-ink);
+}
+
+/* Footer link interactivity — subtle, editorial, aligned with .link-fancy */
+footer .nav-link {
+  color: var(--vendrico-muted);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+footer .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.35rem;
+  width: 100%;
+  height: 1px;
+  background-color: var(--vendrico-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+footer .nav-link:hover,
+footer .nav-link:focus-visible {
+  color: var(--vendrico-ink);
+  transform: translateX(3px);
+}
+
+footer .nav-link:hover::after,
+footer .nav-link:focus-visible::after,
+footer .nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+footer .nav-link[aria-current="page"] {
+  color: var(--vendrico-ink);
+  font-weight: 500;
+}
+
+/* Clickable email & phone links in footer address */
+.footer-contact-link {
+  color: var(--vendrico-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding: 0.15rem 0;
+  display: inline-block;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: var(--vendrico-ink);
+  border-bottom-color: var(--vendrico-ink);
+}
+
+/* Horizontal gallery keyboard & scroll polish */
+.gallery-scroll-region {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .link-fancy::before,
+  .navbar,
+  .navbar .nav-link,
+  footer .nav-link,
+  footer .nav-link::after,
+  .footer-contact-link,
+  img {
+    transition: none !important;
+  }
+
+  footer .nav-link:hover,
+  footer .nav-link:focus-visible {
+    transform: none;
+  }
+}

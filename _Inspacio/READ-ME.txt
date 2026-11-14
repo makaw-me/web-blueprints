@@ -1,0 +1,25 @@
+========================================================================
+Inspacio - Contemporary Architecture & Interior Design Studio
+Website Project
+========================================================================
+
+Project Overview:
+Inspacio is a bespoke architecture and interior design studio dedicated to
+crafting thoughtful, functional, and enduring residential and commercial
+environments.
+
+Website Architecture:
+- index.html    : Studio homepage with hero showcases, services, portfolio, and reviews
+- about.html    : Studio history, architectural philosophy, and leadership team
+- service.html  : Comprehensive interior design, spatial planning, and styling services
+- project.html  : Filterable portfolio of completed, active, and upcoming spaces
+- blog.html     : Editorial design journal featuring articles on architecture and materials
+- single.html   : In-depth design journal article with author bio and discussions
+- contact.html  : Consultation booking and studio inquiry form
+- faq.html      : Frequently asked questions on consultation, fees, timelines, and sourcing
+- support.html  : Client support center, finish care guides, and warranty assistance
+- terms.html    : Studio terms of service and architectural agreement conditions
+- privacy.html  : Privacy policy and client blueprint confidentiality standards
+
+Powered by MAKAW (https://makaw.me)
+All rights reserved. (c) 2026 Inspacio.

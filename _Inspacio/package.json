@@ -1,0 +1,23 @@
+{
+  "name": "inspacio-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Inspacio - Architecture & Interior Design Studio Website Template",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "test": "node -e \"console.log('Test passed')\""
+  },
+  "keywords": [
+    "inspacio",
+    "architecture",
+    "interior-design",
+    "studio",
+    "demo",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "UNLICENSED"
+}

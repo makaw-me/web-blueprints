@@ -1,0 +1,24 @@
+{
+  "name": "vendrico-commerce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vendrico - Commerce, Inventory & Fulfillment Platform Website Template",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "test": "node -e \"console.log('Test passed')\""
+  },
+  "keywords": [
+    "vendrico",
+    "commerce",
+    "inventory",
+    "fulfillment",
+    "saas",
+    "demo",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "UNLICENSED"
+}

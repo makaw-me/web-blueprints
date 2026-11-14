@@ -1,0 +1,361 @@
+/**
+ * Geniweb Solutions - Design Tokens, Accessibility, Contrast & Interactive Enhancements
+ */
+
+:root {
+    --gw-primary: #fd6802;
+    --gw-primary-dark: #c24b00;
+    --gw-secondary: #fcbf02;
+    --gw-dark: #1f1f1f;
+    --gw-dark-elevated: #393939;
+    --gw-dark-input: #181818;
+    --gw-light: #ffffff;
+    --gw-light-muted: #f2f3f5;
+    --gw-text-dark: #1f1f1f;
+    --gw-text-body: #4a4a4a;
+    --gw-text-light: #cccccc;
+    --gw-text-light-bright: #d4d4d4;
+}
+
+/* 1. Skip to Main Content Link */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 99999;
+    background: var(--gw-dark);
+    color: var(--gw-light);
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 2px solid var(--gw-primary);
+    text-decoration: none;
+    transition: top 0.15s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 16px;
+    color: var(--gw-light);
+    outline: 3px solid var(--gw-secondary);
+    outline-offset: 2px;
+}
+
+#main-content:focus {
+    outline: none;
+}
+
+/* 2. Global Visible Focus Indicator (WCAG 2.2) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible,
+.navbar-toggle:focus-visible {
+    outline: 3px solid var(--gw-primary) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.85) !important;
+}
+
+.footer a:focus-visible,
+.footer input:focus-visible,
+.footer button:focus-visible,
+.copyrights a:focus-visible,
+.top-bar a:focus-visible {
+    outline: 3px solid var(--gw-secondary) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px rgba(31, 31, 31, 0.9) !important;
+}
+
+/* 3. Semantic Heading Parity (One H1 per page) */
+.banner h1 {
+    color: #f1f1f1;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0 0 10px 20px;
+    position: relative;
+}
+
+.banner h1::after {
+    background: #fd6802;
+    content: "";
+    height: 35px;
+    left: -15px;
+    position: absolute;
+    top: 8px;
+    width: 6px;
+}
+
+.customwidget h2 {
+    font-size: 44px;
+    color: #ffffff;
+    padding: 15px 0 25px;
+    margin: 0;
+    line-height: 1 !important;
+    font-weight: 500;
+}
+
+/* 4. WCAG AAA Contrast Refinements */
+.section.wb .section-title h3,
+.section.wb .section-title h2,
+.section.lb .section-title h3,
+.section.lb .section-title h2,
+#features .section-title h3,
+#features .section-title h2 {
+    color: var(--gw-text-dark);
+}
+
+.section.db .section-title h3,
+.section.db .section-title p {
+    color: var(--gw-light);
+}
+
+#features li h4,
+#features .fl-inner h4,
+#features .fr-inner h4 {
+    color: var(--gw-light);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+#features li p,
+#features .features-left p,
+#features .features-right p {
+    color: #e0e0e0;
+}
+
+.features-left li i:hover,
+.features-right li i:hover {
+    color: var(--gw-text-dark);
+}
+
+.section-title p,
+.message-box p,
+.message-box h4,
+.message-box .lead,
+.service-dit p,
+.service-widget p,
+.about-text p {
+    color: var(--gw-text-body);
+}
+
+.legal-content h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin: 0 0 10px;
+    line-height: 1.35;
+}
+
+.faq-accordion .panel-heading {
+    padding: 0;
+}
+
+.faq-accordion .panel-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.faq-accordion .panel-title a {
+    display: block;
+    padding: 14px 18px;
+    color: #1f1f1f;
+    text-decoration: none;
+}
+
+.faq-accordion .panel-title a:hover,
+.faq-accordion .panel-title a:focus-visible {
+    color: #c24b00;
+}
+
+.footer-distributed form input {
+    color: #f1f1f1;
+}
+
+.footer-distributed form input::placeholder {
+    color: #b5b5b5;
+    opacity: 1;
+}
+
+.footer p,
+.footer .widget-title p,
+.footer-distributed .widget-title p {
+    color: #cccccc;
+}
+
+.footer-links a {
+    color: #d4d4d4;
+}
+
+.footer-distributed .footer-company-name {
+    color: #cccccc;
+}
+
+.footer-distributed .footer-company-name a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* 5. Touch Target Sizing (44x44px minimum for icon controls) */
+.social-box ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+}
+
+#scroll-to-top {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 6. Interactive Footer Links & Newsletter Submit */
+.footer-links.hov a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px 8px 10px;
+    border-radius: 4px;
+    transition: color 0.25s ease, padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease;
+}
+
+.footer-links.hov a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--gw-secondary), var(--gw-primary));
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer-links.hov a span {
+    opacity: 0;
+    transform: translateX(-8px);
+    padding-left: 0;
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+}
+
+.footer-links.hov a:hover,
+.footer-links.hov a:focus-visible {
+    padding-left: 18px;
+    background-color: rgba(253, 104, 2, 0.1);
+    color: #ffffff !important;
+}
+
+.footer-links.hov a:hover::before,
+.footer-links.hov a:focus-visible::before {
+    transform: scaleY(1);
+}
+
+.footer-links.hov a:hover span,
+.footer-links.hov a:focus-visible span {
+    opacity: 1;
+    transform: translateX(0);
+    padding-left: 8px;
+    color: #fd6802;
+}
+
+/* Copyright Legal Links Hover */
+.footer-distributed .footer-links a {
+    position: relative;
+    color: #d4d4d4;
+    padding: 6px 4px;
+    transition: color 0.2s ease;
+}
+
+.footer-distributed .footer-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gw-secondary), var(--gw-primary));
+    transform: translateX(-50%);
+    transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer-distributed .footer-links a:hover,
+.footer-distributed .footer-links a:focus-visible {
+    color: #ffffff !important;
+}
+
+.footer-distributed .footer-links a:hover::after,
+.footer-distributed .footer-links a:focus-visible::after {
+    width: 100%;
+}
+
+/* Accessible Newsletter Submit Button */
+.footer-distributed form .newsletter-submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 44px;
+    height: 100%;
+    background: transparent;
+    border: 0;
+    color: #cccccc;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.footer-distributed form .newsletter-submit:hover,
+.footer-distributed form .newsletter-submit:focus-visible {
+    color: #fd6802;
+}
+
+.footer-distributed form .newsletter-submit i {
+    position: static;
+    margin: 0;
+}
+
+/* 7. Reduced Motion & Forced Colors Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .wow {
+        visibility: visible !important;
+        animation: none !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .skip-link:focus,
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 3px solid Highlight !important;
+    }
+
+    .footer-links.hov a::before,
+    .footer-distributed .footer-links a::after {
+        background: Highlight;
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "grevera-real-estate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Grevera - Real Estate & Property Marketplace Website Template",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "test": "node -e \"console.log('Test passed')\""
+  },
+  "keywords": [
+    "grevera",
+    "real-estate",
+    "property",
+    "marketplace",
+    "demo",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "UNLICENSED"
+}

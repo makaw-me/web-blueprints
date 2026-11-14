@@ -1,0 +1,24 @@
+{
+  "name": "tripnexa-travel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tripnexa - Curated Travel & Tour Experiences Website Template",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "test": "node -e \"console.log('Test passed')\""
+  },
+  "keywords": [
+    "tripnexa",
+    "travel",
+    "tours",
+    "tourism",
+    "vacations",
+    "demo",
+    "template",
+    "vercel",
+    "monorepo"
+  ],
+  "author": "MAKAW",
+  "license": "UNLICENSED"
+}

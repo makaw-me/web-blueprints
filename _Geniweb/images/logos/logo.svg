@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" width="220" height="54" role="img" aria-label="Geniweb Solutions">
+  <defs>
+    <linearGradient id="gw-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcbf02"/>
+      <stop offset="100%" stop-color="#fd6802"/>
+    </linearGradient>
+  </defs>
+  <!-- Stylized G Mark -->
+  <path d="M27 7C15.95 7 7 15.95 7 27s8.95 20 20 20c9.6 0 17.63-6.77 19.56-15.8.28-1.3-.72-2.53-2.05-2.53H28.5c-1.38 0-2.5 1.12-2.5 2.5v3c0 1.38 1.12 2.5 2.5 2.5h9.1c-1.85 3.18-5.3 5.33-9.6 5.33-6.63 0-12-5.37-12-12s5.37-12 12-12c3.28 0 6.25 1.32 8.42 3.45 1 .98 2.6.96 3.57-.05l2.12-2.21c.95-.99.92-2.56-.07-3.51C38.43 9.26 33 7 27 7z" fill="url(#gw-grad)"/>
+  <circle cx="29" cy="27" r="4" fill="#393939"/>
+  <!-- Brand Text -->
+  <text x="56" y="30" font-family="Raleway, 'Segoe UI', Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5">
+    <tspan fill="#1f1f1f">Geni</tspan><tspan fill="#fd6802">web</tspan>
+  </text>
+  <text x="58" y="45" font-family="Raleway, 'Segoe UI', Arial, sans-serif" font-size="10.5" font-weight="600" letter-spacing="4.2" fill="#666666">SOLUTIONS</text>
+</svg>
+

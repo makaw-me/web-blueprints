@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#343661"/>
+  <circle cx="32" cy="32" r="21" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2"/>
+  <!-- Compass needle: North-East (Terracotta) -->
+  <polygon points="46,18 36,36 28,28" fill="#f17945"/>
+  <!-- Compass needle: South-West (White) -->
+  <polygon points="18,46 28,28 36,36" fill="#ffffff"/>
+  <!-- Center pivot -->
+  <circle cx="32" cy="32" r="3.5" fill="#343661" stroke="#ffffff" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,109 @@
+.site-footer {
+	background: #efefef;
+	font-size: 14px;	
+	color: #2f3241;
+	padding: 70px 0;
+	a {
+		color: #b33f10;
+		position: relative;
+		display: inline-block;
+	}
+	.btn {
+		&:before {
+			display: none;
+		}
+	}
+	.widget {
+		margin-bottom: 40px;
+		display: block;
+		position: relative;
+		z-index: 1;
+		h3 {
+			font-size: 16px;
+			color: $black;
+			margin-bottom: 30px;
+			font-weight: 700;
+		}
+
+		.links {
+			width: auto;
+			min-width: 165px;
+			li {
+				margin-bottom: 10px;
+				a {
+					color: #2f3241;
+					position: relative;
+					display: inline-flex;
+					align-items: center;
+					padding: 4px 0;
+					transition: color 0.25s ease, padding-left 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+					&:before {
+						content: "\2192";
+						position: absolute;
+						left: 0;
+						color: #c94d18;
+						font-weight: 700;
+						opacity: 0;
+						transform: translateX(-8px);
+						transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+					}
+					&:after {
+						content: "";
+						position: absolute;
+						left: 18px;
+						bottom: 2px;
+						width: 0;
+						height: 2px;
+						background-color: #c94d18;
+						transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+					}
+					&:hover,
+					&:focus-visible {
+						color: $secondary;
+						padding-left: 18px;
+						&:before {
+							opacity: 1;
+							transform: translateX(0);
+						}
+						&:after {
+							width: calc(100% - 18px);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.social {
+		li {
+			display: inline-block;
+			a {
+				display: inline-block;
+				width: 44px;
+				height: 44px;
+				position: relative;
+				background: $secondary;
+				border-radius: 50%;
+				color: $white;
+				transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease, box-shadow 0.28s ease;
+				&:before {
+					display: none;
+				}
+				> span {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+				&:hover,
+				&:focus-visible {
+					background: #c94d18;
+					color: $white;
+					transform: translateY(-4px) scale(1.06);
+					box-shadow: 0 8px 18px rgba(201, 77, 24, 0.32);
+				}
+			}
+		}
+	}
+
+}

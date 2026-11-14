@@ -1,0 +1,10 @@
+========================================================================
+Inspacio Project License
+========================================================================
+
+Copyright (c) 2026 Inspacio. All Rights Reserved.
+Powered by MAKAW (https://makaw.me)
+
+Permission is hereby granted for authorized use, deployment, and customization
+of the Inspacio brand web assets in accordance with studio guidelines.
+
