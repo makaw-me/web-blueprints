@@ -1,12 +1,32 @@
-# SCSS source files (pre-compiled CSS is in css/)
+# Vercel deployment ignore rules (managed via shared/security-manifest.json)
+.git/
+.github/
+.vscode/
+.idea/
+.astro/
+node_modules/
+scratch/
 scss/
-
-# Template mockups & previews
-visa-immigration-website-template.jpg
-
-# Stray unused PHP file from third-party vendor
-lib/waypoints/links.php
-
-# Local documentation text file
+mail/
+*.map
+*.php
+*.ps1
+*.bak
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*
+README.md
 READ-ME.txt
-
+LICENSE
+LICENSE.txt
+CONTENT_TODO.md
+DESIGN_BRIEF.md
+prepros-6.config
+**/backup.txt
+**/links.php
+**/LICENSE
+**/license.pdf
+images/logo_original_backup.png

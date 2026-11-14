@@ -1,25 +1,32 @@
-# Logs & Temporary files
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Dependencies
-node_modules
-
-# Scratch & Dev tooling
-scratch/
-.system_generated/
-*.tmp
-
-# OS & Editor files
-.DS_Store
-Thumbs.db
+# Vercel deployment ignore rules (managed via shared/security-manifest.json)
+.git/
+.github/
 .vscode/
 .idea/
-
-# Source Control
-.git/
-.gitignore
-
+.astro/
+node_modules/
+scratch/
+scss/
+mail/
+*.map
+*.php
+*.ps1
+*.bak
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*
+README.md
+READ-ME.txt
+LICENSE
+LICENSE.txt
+CONTENT_TODO.md
+DESIGN_BRIEF.md
+prepros-6.config
+**/backup.txt
+**/links.php
+**/LICENSE
+**/license.pdf
+images/logo_original_backup.png

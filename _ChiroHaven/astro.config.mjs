@@ -8,6 +8,14 @@ export default defineConfig({
   trailingSlash: 'always',
   build: {
     format: 'directory'
+  },
+  compressHTML: true,
+  vite: {
+    build: {
+      sourcemap: false,
+      minify: 'esbuild',
+      cssMinify: true
+    }
   }
 });
 
