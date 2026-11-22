@@ -1,0 +1,25 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies & Build artifacts
+node_modules/
+.sass-cache/
+*.css.map
+
+# Logs & Local Environment
+*.log
+.env
+.env.local
+
+# Temporary / Tooling caches
+.taste-skill/
+.impeccable/
+tmp/

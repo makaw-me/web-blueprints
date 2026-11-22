@@ -1,0 +1,27 @@
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependencies & Tooling Caches
+node_modules/
+.sass-cache/
+.impeccable/
+.taste-skill/
+
+# Logs & Environment
+*.log
+.env
+.env.local

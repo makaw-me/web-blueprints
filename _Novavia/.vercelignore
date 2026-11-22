@@ -7,7 +7,7 @@
 node_modules/
 scratch/
 scss/
-mail/
+mail/*.php
 *.map
 *.php
 *.ps1
@@ -25,6 +25,7 @@ LICENSE.txt
 CONTENT_TODO.md
 DESIGN_BRIEF.md
 prepros-6.config
+*-website-template.jpg
 **/backup.txt
 **/links.php
 **/LICENSE
