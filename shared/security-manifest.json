@@ -15,7 +15,7 @@
     "node_modules/",
     "scratch/",
     "scss/",
-    "mail/",
+    "mail/*.php",
     "*.map",
     "*.php",
     "*.ps1",
@@ -33,6 +33,7 @@
     "CONTENT_TODO.md",
     "DESIGN_BRIEF.md",
     "prepros-6.config",
+    "*-website-template.jpg",
     "**/backup.txt",
     "**/links.php",
     "**/LICENSE",
@@ -167,6 +168,54 @@
       "cacheSource": "/(css|js|img|lib)/(.*)",
       "imageSource": "/img/(.*)",
       "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    },
+    "_Crumbelle": {
+      "type": "static",
+      "trailingSlash": false,
+      "xFrameOptions": "SAMEORIGIN",
+      "cacheSource": "/(css|js|img|lib)/(.*)",
+      "imageSource": "/img/(.*)",
+      "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src 'none'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    },
+    "_Fortivex": {
+      "type": "static",
+      "trailingSlash": false,
+      "xFrameOptions": "SAMEORIGIN",
+      "cacheSource": "/(css|js|img|lib)/(.*)",
+      "imageSource": "/img/(.*)",
+      "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    },
+    "_Kryptera": {
+      "type": "static",
+      "trailingSlash": false,
+      "xFrameOptions": "SAMEORIGIN",
+      "cacheSource": "/(css|js|img|lib)/(.*)",
+      "imageSource": "/img/(.*)",
+      "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    },
+    "_Morsella": {
+      "type": "static",
+      "trailingSlash": false,
+      "xFrameOptions": "SAMEORIGIN",
+      "cacheSource": "/(css|js|img|lib)/(.*)",
+      "imageSource": "/img/(.*)",
+      "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    },
+    "_Snapkart": {
+      "type": "static",
+      "trailingSlash": false,
+      "xFrameOptions": "SAMEORIGIN",
+      "cacheSource": "/(css|js|img|lib|mail)/(.*)",
+      "imageSource": "/img/(.*)",
+      "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://stackpath.bootstrapcdn.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    },
+    "_Udaan": {
+      "type": "static",
+      "trailingSlash": false,
+      "xFrameOptions": "SAMEORIGIN",
+      "cacheSource": "/(css|js|img|lib)/(.*)",
+      "imageSource": "/img/(.*)",
+      "csp": "default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
     }
   }
 }

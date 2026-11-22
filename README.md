@@ -10,17 +10,23 @@ A curated collection of production-grade, accessible, and high-performance websi
 | :--- | :--- | :--- | :--- |
 | [`_Aurelia`](./_Aurelia) | **Luxury Hospitality** | HTML5, CSS3, JS | Boutique hotel & suites showcase, room galleries, amenities, and booking workflow. |
 | [`_ChiroHaven`](./_ChiroHaven) | **Healthcare & Physical Therapy** | Astro, Static HTML, CSS | WCAG 2.2 AAA contrast target, JSON-LD clinical schemas, interactive posture and symptom explorer, lightweight client store. |
+| [`_Crumbelle`](./_Crumbelle) | **Artisan Bakery & Custom Cakes** | HTML5, CSS3, JS | Custom cake showcase, menu & pricing tiers, master chefs, and order inquiry workflow. |
 | [`_Dextria`](./_Dextria) | **Digital Agency** | HTML5, CSS3, JS | Service matrices, case studies, project portfolio filters, and client contact funnels. |
+| [`_Fortivex`](./_Fortivex) | **Smart Security & CCTV Systems** | HTML5, CSS3, JS | Surveillance hardware & access control showcase, project gallery, and instant quote requests. |
 | [`_Geniweb`](./_Geniweb) | **Web Studio & Digital Solutions** | HTML5, CSS3, JS | Studio showcase, pricing matrices, service carousels, filterable portfolio, and client testimonials. |
 | [`_Grevera`](./_Grevera) | **Real Estate & Property** | HTML5, CSS3, JS | Property search filters, property type taxonomies, agent profiles, listing details, and inquiry modals. |
 | [`_Heliotrion`](./_Heliotrion) | **Solar & Renewable Energy** | HTML5, CSS3, JS | Solar, wind, and storage practice areas, project case studies, instant quote request workflow, and team directory. |
 | [`_Inspacio`](./_Inspacio) | **Architecture & Interior Design** | HTML5, CSS3, JS | Architectural hover system, Isotope-filtered project galleries, Lightbox modals, design journal, and studio philosophy. |
+| [`_Kryptera`](./_Kryptera) | **Digital Assets & Crypto Platform** | HTML5, CSS3, JS | Tokenomics overview, product roadmap, security features, and support center. |
+| [`_Morsella`](./_Morsella) | **Fine Dining & Restaurant** | HTML5, CSS3, JS | Seasonal menu showcase, chef profiles, online table reservations, and testimonials. |
 | [`_Nexora`](./_Nexora) | **Corporate Advisory & Finance** | HTML5, CSS3, JS | M&A advisory, restructuring practice areas, partner credentials, and insight articles. |
 | [`_Novavia`](./_Novavia) | **Immigration & Education** | HTML5, CSS3, JS | Visa category matrices, country requirements, eligibility checks, and consultation booking. |
 | [`_Occasia`](./_Occasia) | **Events & Brand Activations** | HTML5, CSS3, JS | Turnkey event management, scenic fabrication portfolio, equipment specs, and RFQ forms. |
 | [`_Plumbright`](./_Plumbright) | **Trade Services & Plumbing** | HTML5, CSS3, JS | Emergency callouts, commercial & residential service breakdown, clear pricing tables, and service area coverage. |
+| [`_Snapkart`](./_Snapkart) | **E-Commerce & Online Retail** | HTML5, CSS3, JS | Product catalog, item detail views, shopping cart, checkout flow, and order FAQs. |
 | [`_Tangerina`](./_Tangerina) | **Early Childhood Education** | HTML5, CSS3, JS | Preschool curriculum, age group programs, admission checklists, and campus facility tours. |
 | [`_Tripnexa`](./_Tripnexa) | **Travel & Curated Tours** | HTML5, CSS3, JS | Custom itineraries, curated tour packages, flight & hotel guides, travel insurance specs, and inquiry forms. |
+| [`_Udaan`](./_Udaan) | **Nonprofit & Community Empowerment** | HTML5, CSS3, JS | Community causes, impact programs, donation workflows, and volunteer directory. |
 | [`_Vendrico`](./_Vendrico) | **Commerce & Fulfillment Platform** | HTML5, CSS3, JS | B2B commerce showcase, inventory synchronization metrics, automated carrier routing specs, and partner registration. |
 | [`_Voyagio`](./_Voyagio) | **Tours & Travel Packages** | HTML5, CSS3, JS | Multi-day package tours, itineraries, departure dates, pricing tiers, and booking inquiries. |
 | [`_Wanderly`](./_Wanderly) | **Bespoke Travel Agency** | HTML5, CSS3, JS | Curated destination guides, custom itinerary planning, and travel experience showcases. |
@@ -101,17 +107,23 @@ All blueprints in this monorepo are preconfigured with custom `vercel.json` and 
 | :--- | :--- | :--- | :--- |
 | **`_Aurelia`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_ChiroHaven`** | **Astro** | `npm run build` | `dist` |
+| **`_Crumbelle`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Dextria`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
+| **`_Fortivex`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Geniweb`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Grevera`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Heliotrion`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Inspacio`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
+| **`_Kryptera`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
+| **`_Morsella`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Nexora`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Novavia`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Occasia`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Plumbright`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
+| **`_Snapkart`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Tangerina`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Tripnexa`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
+| **`_Udaan`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Vendrico`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Voyagio`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |
 | **`_Wanderly`** | **Other** | *(Leave empty / toggle off)* | *(Leave empty / toggle off)* |

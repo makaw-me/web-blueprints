@@ -1,0 +1,509 @@
+/********** Template CSS **********/
+:root {
+    --primary: #16D5FF;
+    --primary-ink: #005A70;
+    --primary-ink-hover: #004254;
+    --secondary: #4A5568;
+    --light: #F2F8FE;
+    --dark: #111111;
+}
+
+::selection {
+    background: var(--primary-ink);
+    color: #FFFFFF;
+}
+
+body {
+    color: #1F2933;
+}
+
+/* Skip to main content */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 100000;
+    padding: 12px 20px;
+    background: var(--primary-ink);
+    color: #FFFFFF;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: top .2s ease;
+}
+
+.skip-link:focus-visible {
+    top: 16px;
+    outline: 3px solid var(--dark);
+    outline-offset: 2px;
+    color: #FFFFFF;
+}
+
+/* Global accessible focus ring */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.dropdown-item:focus-visible,
+.accordion-button:focus-visible {
+    outline: 3px solid var(--primary-ink) !important;
+    outline-offset: 2px;
+    box-shadow: none !important;
+}
+
+/* Accessible primary ink overrides */
+.text-primary {
+    color: var(--primary-ink) !important;
+}
+
+a {
+    color: var(--primary-ink);
+}
+
+a:hover {
+    color: var(--primary-ink-hover);
+}
+
+main a:not(.btn):not(.nav-link):not(.dropdown-item):not(.breadcrumb-item a),
+.accordion-body a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 60px;
+    z-index: 99;
+}
+
+h4,
+h5,
+h6,
+.h4,
+.h5,
+.h6 {
+    font-weight: 500 !important;
+}
+
+.tabular-nums {
+    font-variant-numeric: tabular-nums;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*** Button ***/
+.btn {
+    font-weight: 500;
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.btn.btn-primary {
+    color: #FFFFFF;
+    background-color: var(--primary-ink);
+    border-color: var(--primary-ink);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus-visible {
+    color: #FFFFFF;
+    background-color: var(--primary-ink-hover);
+    border-color: var(--primary-ink-hover);
+}
+
+.btn.btn-outline-primary {
+    color: var(--primary-ink);
+    border-color: var(--primary-ink);
+}
+
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:focus-visible {
+    color: #FFFFFF;
+    background-color: var(--primary-ink);
+    border-color: var(--primary-ink);
+}
+
+.btn-square {
+    width: 44px;
+    height: 44px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
+
+
+/*** Navbar ***/
+.navbar.sticky-top {
+    top: -100px;
+    transition: .5s;
+}
+
+.navbar .navbar-brand {
+    height: 75px;
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-right: 30px;
+    padding: 25px 0;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+    color: var(--primary-ink);
+}
+
+.navbar .dropdown-item.active,
+.navbar .dropdown-item:active {
+    background-color: var(--primary-ink);
+    color: #FFFFFF;
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-nav .nav-link {
+        margin-right: 0;
+        padding: 12px 0;
+    }
+
+    .navbar .navbar-nav {
+        border-top: 1px solid #EEEEEE;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        border: none;
+        margin-top: 0;
+        top: 150%;
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s ease;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu,
+    .navbar .nav-item:focus-within .dropdown-menu {
+        top: 100%;
+        visibility: visible;
+        transition: .3s ease;
+        opacity: 1;
+    }
+}
+
+.navbar .btn:hover {
+    color: #FFFFFF !important;
+    background: var(--primary-ink) !important;
+}
+
+
+/*** Header ***/
+.hero-header .breadcrumb-item+.breadcrumb-item::before {
+    color: var(--secondary);
+}
+
+.hero-header .breadcrumb-item.active {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+
+/*** Service ***/
+.service-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-item::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    top: -80px;
+    right: -80px;
+    border: 80px solid;
+    transform: rotate(45deg);
+    opacity: 1;
+    transition: .5s;
+}
+
+.service-item.bg-white::after {
+    border-color: transparent transparent var(--light) transparent;
+}
+
+.service-item.bg-light::after {
+    border-color: transparent transparent #FFFFFF transparent;
+}
+
+.service-item:hover::after {
+    opacity: 0;
+}
+
+
+/*** Roadmap ***/
+.roadmap-carousel {
+    position: relative;
+}
+
+.roadmap-carousel::before {
+    position: absolute;
+    content: "";
+    height: 0;
+    width: 100%;
+    top: 20px;
+    left: 0;
+    border-top: 2px dashed var(--secondary);
+}
+
+.roadmap-carousel .roadmap-item .roadmap-point {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 6px;
+    left: 50%;
+    margin-left: -15px;
+    background: #FFFFFF;
+    border: 2px solid var(--primary-ink);
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roadmap-carousel .roadmap-item .roadmap-point span {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-ink);
+}
+
+.roadmap-carousel .roadmap-item {
+    position: relative;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.roadmap-carousel .roadmap-item::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 115px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-right: 2px dashed var(--secondary);
+}
+
+.roadmap-carousel .roadmap-item::after {
+    position: absolute;
+    content: "";
+    width: 14px;
+    height: 14px;
+    top: 111px;
+    left: 50%;
+    margin-left: -7px;
+    transform: rotate(45deg);
+    background: var(--primary-ink);
+}
+
+.roadmap-carousel .owl-nav {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.roadmap-carousel .owl-nav .owl-prev,
+.roadmap-carousel .owl-nav .owl-next {
+    margin: 0 12px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 22px;
+    color: #FFFFFF;
+    background: var(--primary-ink);
+    transition: background-color .3s ease, color .3s ease;
+}
+
+.roadmap-carousel .owl-nav .owl-prev:hover,
+.roadmap-carousel .owl-nav .owl-next:hover {
+    color: #FFFFFF;
+    background: var(--dark);
+}
+
+
+/*** FAQs ***/
+.accordion .accordion-item {
+    border: none;
+    margin-bottom: 15px;
+}
+
+.accordion .accordion-button {
+    background: var(--light);
+    color: var(--dark);
+    border-radius: 2px;
+}
+
+.accordion .accordion-button:not(.collapsed) {
+    color: #FFFFFF;
+    background: var(--primary-ink);
+    box-shadow: none;
+}
+
+.accordion .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion .accordion-body {
+    padding: 15px 0 0 0;
+}
+
+
+/*** Footer ***/
+.footer .btn.btn-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin-bottom: 2px;
+    padding: 6px 0;
+    text-align: left;
+    color: var(--secondary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.footer .btn.btn-link::before {
+    display: inline-block;
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: var(--primary-ink);
+    margin-right: 10px;
+    transition: transform .2s ease, color .2s ease;
+}
+
+.footer .btn.btn-link:hover,
+.footer .btn.btn-link:focus-visible {
+    color: var(--primary-ink);
+    transform: translateX(4px);
+    box-shadow: none;
+}
+
+.footer .btn.btn-link:hover::before,
+.footer .btn.btn-link:focus-visible::before {
+    transform: translateX(3px);
+    color: var(--primary-ink-hover);
+}
+
+.footer .footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    color: var(--secondary);
+    text-decoration: none;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.footer .footer-contact-link:hover,
+.footer .footer-contact-link:focus-visible {
+    color: var(--primary-ink);
+    transform: translateX(3px);
+}
+
+.footer .btn.btn-square {
+    color: var(--primary-ink);
+    border: 1px solid var(--primary-ink);
+    transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.footer .btn.btn-square:hover,
+.footer .btn.btn-square:focus-visible {
+    color: #FFFFFF;
+    background: var(--primary-ink);
+    transform: translateY(-2px);
+}
+
+.footer .copyright {
+    padding: 25px 0;
+    border-top: 1px solid rgba(17, 17, 17, .1);
+}
+
+.footer .copyright a {
+    color: var(--primary-ink);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.footer .copyright a:hover,
+.footer .copyright a:focus-visible {
+    color: var(--dark);
+}
+
+/* Reduced motion & forced-colors support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (forced-colors: active) {
+    a:focus-visible,
+    button:focus-visible,
+    .btn:focus-visible {
+        outline: 3px solid Highlight !important;
+    }
+}
